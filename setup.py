@@ -17,15 +17,16 @@ setup(
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",
     ],
-    url="",
-    download_url = '' + _version_.__version__ + '.tar.gz',
+    url="https://github.com/bharkema/RealstatsModelRollout/",
+    download_url = 'https://github.com/bharkema/RealstatsModelRollout/archive/' + _version_.__version__ + '.tar.gz',
     author="Realstats",
     author_email="",
     keywords="model validation",
     license="MIT",
     packages = ['RealstatsModelRollout'],
     install_requires=[
-        "pandas"
+        "pandas",
+        "pyarrow"
     ],
     include_package_data=True,
 )
