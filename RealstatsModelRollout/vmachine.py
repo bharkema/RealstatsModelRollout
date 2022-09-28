@@ -6,7 +6,7 @@ class vmachine:
     dev_platform_vers = ""
     dev_platform_release = ""
 
-    def init(self):
+    def __init__(self):
         self.dev_platform = platform.system()
         self.dev_platform_vers = platform.version()
         self.dev_platform_release = platform.release()    
