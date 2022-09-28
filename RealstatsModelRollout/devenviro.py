@@ -1,7 +1,7 @@
 from os import system
 import platform
 
-class dev_enviroment:
+class devenviro:
     def init ():
         global dev_platform 
         global dev_platform_vers
