@@ -1,31 +1,32 @@
 from setuptools import setup
-import _version_
+import _version
 
 def readme():
-    with open("Documentation/main.md") as f:
+    with open("docs/index.md") as f:
         return f.read()
 
 setup(
-    name="Clappform",
-    version=_version_.__version__,
-    description="Realstats Model Rollout",
+    name="RealstatsModelRollout",
+    version=_version.__version__,
+    description="Realstats model version control",
     long_description=readme(),
     long_description_content_type="text/markdown",
     classifiers=[
-        "Development Status :: 5 - Production/Unstable",
+        "Development Status :: 5 - Production/Stable",
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",
     ],
-    url="",
-    download_url = '' + _version_.__version__ + '.tar.gz',
-    author="Realstats",
-    author_email="",
+    url="https://github.com/bharkema/RealstatsModelRollout",
+    download_url = 'https://github.com/bharkema/RealstatsModelRollout/archive/' + _version.__version__ + '.tar.gz',
+    author="Bowen",
+    author_email="b.harkema@clappform.com",
     keywords="model validation",
     license="MIT",
     packages = ['RealstatsModelRollout'],
     install_requires=[
-        "pandas"
+        "pandas",
+        "pyarrow"
     ],
     include_package_data=True,
 )
