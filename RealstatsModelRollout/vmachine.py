@@ -11,6 +11,11 @@ class vmachine:
         self.dev_platform_vers = platform.version()
         self.dev_platform_release = platform.release()    
 
+        print("Platform: " + self.dev_platform)
+        print("Platform version: " + self.dev_platform_vers)
+        print("Platform release: " + self.dev_platform_release)
+
+
     def start_venv(self):
         if self.dev_platform == "Windows":
             print("starting virtual machine for Windows")
