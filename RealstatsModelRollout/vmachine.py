@@ -5,17 +5,14 @@ class vmachine:
         global baseURL
         
     def start_venv():
-        dev_enviroment.system_scan()
-
-
-        if dev_enviroment.DEV_PLATFORM == "Windows":
+        if dev_enviroment.dev_platform == "Windows":
             print("starting virtual machine for Windows")
 
 
-        elif dev_enviroment.DEV_PLATFORM == "Linux":
+        elif dev_enviroment.dev_platform == "Linux":
             print("starting virtual machine for Linux")
 
 
-        elif dev_enviroment.DEV_PLATFORM == "MacOS":
+        elif dev_enviroment.dev_platform == "MacOS":
             print("starting virtual machine for MacOS")
             

@@ -3,23 +3,19 @@ import platform
 
 class dev_enviroment:
     def init ():
-        global DEV_PLATFORM 
-        global DEV_PLATFORM_RELEASE
-        global DEV_PLATFORM_VERSION
+        global dev_platform 
+        global dev_platform_vers
+        global dev_platform_release
 
-        DEV_PLATFORM = platform.system()
-        DEV_PLATFORM_VERSION = platform.version()
-        DEV_PLATFORM_RELEASE = platform.release()
+        dev_platform = platform.system()
+        dev_platform_vers = platform.version()
+        dev_platform_release = platform.release()
 
-        print("Platform: " + DEV_PLATFORM)
-        print("Platform version: " + DEV_PLATFORM_VERSION)
-        print("Platform release: " + DEV_PLATFORM_RELEASE)
+        print("Platform: " + dev_platform)
+        print("Platform version: " + dev_platform_vers)
+        print("Platform release: " + dev_platform_release)
 
-    def system_scan():
-        DEV_PLATFORM = platform.system()
-        DEV_PLATFORM_VERSION = platform.version()
-        DEV_PLATFORM_RELEASE = platform.release()
-
-        print("Platform: " + DEV_PLATFORM)
-        print("Platform version: " + DEV_PLATFORM_VERSION)
-        print("Platform release: " + DEV_PLATFORM_RELEASE)
+    # def system_scan():
+    #     dev_platform = platform.system()
+    #     dev_platform_vers = platform.version()
+    #     dev_platform_release = platform.release()
