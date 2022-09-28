@@ -1,0 +1,5 @@
+title: Realstats model rollout
+description: RMR is a package made for validating, testing and deploying ML models
+show_downloads: true
+google_analytics:
+theme: jekyll-theme-cayman
