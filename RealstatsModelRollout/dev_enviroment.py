@@ -1,4 +1,3 @@
-from mimetypes import init
 from os import system
 import platform
 
@@ -8,6 +7,7 @@ class dev_enviroment:
         global DEV_PLATFORM_RELEASE
         global DEV_PLATFORM_VERSION
 
+    def system_scan():
         DEV_PLATFORM = platform.system()
         DEV_PLATFORM_VERSION = platform.version()
         DEV_PLATFORM_RELEASE = platform.release()

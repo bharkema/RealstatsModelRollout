@@ -16,7 +16,3 @@ class vmachine:
         elif dev_enviroment.DEV_PLATFORM == "MacOS":
             print("starting virtual machine for MacOS")
             
-
-
-
-vmachine.start_venv()
