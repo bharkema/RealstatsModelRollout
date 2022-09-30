@@ -1,5 +1,6 @@
 from os import system
 import platform
+import subprocess
 
 class vmachine:
     dev_platform = ""
@@ -28,3 +29,10 @@ class vmachine:
         elif self.dev_platform == "MacOS":
             print("starting virtual machine for MacOS")
             
+    def start_windows_env(self):
+        process = subprocess.Popen(['echo', 'more output'],
+                                    stdout=subprocess.PIPE, 
+                                    stderr=subprocess.PIPE)
+        stdout, stderr = process.communicate()
+        print(stdout, stderr)
+
