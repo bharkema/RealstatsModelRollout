@@ -1,15 +1,17 @@
+import cmd
 import os
 import subprocess
-
-subprocess.Popen(['C:/Users/Bowen/Desktop/Realstats_package/tutorialenv/scripts/activate', 
-                    'cd c:/',
-                    'cd C:/Users/Bowen/Desktop/Realstats_package/tutorialenv/', 
-                    'dir'], shell=True)
-# subprocess.Popen('cd C:/', shell=True)
-# process = subprocess.Popen('cd C:/Users/Bowen/Desktop/Realstats_package/tutorialenv/', shell=True)
-# subprocess.Popen('dir', shell=True)
+import requests
 
 
-# process.communicate
-# subprocess.Popen('pip install -r requirements.txt', shell=True)
-# subprocess.Popen('python -m uvicorn main:app', shell=True)
+def request_data():
+    respone = requests.get('http://127.0.0.1:8000/')
+    print(respone.content)  
+
+
+cmd ='C:/Users/ClappForm/Desktop/model_rollout/tutorialenv/scripts/activate & cd c:/ & cd C:/Users/ClappForm/Desktop/model_rollout/tutorialenv/ & dir & pip install -r requirements.txt & python code/train.py & uvicorn main:app'
+
+# Start the virtual enviroment with the code.
+p = subprocess.run(cmd,shell=True, stdout=subprocess.PIPE)
+print(p.stdout.decode())    
+

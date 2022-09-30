@@ -20,19 +20,18 @@ class vmachine:
     def start_venv(self):
         if self.dev_platform == "Windows":
             print("starting virtual machine for Windows")
+            cmd ='C:/Users/ClappForm/Desktop/model_rollout/tutorialenv/scripts/activate & cd c:/ & cd C:/Users/ClappForm/Desktop/model_rollout/tutorialenv/ & dir & pip install -r requirements.txt & python code/train.py & uvicorn main:app'
 
+            # Start the virtual enviroment with the code.
+            p = subprocess.run(cmd,shell=True, stdout=subprocess.PIPE)
+            print(p.stdout.decode())    
 
         elif self.dev_platform == "Linux":
             print("starting virtual machine for Linux")
+            cmd ='C:/Users/ClappForm/Desktop/model_rollout/tutorialenv/scripts/activate ; cd c:/ ; cd C:/Users/ClappForm/Desktop/model_rollout/tutorialenv/ ; dir ; pip install -r requirements.txt ; python code/train.py ; uvicorn main:app'
 
-
-        elif self.dev_platform == "MacOS":
-            print("starting virtual machine for MacOS")
+            # Start the virtual enviroment with the code.
+            p = subprocess.run(cmd,shell=True, stdout=subprocess.PIPE)
+            print(p.stdout.decode())    
             
-    def start_windows_env(self):
-        process = subprocess.Popen(['echo', 'more output'],
-                                    stdout=subprocess.PIPE, 
-                                    stderr=subprocess.PIPE)
-        stdout, stderr = process.communicate()
-        print(stdout, stderr)
 
