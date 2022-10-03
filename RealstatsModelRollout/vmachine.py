@@ -153,12 +153,11 @@ class vmachine:
 
 
     # This function will start the virtual enviroment on a local machine
-    def start_venv(self, localpath="", code_filename=""):
+    def start_venv(self, localpath="", execution_code=""):
         if self.dev_platform == "Windows":
             print("starting virtual machine for Windows")
-            cmd ='pip install virtualenv & cd $$LOCALPATH$$ & virtualenv venv & $$LOCALPATH$$/scripts/activate & cd c:/ & cd $$LOCALPATH$$ & dir & pip install -r requirements.txt & python code/$$CODE_FILENAME$$ & uvicorn main:app'
-
-            ## REGEX GENERATION
+            #& python code/' + execution_code + '
+            cmd ='pip install virtualenv & cd ' + localpath + ' & virtualenv venv & ' + localpath + '/scripts/activate & cd c:/ & cd ' + localpath + ' & dir & pip install -r requirements.txt & uvicorn main:app'
 
             # Start the virtual enviroment with the code.
             p = subprocess.run(cmd,shell=True, stdout=subprocess.PIPE)
@@ -166,9 +165,7 @@ class vmachine:
 
         elif self.dev_platform == "Linux":
             print("starting virtual machine for Linux")
-            cmd ='C:/Users/ClappForm/Desktop/model_rollout/tutorialenv/scripts/activate ; cd c:/ ; cd C:/Users/ClappForm/Desktop/model_rollout/tutorialenv/ ; dir ; pip install -r requirements.txt ; python code/train.py ; uvicorn main:app'
-
-            ## REGEX GENERATION
+            cmd ='pip install virtualenv ; cd ' + localpath + ' ; virtualenv venv ; ' + localpath + '/scripts/activate ; cd c:/ ; cd ' + localpath + ' ; dir ; pip install -r requirements.txt ; python code/' + execution_code + ' ; uvicorn main:app'
 
             # Start the virtual enviroment with the code.
             p = subprocess.run(cmd,shell=True, stdout=subprocess.PIPE)
@@ -176,8 +173,6 @@ class vmachine:
         
         elif self.dev_platform == "MacOS":
             print("starting virtual machine for Apple")
-
-            
         
     def Generate_cmdline(self, command=""):
         return ""
