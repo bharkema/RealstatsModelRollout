@@ -20,8 +20,8 @@ class vmachine:
         print("Platform version: " + self.dev_platform_vers)
         print("Platform release: " + self.dev_platform_release)
 
-    def Generate_structure(self, model_localpath="", validation_data_localpath="", validation_control_localpath="", base_path="", model_name = "Developement",
-                                requirements_localpath="Developement", documentation_localpath="Developement", function_code_localpath="Developement", main_code_localpath="Developement"):
+    def Generate_structure(self, model_localpath="", validation_data_localpath="", validation_control_localpath="", base_path="", model_name = "Development",
+                                requirements_localpath="Development", documentation_localpath="Development", function_code_localpath="Development", main_code_localpath="Development"):
         settings.base_path = base_path  
 
         # INTERNAL VARS
@@ -74,7 +74,7 @@ class vmachine:
 
         #### Function code copy ####
         print("Creating function code")
-        if function_code_localpath == "":
+        if function_code_localpath == "Development":
             # Need to replace with globals when in package #
             function_content = settings.function_code_data
         else:
@@ -82,21 +82,21 @@ class vmachine:
 
         #### Main code copy ####
         print("Creating Main py code")
-        if function_code_localpath == "":
+        if function_code_localpath == "Development":
             main_content = settings.main_code_data  # Need to replace with globals when in package #
         else:
             main_content = open(main_code_localpath, "r")
 
         #### Requirements copy ####
         print("Creating Requirements file")
-        if function_code_localpath == "":
+        if function_code_localpath == "Development":
             requirements_content = settings.requirements_data  # Need to replace with globals when in package #
         else:
             requirements_content = open(requirements_localpath, "r")
 
         #### Documentation copy ####
         print("Creating documentation file")
-        if documentation_localpath == "":
+        if documentation_localpath == "Development":
             documentation_content = settings.documentation_data  # Need to replace with globals when in package #
         else:
             documentation_content = open(documentation_localpath, "r")
