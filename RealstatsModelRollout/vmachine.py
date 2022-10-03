@@ -2,7 +2,7 @@ import os
 import platform
 import subprocess
 import pandas as pd
-import settings
+from .settings import settings
 import pickle
 import gzip
 
