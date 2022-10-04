@@ -36,9 +36,10 @@ RMR.vmachine().start_venv(localpath="%PATH TO ENVROMENT FOLDER%",
 ## Go to the changelog
 Here you can find the changelog of the official versions of the package wich will be rolled out when functions have been completed or when bugs are fixed. 
 
-[Go to changelog ->](./changelog).
+[Go to changelog ->](https://bharkema.github.io/RealstatsModelRollout/changelog).
 
 ## Function definitions
 Here you wil find a link to all functions in the package where you will a more in depth description
 * Vmachine
-    * [Generate_structure()](./changelog).
+    * [Generate_structure()](https://bharkema.github.io/RealstatsModelRollout/functions/generate_structure).
+    * [start_venv()](https://bharkema.github.io/RealstatsModelRollout/functions/start_venv).
