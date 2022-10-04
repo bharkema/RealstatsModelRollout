@@ -4,14 +4,33 @@ layout: default
 
 Welcome to the changelog here you will see past versions of the changelog and what the changes were within the package and functionality
 
-## version 0.0.1.dev
-The first version of the package ever released this is a dev package and is not supposed to be used by outsiders or insiders.
+# version 0.0.1.dev22
+The first version of the package ever released this is a dev package and is not supposed to be used by outsiders.
 
 ### Functionality added
 * Virtual machine setup
-    * A virtual machine now gets created when starting the test
-* Version control
-    * Data created now gets save to the github repo controlled by Realstats.
-    * Data sets do not get saved yet
-    * Code of ML gets saved
-    * A config file gets saved
+    * Capable of starting a virtual enviroment by calling vmachine().start_venv("path to generated folder")
+* Folder generation
+    * System capable of copying Data sets of the types:
+        * .pkl
+        * .gzip
+        * .csv
+    * ML model gets copied to .pkl format
+    * Custom base path
+    * Custom model name
+
+#### Code examples
+The system automatically checks the operating system and executes commands accordingly.
+```python 
+import RealstatsModelRollout as RMR
+
+# Generation of virtual enviroment folder base usage
+RMR.vmachine().Generate_structure(model_localpath="%PATH TO MODEL TO COPY%", validation_data_localpath="%PATH TO data TO COPY%", validation_control_localpath="%PATH TO CONTROL DATA TO COPY%", base_path="%PATH TO WHERE YOU WANT TO SAVE FOLDER%", model_name = "Demo")
+```
+
+```python 
+import RealstatsModelRollout as RMR
+
+# Start of virtual enviroment base usage
+RMR.vmachine().start_venv(self, localpath="%PATH TO ENVROMENT FOLDER%", execution_code="%NAME OF CODE FILE YOU WISH TO EXECUTE%"):
+```
