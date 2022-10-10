@@ -7,22 +7,65 @@ import pickle
 import gzip
 
 class vmachine:
-    dev_platform = ""
-    dev_platform_vers = ""
-    dev_platform_release = ""
-
     def __init__(self):
-        self.dev_platform = platform.system()
-        self.dev_platform_vers = platform.version()
-        self.dev_platform_release = platform.release()    
+        self._dev_platform = platform.system()
+        self._dev_platform_vers = platform.version()
+        self._dev_platform_release = platform.release()    
 
-        print("Platform: " + self.dev_platform)
-        print("Platform version: " + self.dev_platform_vers)
-        print("Platform release: " + self.dev_platform_release)
+        print("Platform: " + self._dev_platform)
+        print("Platform version: " + self._dev_platform_vers)
+        print("Platform release: " + self._dev_platform_release)
 
-    def Generate_structure(self, model_localpath="", validation_data_localpath="", validation_control_localpath="", base_path="", model_name = "Development",
+    #### GLOBAL VARS ####
+    @property
+    def dev_platform(self):
+        """
+        :type: string
+        """
+        return self._dev_platform
+
+    @dev_platform.setter
+    def dev_platform(self, value):
+        """
+        :type: string
+        """
+        self._dev_platform = value
+
+    @property
+    def dev_platform_vers(self):
+        """
+        :type: string
+        """
+        return self._dev_platform_vers
+
+    @dev_platform_vers.setter
+    def dev_platform_vers(self, value):
+        """
+        :type: string
+        """
+        self._dev_platform_vers = value
+
+    @property
+    def dev_platform_release(self):
+        """
+        :type: string
+        """
+        return self._dev_platform_release
+
+    @dev_platform_release.setter
+    def dev_platform_release(self, value):
+        """
+        :type: string
+        """
+        self._dev_platform_release = value
+    #### END OF GLOBAL VARS ####
+
+    #### Generates folder structer of the virtual enviroment and copy's data from given locations ####
+    def Generate_structure(self, model_localpath="", validation_data_localpath="", validation_control_localpath="", base_path="", model_name = "",
                                 requirements_localpath="Development", documentation_localpath="Development", function_code_localpath="Development", main_code_localpath="Development"):
-        settings.base_path = base_path  
+                                
+        settings.base_path = base_path
+        settings.enviroment_name = model_name
 
         # INTERNAL VARS
         validation_content = pd.DataFrame()
@@ -76,28 +119,28 @@ class vmachine:
         print("Creating function code")
         if function_code_localpath == "Development":
             # Need to replace with globals when in package #
-            function_content = settings.function_code_data
+            function_content = settings.premade_function_code_data
         else:
             function_content = open(function_code_localpath, "r")
 
         #### Main code copy ####
         print("Creating Main py code")
         if function_code_localpath == "Development":
-            main_content = settings.main_code_data  # Need to replace with globals when in package #
+            main_content = settings.premade_main_code_data  # Need to replace with globals when in package #
         else:
             main_content = open(main_code_localpath, "r")
 
         #### Requirements copy ####
         print("Creating Requirements file")
         if function_code_localpath == "Development":
-            requirements_content = settings.requirements_data  # Need to replace with globals when in package #
+            requirements_content = settings.premade_requirements_data  # Need to replace with globals when in package #
         else:
             requirements_content = open(requirements_localpath, "r")
 
         #### Documentation copy ####
         print("Creating documentation file")
         if documentation_localpath == "Development":
-            documentation_content = settings.documentation_data  # Need to replace with globals when in package #
+            documentation_content = settings.premade_documentation_data  # Need to replace with globals when in package #
         else:
             documentation_content = open(documentation_localpath, "r")
 
@@ -152,11 +195,11 @@ class vmachine:
             settings.base_path + "/virtualenv_" + model_name)
 
 
-    # This function will start the virtual enviroment on a local machine
+    #### This function will start the virtual enviroment on a local machine ####
     def start_venv(self, localpath="", execution_code=""):
         if self.dev_platform == "Windows":
             print("starting virtual machine for Windows")
-            #& python code/' + execution_code + '
+            #& python code/' + execution_code + ' .py
             cmd ='pip install virtualenv & cd ' + localpath + ' & virtualenv venv & ' + localpath + '/scripts/activate & cd c:/ & cd ' + localpath + ' & dir & pip install -r requirements.txt & uvicorn main:app'
 
             # Start the virtual enviroment with the code.
