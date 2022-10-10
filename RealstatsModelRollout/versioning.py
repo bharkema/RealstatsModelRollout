@@ -6,11 +6,10 @@ import os
 import json
 
 class Versioning():
-    def __init__(self, id):
-        self._id = id
-        self._repo_name = "bharkema/model_test"
-        self._model_version
-        self._gitaccesstoken
+    def __init__(self, repo_name="bharkema/model_test", model_version="1", gitaccesstoken="development"):
+        self._repo_name = repo_name
+        self._model_version = model_version
+        self._gitaccesstoken = gitaccesstoken
 
     @property
     def repo_name(self):
@@ -34,7 +33,7 @@ class Versioning():
         return self._gitaccesstoken
     
     @gitaccesstoken.setter
-    def gitaccestoken(self, value):
+    def gitaccesstoken(self, value):
         """
         :type: string
         """
@@ -54,7 +53,7 @@ class Versioning():
         """
         self._model_version = value
 
-    def Upload_enviroment(self, writer="", enviroment_localpath="Development"):
+    def Upload_enviroment(self, enviroment_localpath="Development"):
         git = Github(self._gitaccesstoken)
         git_repo
         try:             
