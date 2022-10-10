@@ -107,7 +107,25 @@ class Versioning():
         ### Generate date version
         print("Generating version data")
         today = date.today()
-        Date_string = today.strftime("%d%m%Y")
+        version = today.strftime("%d%m%Y")
+
+        # Check if app with version already exists, if it does, append number
+        versionInUse = True
+        additional = 1
+        while versionInUse:
+            try:
+                git_repo.get_contents(env_name + "/" + version + "/version_info.json")
+                if additional == 1:
+                    version = version + "-" + str(additional)
+                else:
+                    version = version[:-1]
+                    version = version + str(additional)
+                additional+=1
+            except:
+                versionInUse = False
+                pass
+                break
+
 
         version_data = {
             "Upload_date": today.strftime("%d/%m/%Y"),
@@ -119,8 +137,8 @@ class Versioning():
 
         ### Upload to Git ###
         print("Uploading to Git")
-        gitFilePath =  env_name + "/" + Date_string
-        commitMessage = env_name + " - " + Date_string + " published"
+        gitFilePath =  env_name + "/" + version + "/"
+        commitMessage = env_name + " - " + version + " published"
 
         # Create requirements file
         appFilePath =  gitFilePath + "_requirements.txt"
@@ -153,7 +171,7 @@ class Versioning():
         print("Model data... done!")
 
         # Create version data file
-        version_info_json = json.loads(version_data)
+        version_info_json = json.dumps(version_data)
         appFilePath =  gitFilePath + "version_info.json"
         git_repo.create_file(appFilePath, commitMessage, version_info_json, branch="main")
         print("Model data... done!")
