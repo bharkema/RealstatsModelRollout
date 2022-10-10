@@ -55,7 +55,7 @@ class Versioning():
 
     def Upload_enviroment(self, enviroment_localpath="Development"):
         git = Github(self._gitaccesstoken)
-        git_repo
+        git_repo = ""
         try:             
             git_repo = git.get_repo(self._repo_name)
         except:
