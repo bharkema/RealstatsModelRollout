@@ -82,7 +82,7 @@ class Versioning():
 
         indexes = globalFunctions.find(local_envpath, "/")
         max_count = len(indexes) - 1
-        env_name = str[indexes[max_count - 1] + 1:indexes[max_count]]
+        env_name = local_envpath[indexes[max_count - 1] + 1:indexes[max_count]]
 
         ### Collect all data needed in dir ###
         print("Collecting data")
