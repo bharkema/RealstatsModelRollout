@@ -207,18 +207,7 @@ class Versioning():
             print("Not able to get given repo: " + self.repo_name)
             return
 
-        local_envpath = ""
-        ### Get directory ###
-        print("Looking for directory")
-        if localpath[-1] == '/':
-            local_envpath = localpath
-        else: 
-            local_envpath = localpath + "/"
-            
-        isDirectory = os.path.isdir(local_envpath)
-        if isDirectory == False:
-            return "This is not a correct directory"
-
+        local_envpath = globalFunctions.Path_is_dir(localpath)
 
         ### Get Files from repo
         print("Downloading files from remote")
@@ -287,5 +276,20 @@ class Versioning():
         else:
             return "Finished downloading"
     
+    def Get_file_content(self, filename="version_info.json"):
+        git = Github(self._gitaccesstoken)
+        git_repo = ""
+        try:             
+            git_repo = git.get_repo(self._repo_name)
+        except:
+            print("Not able to get given repo: " + self.repo_name)
+            return
+
+        return git_repo.get_contents(self._model_name + '/' + self._model_version + "/" + filename)
+
+
+        
+
+        
 
             
