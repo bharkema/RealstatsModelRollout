@@ -1,6 +1,6 @@
 from setuptools import setup
 import _version
-
+    
 def readme():
     with open("docs/index.md") as f:
         return f.read()

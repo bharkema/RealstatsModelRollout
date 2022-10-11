@@ -7,6 +7,9 @@ import os
 import json
 import subprocess
 
+from six import string_types
+
+
 class Versioning():
     def __init__(self, repo_name="bharkema/model_test", model_version="1", gitaccesstoken="development", model_name="development"):
         self._repo_name = repo_name
@@ -264,9 +267,9 @@ class Versioning():
         for item in folders:
             os.makedirs(os.path.dirname(item["path"]), exist_ok=True)
             with open(item["path"], "w") as f:
-                if isinstance(item["content"], string):
+                if isinstance(item["content"], string_types):
                     f.write(item["content"])
-                elif isinstance(item["content"], bytes): 
+                elif isinstance(item["content"], (bytes, bytearray)): 
                     fb = open(item["path"], "wb")
                     fb.write([item["content"]])
                 else:
@@ -277,6 +280,7 @@ class Versioning():
             cmd = 'python -m venv ' + local_envpath + self._model_name + "/" + self._model_version
             p = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE)
             print(p.stdout.decode())
+            return
         else:
             return "Finished downloading"
     
