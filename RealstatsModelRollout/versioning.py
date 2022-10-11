@@ -1,15 +1,18 @@
+import string
 from .settings import settings
 from .global_functions import globalFunctions
 from github import Github
 from datetime import date
 import os
 import json
+import subprocess
 
 class Versioning():
-    def __init__(self, repo_name="bharkema/model_test", model_version="1", gitaccesstoken="development"):
+    def __init__(self, repo_name="bharkema/model_test", model_version="1", gitaccesstoken="development", model_name="development"):
         self._repo_name = repo_name
         self._model_version = model_version
         self._gitaccesstoken = gitaccesstoken
+        self._model_version
 
     @property
     def repo_name(self):
@@ -42,16 +45,31 @@ class Versioning():
     @property
     def model_version(self):
         """
-        :type: int
+        :type: string
         """
         return self._model_version
 
     @model_version.setter
     def model_version(self, value):
         """
-        :type: int
+        :type: string
         """
         self._model_version = value
+
+    @property
+    def model_name(self):
+        """
+        :type: string
+        """
+        return self._model_name
+
+    @model_name.setter
+    def model_name(self, value):
+        """
+        :type: string
+        """
+        self._model_name = value
+
 
     def Upload_enviroment(self, enviroment_localpath="Development"):
         git = Github(self._gitaccesstoken)
@@ -174,4 +192,93 @@ class Versioning():
         version_info_json = json.dumps(version_data)
         appFilePath =  gitFilePath + "version_info.json"
         git_repo.create_file(appFilePath, commitMessage, version_info_json, branch="main")
-        print("Model data... done!")
+        print("Version data... done!")
+        return "Saved model data under: " + self._repo_name + "/" + env_name + "/" + version
+
+    def Download_enviroment(self, localpath="", generate_venv=True):
+        git = Github(self._gitaccesstoken)
+        git_repo = ""
+        try:             
+            git_repo = git.get_repo(self._repo_name)
+        except:
+            print("Not able to get given repo: " + self.repo_name)
+            return
+
+        local_envpath = ""
+        ### Get directory ###
+        print("Looking for directory")
+        if localpath[-1] == '/':
+            local_envpath = localpath
+        else: 
+            local_envpath = localpath + "/"
+            
+        isDirectory = os.path.isdir(local_envpath)
+        if isDirectory == False:
+            return "This is not a correct directory"
+
+
+        ### Get Files from repo
+        print("Downloading files from remote")
+
+        requirements = git_repo.get_contents(self._model_name + '/' + self._model_version + "/_requirements.txt")
+        print("Requirements... Done!")
+
+        model_data = git_repo.get_contents(self._model_name + '/' + self._model_version + "/model.pkl")
+        print("Model... Done!")
+
+        validation_data = git_repo.get_contents(self._model_name + '/' + self._model_version + "/validation_data.gzip")
+        print("Validation data... Done!")
+
+        validation_control_data = git_repo.get_contents(self._model_name + '/' + self._model_version + "/validation_control_data.gzip")
+        print("Validation control data... Done!")
+
+        main_code_data = git_repo.get_contents(self._model_name + '/' + self._model_version + "/main.py")
+        print("Main python code... Done!")
+
+        function_code_data = git_repo.get_contents(self._model_name + '/' + self._model_version + "/function.py")
+        print("Function python code... Done!")
+
+        version_info_data = git_repo.get_contents(self._model_name + '/' + self._model_version + "/version_info.json")
+        print("Version info... Done!")
+
+        ### Generate folder ###
+        # Folder structure
+        print("Generating folder structure with data points")
+        folders = [{"path": local_envpath  + self._model_name + "/" + self._model_version + "/code/validate.py",
+                    "content": function_code_data.decoded_content.decode("utf-8")},
+                {"path": local_envpath + self._model_name + "/" + self._model_version + "/data/data.gzip",
+                    "content": validation_data.decoded_content},
+                {"path": local_envpath + self._model_name + "/" + self._model_version + "/data/data_control.gzip",
+                    "content": validation_control_data.decoded_content},
+                {"path": local_envpath + self._model_name + "/" + self._model_version + "/model/model.pkl",
+                    "content": model_data.decoded_content},
+                {"path": local_envpath + self._model_name + "/" + self._model_version + "/requirements.txt",
+                    "content": requirements.decoded_content.decode("utf-8")},
+                {"path": local_envpath + self._model_name + "/" + self._model_version + "/docs/documentation.txt",
+                    "content": version_info_data.decoded_content.decode("utf-8")},
+                {"path": local_envpath + self._model_name + "/" + self._model_version + "/main.py",
+                    "content": main_code_data.decoded_content.decode("utf-8")}
+                ]
+
+        #### Write files and directory's ####
+        for item in folders:
+            os.makedirs(os.path.dirname(item["path"]), exist_ok=True)
+            with open(item["path"], "w") as f:
+                if isinstance(item["content"], string):
+                    f.write(item["content"])
+                elif isinstance(item["content"], bytes): 
+                    fb = open(item["path"], "wb")
+                    fb.write([item["content"]])
+                else:
+                    return "Not able to write file: " + item["path"]
+
+        if generate_venv:
+            print("Generating VENV Data")
+            cmd = 'python -m venv ' + local_envpath + self._model_name + "/" + self._model_version
+            p = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE)
+            print(p.stdout.decode())
+        else:
+            return "Finished downloading"
+    
+
+            
