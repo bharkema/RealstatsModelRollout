@@ -285,7 +285,7 @@ class Versioning():
             print("Not able to get given repo: " + self.repo_name)
             return
 
-        return git_repo.get_contents(self._model_name + '/' + self._model_version + "/" + filename)
+        return git_repo.get_contents(self._model_name + '/' + self._model_version + "/" + filename).decoded_content
 
 
         
