@@ -270,8 +270,11 @@ class Versioning():
                 if isinstance(item["content"], string_types):
                     f.write(item["content"])
                 elif isinstance(item["content"], (bytes, bytearray)): 
-                    fb = open(item["path"], "wb")
-                    fb.write([item["content"]])
+                    try:
+                        fb = open(item["path"], "wb")
+                        fb.write([item["content"]])
+                    except:
+                        print("Failed to write data to: " + item["path"])
                 else:
                     return "Not able to write file: " + item["path"]
 
