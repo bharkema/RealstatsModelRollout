@@ -6,7 +6,7 @@ def readme():
         return f.read()
 
 setup(
-    name="RealstatsModelRollout",
+    name="ModelRollout",
     version=_version.__version__,
     description="Realstats model version control",
     long_description=readme(),
@@ -23,7 +23,7 @@ setup(
     author_email="b.harkema@clappform.com",
     keywords="model validation",
     license="MIT",
-    packages = ['RealstatsModelRollout'],
+    packages = ['ModelRollout'],
     install_requires=[
         "pandas",
         "pyarrow",
