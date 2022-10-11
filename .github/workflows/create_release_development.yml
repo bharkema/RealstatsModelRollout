@@ -3,7 +3,7 @@ name: Create Release Development
 
 on:
   push:
-    tags: "d*"
+    tags: "v*"
     
 jobs:
   build:
