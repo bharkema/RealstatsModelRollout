@@ -1,9 +1,9 @@
 
-name: Create Release
+name: Create Release Development
 
 on:
   push:
-    tags: "v*"
+    tags: "d*"
     
 jobs:
   build:
