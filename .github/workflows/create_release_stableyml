@@ -1,9 +1,9 @@
 
-name: Create Release
+name: Create Release Stable
 
 on:
   push:
-    tags: "v*"
+    tags: "s*"
     
 jobs:
   build:
