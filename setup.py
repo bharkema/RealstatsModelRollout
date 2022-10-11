@@ -26,7 +26,8 @@ setup(
     packages = ['RealstatsModelRollout'],
     install_requires=[
         "pandas",
-        "pyarrow"
+        "pyarrow",
+        "pygithub"
     ],
     include_package_data=True,
 )

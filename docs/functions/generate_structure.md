@@ -1,6 +1,6 @@
-Welcome to the Realstats Model Rollout package documentation. This documentation page has been created to help users find their way in the package.
+[<- Go back to main page](https://bharkema.github.io/RealstatsModelRollout/)
 
-## Functions within package
+## Generate_structure()
 The system automatically checks the operating system and executes commands accordingly.
 ```python 
 import RealstatsModelRollout as RMR
@@ -25,21 +25,16 @@ RMR.vmachine().Generate_structure(model_localpath="%PATH TO MODEL TO COPY%",
 
 ```
 
-```python 
-import RealstatsModelRollout as RMR
+The functions can handle the following file extensions:
+* .csv
+* .pkl
+* .gzip (parquet)
 
-# Start of virtual enviroment base usage
-RMR.vmachine().start_venv(localpath="%PATH TO ENVROMENT FOLDER%", 
-                         execution_code="%NAME OF CODE FILE YOU WISH TO EXECUTE%"):
-```
+It will however transform als data sets to a .pkl file for consistancy sake that way we can provide normalized code for execution.
 
-## Go to the changelog
-Here you can find the changelog of the official versions of the package wich will be rolled out when functions have been completed or when bugs are fixed. 
+furthermore the system uses the python VENV package finding more information here:
+The venv module provides support for creating lightweight “virtual environments” with their own site directories, optionally isolated from system site directories. Each virtual environment has its own Python binary (which matches the version of the binary that was used to create this environment) and can have its own independent set of installed Python packages in its site directories.
 
-[Go to changelog ->](https://bharkema.github.io/RealstatsModelRollout/changelog).
+See PEP 405 for more information about Python virtual environments.
 
-## Function definitions
-Here you wil find a link to all functions in the package where you will a more in depth description
-* Vmachine
-    * [Generate_structure()](https://bharkema.github.io/RealstatsModelRollout/functions/generate_structure).
-    * [start_venv()](https://bharkema.github.io/RealstatsModelRollout/functions/start_venv).
+[Go to Python documentation ->](https://docs.python.org/3/library/venv.html)
