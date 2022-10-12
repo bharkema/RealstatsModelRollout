@@ -9,7 +9,7 @@ The first version of the package ever released this is a dev package and is not 
 
 ### Functionality added
 * Virtual machine setup
-    * Capable of starting a virtual enviroment by calling vmachine().start_venv("path to generated folder")
+    * Capable of starting a virtual enviroment by calling vmachine().Start_venv("path to generated folder")
 * Folder generation
     * System capable of copying Data sets of the types:
         * .pkl
@@ -32,5 +32,5 @@ RMR.vmachine().Generate_structure(model_localpath="%PATH TO MODEL TO COPY%", val
 import RealstatsModelRollout as RMR
 
 # Start of virtual enviroment base usage
-RMR.vmachine().start_venv(self, localpath="%PATH TO ENVROMENT FOLDER%", execution_code="%NAME OF CODE FILE YOU WISH TO EXECUTE%"):
+RMR.vmachine().Start_venv(self, localpath="%PATH TO ENVROMENT FOLDER%", execution_code="%NAME OF CODE FILE YOU WISH TO EXECUTE%"):
 ```

@@ -6,8 +6,9 @@ from .global_functions import globalFunctions
 
 settings
 
-settings.package_version = "0.0.1.dev"
-settings.premade_main_code_data = """# Local imports
+settings.Token = ""
+settings.Package_version = "0.0.1.dev"
+settings.Premade_main_code_data = """# Local imports
 import datetime
 
 # Third party imports
@@ -68,7 +69,7 @@ async def model_predict(input: Input):
     return response
 
 """
-settings.premade_function_code_data = """# Import packages
+settings.Premade_function_code_data = """# Import packages
 from sklearn.ensemble import VotingClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
@@ -132,7 +133,7 @@ joblib.dump(pipe, gzip.open('model/model_binary.dat.gz', "wb"))
 
 
 """
-settings.premade_requirements_data = """anyio==3.5.0
+settings.Premade_requirements_data = """anyio==3.5.0
 asgiref==3.5.0
 click==8.1.2
 cycler==0.11.0
@@ -161,7 +162,7 @@ threadpoolctl==3.1.0
 typing_extensions==4.2.0
 uvicorn==0.17.6
 """
-settings.premade_documentation_data = """# POST method predict
+settings.Premade_documentation_data = """# POST method predict
 curl -d '{"concavity_mean": 0.3001, "concave_points_mean": 0.1471, "perimeter_se": 8.589, "area_se": 153.4, "texture_worst": 17.33, "area_worst": 2019.0}' \
      -H "Content-Type: application/json" \
      -XPOST http://0.0.0.0:8000/predict

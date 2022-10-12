@@ -10,17 +10,20 @@ class settings:
         self._premade_documentation_data
         self._enviroment_name
         self._package_version
+        self._base_url
+        self._username
+        self._token
 
     ### Base path that will be used by the system to work with the system and work from ###
     @property
-    def base_path(self):
+    def Base_path(self):
         """
         :type: string
         """
         return self._base_path
     
-    @base_path.setter
-    def base_path(self, value):
+    @Base_path.setter
+    def Base_path(self, value):
         """
         :type: string
         """
@@ -33,14 +36,14 @@ class settings:
 
     ### Premade code that can be used when not using custom code ###
     @property
-    def premade_main_code_data(self):
+    def Premade_main_code_data(self):
         """
         :type: string
         """
         return self._premade_main_code_data
     
-    @premade_main_code_data.setter
-    def premade_main_code_data(self, value):
+    @Premade_main_code_data.setter
+    def Premade_main_code_data(self, value):
         """
         :type: string
         """
@@ -48,14 +51,14 @@ class settings:
 
     ### Premade function code that can be used when not using custom code ###
     @property
-    def premade_function_code_data(self):
+    def Premade_function_code_data(self):
         """
         :type: string
         """
         return self._premade_function_code_data
     
-    @premade_function_code_data.setter
-    def premade_function_code_data(self, value):
+    @Premade_function_code_data.setter
+    def Premade_function_code_data(self, value):
         """
         :type: string
         """
@@ -63,14 +66,14 @@ class settings:
 
     ### Premade requirements list that can be used when not using custom code ###
     @property
-    def premade_requirements_data(self):
+    def Premade_requirements_data(self):
         """
         :type: string
         """
         return self._premade_requirements_data
     
-    @premade_requirements_data.setter
-    def premade_requirements_data(self, value):
+    @Premade_requirements_data.setter
+    def Premade_requirements_data(self, value):
         """
         :type: string
         """
@@ -78,44 +81,85 @@ class settings:
 
     ### Premade documentation that can be used when not using custom code ###
     @property
-    def premade_documentation_data(self):
+    def Premade_documentation_data(self):
         """
         :type: string
         """
         return self._premade_documentation_data
     
-    @premade_documentation_data.setter
-    def premade_documentation_data(self, value):
+    @Premade_documentation_data.setter
+    def Premade_documentation_data(self, value):
         """
         :type: string
         """
         self._premade_documentation_data = value
 
-
     @property
-    def enviroment_name(self):
+    def Enviroment_name(self):
         """
         :type: string
         """
         return self._enviroment_name
     
-    @enviroment_name.setter
-    def enviroment_name(self, value):
+    @Enviroment_name.setter
+    def Enviroment_name(self, value):
         """
         :type: string
         """
         self._enviroment_name = value
 
     @property
-    def package_version(self):
+    def Package_version(self):
         """
         :type: string
         """
         return self._package_version
     
-    @package_version.setter
-    def package_version(self, value):
+    @Package_version.setter
+    def Package_version(self, value):
         """
         :type: string
         """
         self._package_version = value
+
+    @property
+    def Base_url(self):
+        """
+        :type: string
+        """
+        return self._base_url
+    
+    @Base_url.setter
+    def Base_url(self, value):
+        """
+        :type: string
+        """
+        self._base_url = value
+
+    @property
+    def Username(self):
+        """
+        :type: string
+        """
+        return self._username
+    
+    @Username.setter
+    def Username(self, value):
+        """
+        :type: string
+        """
+        self._username = value
+
+    @property
+    def Token(self):
+        """
+        :type: string
+        """
+        return self._token
+    
+    @Token.setter
+    def Token(self, value):
+        """
+        :type: string
+        """
+        self._token = value

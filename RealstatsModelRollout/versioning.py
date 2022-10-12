@@ -1,6 +1,6 @@
 import string
 from .settings import settings
-from .global_functions import globalFunctions
+from .global_functions import Globalfunctions
 from github import Github
 from datetime import date
 import os
@@ -9,71 +9,70 @@ import subprocess
 
 from six import string_types
 
-
 class Versioning():
-    def __init__(self, repo_name="bharkema/model_test", model_version="1", gitaccesstoken="development", model_name="development"):
-        self._repo_name = repo_name
-        self._model_version = model_version
-        self._gitaccesstoken = gitaccesstoken
+    def __init__(self):
+        self._repo_name
         self._model_version
+        self._gitaccesstoken
+        self._model_name
 
     @property
-    def repo_name(self):
+    def Repo_name(self):
         """
         :type: string
         """
         return self._repo_name
 
-    @repo_name.setter
-    def repo_name(self, value):
+    @Repo_name.setter
+    def Repo_name(self, value):
         """
         :type: string
         """
         self._repo_name = value
 
     @property
-    def gitaccesstoken(self):
+    def Gitaccesstoken(self):
         """
         :type: string
         """
         return self._gitaccesstoken
     
-    @gitaccesstoken.setter
-    def gitaccesstoken(self, value):
+    @Gitaccesstoken.setter
+    def Gitaccesstoken(self, value):
         """
         :type: string
         """
         self._gitaccesstoken = value
 
     @property
-    def model_version(self):
+    def Model_version(self):
         """
         :type: string
         """
         return self._model_version
 
-    @model_version.setter
-    def model_version(self, value):
+    @Model_version.setter
+    def Model_version(self, value):
         """
         :type: string
         """
         self._model_version = value
 
     @property
-    def model_name(self):
+    def Model_name(self):
         """
         :type: string
         """
         return self._model_name
 
-    @model_name.setter
-    def model_name(self, value):
+    @Model_name.setter
+    def Model_name(self, value):
         """
         :type: string
         """
         self._model_name = value
 
-
+    ### Upload the model and all its data to the github repo
     def Upload_enviroment(self, enviroment_localpath="Development"):
         git = Github(self._gitaccesstoken)
         git_repo = ""
@@ -95,13 +94,13 @@ class Versioning():
             else: 
                 local_envpath = enviroment_localpath + "/"
         else: 
-            local_envpath = settings.base_path + "virtualenv_" + settings.enviroment_name + "/"
+            local_envpath = settings.Base_path + "virtualenv_" + settings.Enviroment_name + "/"
         
         isDirectory = os.path.isdir(local_envpath)
         if isDirectory == False:
             return "This is not a correct directory"
 
-        indexes = globalFunctions.find(local_envpath, "/")
+        indexes = Globalfunctions.Find(local_envpath, "/")
         max_count = len(indexes) - 1
         env_name = local_envpath[indexes[max_count - 1] + 1:indexes[max_count]]
 
@@ -151,7 +150,7 @@ class Versioning():
         version_data = {
             "Upload_date": today.strftime("%d/%m/%Y"),
             "Model_name": env_name,
-            "Package_version": settings.package_version,
+            "Package_version": settings.Package_version,
             "Requirements": requirements_string,
             "uploaded_by": git_user_data[0].email
         }
@@ -207,7 +206,7 @@ class Versioning():
             print("Not able to get given repo: " + self.repo_name)
             return
 
-        local_envpath = globalFunctions.Path_is_dir(localpath)
+        local_envpath = Globalfunctions.Path_is_dir(localpath)
 
         ### Get Files from repo
         print("Downloading files from remote")

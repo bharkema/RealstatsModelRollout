@@ -6,7 +6,7 @@ The system automatically checks the operating system and executes commands accor
 import RealstatsModelRollout as RMR
 
 # Start of virtual enviroment base usage
-RMR.vmachine().start_venv(self, localpath="%PATH TO ENVROMENT FOLDER%", execution_code="%NAME OF CODE FILE YOU WISH TO EXECUTE%"):
+RMR.vmachine().Start_venv(self, localpath="%PATH TO ENVROMENT FOLDER%", execution_code="%NAME OF CODE FILE YOU WISH TO EXECUTE%"):
 ```
 
 The system wil look for the folder and will start the enviroment.

@@ -1,45 +1,30 @@
 Welcome to the Realstats Model Rollout package documentation. This documentation page has been created to help users find their way in the package.
 
 ## Functions within package
-The system automatically checks the operating system and executes commands accordingly.
-```python 
-import RealstatsModelRollout as RMR
-
-# Generation of virtual enviroment folder base usage
-RMR.vmachine().Generate_structure(model_localpath="%PATH TO MODEL TO COPY%", 
-                                    validation_data_localpath="%PATH TO data TO COPY%", 
-                                    validation_control_localpath="%PATH TO CONTROL DATA TO COPY%", 
-                                    base_path="%PATH TO WHERE YOU WANT TO SAVE FOLDER%", 
-                                    model_name = "Demo")
-
-# Customization of folder and functions
-RMR.vmachine().Generate_structure(model_localpath="%PATH TO MODEL TO COPY%", 
-                                    validation_data_localpath="%PATH TO data TO COPY%", 
-                                    validation_control_localpath="%PATH TO CONTROL DATA TO COPY%", 
-                                    base_path="%PATH TO WHERE YOU WANT TO SAVE FOLDER%", 
-                                    model_name = "Demo", 
-                                    requirements_localpath="%PATH TO WHERE YOUr requirements are%",
-                                    documentation_localpath="%PATH TO WHERE YOUR DOCUMENTATION IS",
-                                    function_code_localpath="%PATH TO WHERE YOUR FUNCTIONAL CODE IS",
-                                    main_code_localpath="%PATH TO WHERE YOUR MAIN CODE FILE IS"):
-
-```
-
-```python 
-import RealstatsModelRollout as RMR
-
-# Start of virtual enviroment base usage
-RMR.vmachine().start_venv(localpath="%PATH TO ENVROMENT FOLDER%", 
-                         execution_code="%NAME OF CODE FILE YOU WISH TO EXECUTE%"):
-```
+Here you wil find a link to all functions and classes in the package where you will a more in depth description
+* [Vmachine()](https://bharkema.github.io/RealstatsModelRollout/classes/vmachine)
+    * [Generate_structure()](https://bharkema.github.io/RealstatsModelRollout/functions/generate_structure)
+    * [Start_venv()](https://bharkema.github.io/RealstatsModelRollout/functions/start_venv)
+* [Versioning()](https://bharkema.github.io/RealstatsModelRollout/classes/versioning)
+    * [Upload_enviroment()](https://bharkema.github.io/RealstatsModelRollout/functions/upload_enviro)
+    * [Download_enviroment()](https://bharkema.github.io/RealstatsModelRollout/functions/download_enviro)
+    * [Get_file_content()](https://bharkema.github.io/RealstatsModelRollout/functions/download_file)
+* [Auth()](https://bharkema.github.io/RealstatsModelRollout/classes/auth)
+* [Globalfunctions()](https://bharkema.github.io/RealstatsModelRollout/classes/globalfunctions)
+    * [Find()](https://bharkema.github.io/RealstatsModelRollout/functions/find)
+    * [Path_is_dir()](https://bharkema.github.io/RealstatsModelRollout/functions/pathisdir)
 
 ## Go to the changelog
 Here you can find the changelog of the official versions of the package wich will be rolled out when functions have been completed or when bugs are fixed. 
 
 [Go to changelog ->](https://bharkema.github.io/RealstatsModelRollout/changelog).
 
-## Function definitions
-Here you wil find a link to all functions in the package where you will a more in depth description
-* Vmachine
-    * [Generate_structure()](https://bharkema.github.io/RealstatsModelRollout/functions/generate_structure).
-    * [start_venv()](https://bharkema.github.io/RealstatsModelRollout/functions/start_venv).
+
+### Version list
+These are usable versions within the package
+* Stable version:
+    * Not yet released
+* Dev versions: 
+    * [0.0.1.dev61](https://bharkema.github.io/RealstatsModelRollout/changelog)
+    * [0.0.1.dev22](https://bharkema.github.io/RealstatsModelRollout/changelog)
+
