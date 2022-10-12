@@ -10,7 +10,7 @@ class globalFunctions:
     def Find(s, ch):
         return [i for i, ltr in enumerate(s) if ltr == ch]
 
-    def Path_is_dir(localpath):
+    def Path_is_dir(localpath = ""):
         local_envpath=""
         ### Get directory ###
         print("Looking for directory")
