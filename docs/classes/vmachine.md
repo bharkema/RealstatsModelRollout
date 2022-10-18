@@ -3,7 +3,7 @@
 ## Vmachine()
 
 ### How to use the class
-Vmachine can be used for generating virtual enviroments and generating the folder structure needed to be able to use the model created by the data scientist. 
+Vmachine can be used for generating virtual enviroments and generating the folder structure needed to be able to use the model created by the data scientist.
 
 the following functions are available in Vmachine():
 * [Generate_structure()](https://bharkema.github.io/RealstatsModelRollout/functions/generate_structure)
@@ -12,18 +12,18 @@ the following functions are available in Vmachine():
 More in depth information can be found in the links above
 
 ### Code examples
-``` python 
+``` python
 import RealstatsModelRollout as RMR
 
 # Generation of virtual enviroment folder base usage
-RMR.vmachine().Generate_structure(model_localpath="%PATH TO MODEL TO COPY%", 
-                                    validation_data_localpath="%PATH TO data TO COPY%", 
-                                    validation_control_localpath="%PATH TO CONTROL DATA TO COPY%", 
-                                    base_path="%PATH TO WHERE YOU WANT TO SAVE FOLDER%", 
+RMR.Vmachine().Generate_structure(model_localpath="%PATH TO MODEL TO COPY%",
+                                    validation_data_localpath="%PATH TO data TO COPY%",
+                                    validation_control_localpath="%PATH TO CONTROL DATA TO COPY%",
+                                    base_path="%PATH TO WHERE YOU WANT TO SAVE FOLDER%",
                                     model_name = "Demo")
 
 # Start of virtual enviroment base usage
-RMR.vmachine().Start_venv(self, localpath="%PATH TO ENVROMENT FOLDER%", 
+RMR.Vmachine().Start_venv(self, localpath="%PATH TO ENVROMENT FOLDER%",
                             execution_code="%NAME OF CODE FILE YOU WISH TO EXECUTE%"):
 
 ```

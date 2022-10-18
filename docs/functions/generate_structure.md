@@ -2,22 +2,22 @@
 
 ## Generate_structure()
 The system automatically checks the operating system and executes commands accordingly.
-```python 
+```python
 import RealstatsModelRollout as RMR
 
 # Generation of virtual enviroment folder base usage
-RMR.vmachine().Generate_structure(model_localpath="%PATH TO MODEL TO COPY%", 
-                                    validation_data_localpath="%PATH TO data TO COPY%", 
-                                    validation_control_localpath="%PATH TO CONTROL DATA TO COPY%", 
-                                    base_path="%PATH TO WHERE YOU WANT TO SAVE FOLDER%", 
+RMR.Vmachine().Generate_structure(model_localpath="%PATH TO MODEL TO COPY%",
+                                    validation_data_localpath="%PATH TO data TO COPY%",
+                                    validation_control_localpath="%PATH TO CONTROL DATA TO COPY%",
+                                    base_path="%PATH TO WHERE YOU WANT TO SAVE FOLDER%",
                                     model_name = "Demo")
 
 # Customization of folder and functions
-RMR.vmachine().Generate_structure(model_localpath="%PATH TO MODEL TO COPY%", 
-                                    validation_data_localpath="%PATH TO data TO COPY%", 
-                                    validation_control_localpath="%PATH TO CONTROL DATA TO COPY%", 
-                                    base_path="%PATH TO WHERE YOU WANT TO SAVE FOLDER%", 
-                                    model_name = "Demo", 
+RMR.Vmachine().Generate_structure(model_localpath="%PATH TO MODEL TO COPY%",
+                                    validation_data_localpath="%PATH TO data TO COPY%",
+                                    validation_control_localpath="%PATH TO CONTROL DATA TO COPY%",
+                                    base_path="%PATH TO WHERE YOU WANT TO SAVE FOLDER%",
+                                    model_name = "Demo",
                                     requirements_localpath="%PATH TO WHERE YOUr requirements are%",
                                     documentation_localpath="%PATH TO WHERE YOUR DOCUMENTATION IS",
                                     function_code_localpath="%PATH TO WHERE YOUR FUNCTIONAL CODE IS",

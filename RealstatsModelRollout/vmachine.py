@@ -6,7 +6,7 @@ from .settings import Settings
 import pickle
 import gzip
 
-class vmachine:
+class Vmachine:
     def __init__(self):
         self._dev_platform = platform.system()
         self._dev_platform_vers = platform.version()
@@ -193,6 +193,7 @@ class vmachine:
         #### Finish ####
         print("Virtual machine folder structure created on: " +
             Settings.Base_path + "/virtualenv_" + model_name)
+        return True
 
     #### This function will start the virtual enviroment on a local machine ####
     def Start_venv(self, localpath="", execution_code=""):

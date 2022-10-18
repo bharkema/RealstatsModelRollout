@@ -2,11 +2,11 @@
 
 ## start_venv()
 The system automatically checks the operating system and executes commands accordingly.
-```python 
+```python
 import RealstatsModelRollout as RMR
 
 # Start of virtual enviroment base usage
-RMR.vmachine().Start_venv(self, localpath="%PATH TO ENVROMENT FOLDER%", 
+RMR.Vmachine().Start_venv(self, localpath="%PATH TO ENVROMENT FOLDER%",
                             execution_code="%NAME OF CODE FILE YOU WISH TO EXECUTE%"):
 ```
 
