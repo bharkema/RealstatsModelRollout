@@ -1,5 +1,5 @@
 import string
-from .settings import settings
+from .settings import Settings
 from .global_functions import Globalfunctions
 from github import Github
 from datetime import date
@@ -36,7 +36,7 @@ class Versioning():
         :type: string
         """
         return self._gitaccesstoken
-    
+
     @Gitaccesstoken.setter
     def Gitaccesstoken(self, value):
         """
@@ -76,7 +76,7 @@ class Versioning():
     def Upload_enviroment(self, enviroment_localpath="Development"):
         git = Github(self._gitaccesstoken)
         git_repo = ""
-        try:             
+        try:
             git_repo = git.get_repo(self._repo_name)
         except:
             print("Not able to get given repo: " + self.repo_name)
@@ -91,11 +91,11 @@ class Versioning():
         if enviroment_localpath != "Development":
             if enviroment_localpath[-1] == '/':
                 local_envpath = enviroment_localpath
-            else: 
+            else:
                 local_envpath = enviroment_localpath + "/"
-        else: 
-            local_envpath = settings.Base_path + "virtualenv_" + settings.Enviroment_name + "/"
-        
+        else:
+            local_envpath = Settings.Base_path + "virtualenv_" + Settings.Enviroment_name + "/"
+
         isDirectory = os.path.isdir(local_envpath)
         if isDirectory == False:
             return "This is not a correct directory"
@@ -150,7 +150,7 @@ class Versioning():
         version_data = {
             "Upload_date": today.strftime("%d/%m/%Y"),
             "Model_name": env_name,
-            "Package_version": settings.Package_version,
+            "Package_version": Settings.Package_version,
             "Requirements": requirements_string,
             "uploaded_by": git_user_data[0].email
         }
@@ -200,7 +200,7 @@ class Versioning():
     def Download_enviroment(self, localpath="", generate_venv=True):
         git = Github(self._gitaccesstoken)
         git_repo = ""
-        try:             
+        try:
             git_repo = git.get_repo(self._repo_name)
         except:
             print("Not able to get given repo: " + self.repo_name)
@@ -257,7 +257,7 @@ class Versioning():
             with open(item["path"], "w") as f:
                 if isinstance(item["content"], string_types):
                     f.write(item["content"])
-                elif isinstance(item["content"], (bytes, bytearray)): 
+                elif isinstance(item["content"], (bytes, bytearray)):
                     try:
                         fb = open(item["path"], "wb")
                         fb.write([item["content"]])
@@ -274,11 +274,11 @@ class Versioning():
             return
         else:
             return "Finished downloading"
-    
+
     def Get_file_content(self, filename="version_info.json"):
         git = Github(self._gitaccesstoken)
         git_repo = ""
-        try:             
+        try:
             git_repo = git.get_repo(self._repo_name)
         except:
             print("Not able to get given repo: " + self.repo_name)
@@ -287,8 +287,7 @@ class Versioning():
         return git_repo.get_contents(self._model_name + '/' + self._model_version + "/" + filename).decoded_content
 
 
-        
 
-        
 
-            
+
+

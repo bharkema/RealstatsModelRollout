@@ -1,8 +1,8 @@
-from .settings import settings
+from .settings import Settings
 from six import string_types
 import requests
 
-class Validate: 
+class Validate:
     def __init__(self, id="Development"):
        self._id = id
        self._model_port = "8000"
@@ -21,11 +21,11 @@ class Validate:
         """
         :type: string
         """
-        if isinstance(value, string_types): 
+        if isinstance(value, string_types):
             self._model_port = value
         else:
             raise Exception("Value must be string")
-    
+
     ### URL to model ###
     @property
     def Model_URL(self):
@@ -39,7 +39,7 @@ class Validate:
         """
         :type: string
         """
-        if isinstance(value, string_types): 
+        if isinstance(value, string_types):
             self._modelURL = value
         else:
             raise Exception("Value must be string")

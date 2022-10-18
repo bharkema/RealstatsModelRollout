@@ -1,8 +1,8 @@
 from logging import exception
-from .settings import settings
+from .settings import Settings
 import os
 
-class globalFunctions: 
+class globalFunctions:
     def __init__(self):
         self._id = "Development"
 
@@ -16,13 +16,12 @@ class globalFunctions:
         print("Looking for directory")
         if localpath[-1] == '/':
             local_envpath = localpath
-        else: 
+        else:
             local_envpath = localpath + "/"
-            
+
         isDirectory = os.path.isdir(local_envpath)
         if isDirectory == True:
             return local_envpath
         else:
             raise Exception("Given localpath: " + local_envpath + " is not a directory")
 
-        

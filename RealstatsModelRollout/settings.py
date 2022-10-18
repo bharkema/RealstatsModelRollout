@@ -1,7 +1,7 @@
 from logging import exception
 import os
 
-class settings:
+class Settings:
     def __init__(self):
         self._base_path
         self._premade_main_code_data
@@ -21,7 +21,7 @@ class settings:
         :type: string
         """
         return self._base_path
-    
+
     @Base_path.setter
     def Base_path(self, value):
         """
@@ -41,7 +41,7 @@ class settings:
         :type: string
         """
         return self._premade_main_code_data
-    
+
     @Premade_main_code_data.setter
     def Premade_main_code_data(self, value):
         """
@@ -56,7 +56,7 @@ class settings:
         :type: string
         """
         return self._premade_function_code_data
-    
+
     @Premade_function_code_data.setter
     def Premade_function_code_data(self, value):
         """
@@ -71,7 +71,7 @@ class settings:
         :type: string
         """
         return self._premade_requirements_data
-    
+
     @Premade_requirements_data.setter
     def Premade_requirements_data(self, value):
         """
@@ -86,7 +86,7 @@ class settings:
         :type: string
         """
         return self._premade_documentation_data
-    
+
     @Premade_documentation_data.setter
     def Premade_documentation_data(self, value):
         """
@@ -100,7 +100,7 @@ class settings:
         :type: string
         """
         return self._enviroment_name
-    
+
     @Enviroment_name.setter
     def Enviroment_name(self, value):
         """
@@ -114,7 +114,7 @@ class settings:
         :type: string
         """
         return self._package_version
-    
+
     @Package_version.setter
     def Package_version(self, value):
         """
@@ -128,7 +128,7 @@ class settings:
         :type: string
         """
         return self._base_url
-    
+
     @Base_url.setter
     def Base_url(self, value):
         """
@@ -142,7 +142,7 @@ class settings:
         :type: string
         """
         return self._username
-    
+
     @Username.setter
     def Username(self, value):
         """
@@ -156,7 +156,7 @@ class settings:
         :type: string
         """
         return self._token
-    
+
     @Token.setter
     def Token(self, value):
         """

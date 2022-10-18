@@ -2,7 +2,7 @@ import os
 import platform
 import subprocess
 import pandas as pd
-from .settings import settings
+from .settings import Settings
 import pickle
 import gzip
 
@@ -10,7 +10,7 @@ class vmachine:
     def __init__(self):
         self._dev_platform = platform.system()
         self._dev_platform_vers = platform.version()
-        self._dev_platform_release = platform.release()    
+        self._dev_platform_release = platform.release()
 
         print("Platform: " + self._dev_platform)
         print("Platform version: " + self._dev_platform_vers)
@@ -63,9 +63,9 @@ class vmachine:
     #### Generates folder structer of the virtual enviroment and copy's data from given locations ####
     def Generate_structure(self, model_localpath="", validation_data_localpath="", validation_control_localpath="", base_path="", model_name = "",
                                 requirements_localpath="Development", documentation_localpath="Development", function_code_localpath="Development", main_code_localpath="Development"):
-                                
-        settings.Base_path = base_path
-        settings.Enviroment_name = model_name
+
+        Settings.Base_path = base_path
+        Settings.Enviroment_name = model_name
 
         # INTERNAL VARS
         validation_content = pd.DataFrame()
@@ -119,46 +119,46 @@ class vmachine:
         print("Creating function code")
         if function_code_localpath == "Development":
             # Need to replace with globals when in package #
-            function_content = settings.Premade_function_code_data
+            function_content = Settings.Premade_function_code_data
         else:
             function_content = open(function_code_localpath, "r")
 
         #### Main code copy ####
         print("Creating Main py code")
         if function_code_localpath == "Development":
-            main_content = settings.Premade_main_code_data  # Need to replace with globals when in package #
+            main_content = Settings.Premade_main_code_data  # Need to replace with globals when in package #
         else:
             main_content = open(main_code_localpath, "r")
 
         #### Requirements copy ####
         print("Creating Requirements file")
         if function_code_localpath == "Development":
-            requirements_content = settings.Premade_requirements_data  # Need to replace with globals when in package #
+            requirements_content = Settings.Premade_requirements_data  # Need to replace with globals when in package #
         else:
             requirements_content = open(requirements_localpath, "r")
 
         #### Documentation copy ####
         print("Creating documentation file")
         if documentation_localpath == "Development":
-            documentation_content = settings.Premade_documentation_data  # Need to replace with globals when in package #
+            documentation_content = Settings.Premade_documentation_data  # Need to replace with globals when in package #
         else:
             documentation_content = open(documentation_localpath, "r")
 
         # Folder structure
         print("Generating folder structure with data points")
-        folders = [{"path": settings.Base_path + "virtualenv_" + model_name + "/code/validate.py",
+        folders = [{"path": Settings.Base_path + "virtualenv_" + model_name + "/code/validate.py",
                     "content": function_content},
-                {"path": settings.Base_path + "virtualenv_" + model_name + "/data/data.gzip",
+                {"path": Settings.Base_path + "virtualenv_" + model_name + "/data/data.gzip",
                     "content": "clear"},
-                {"path": settings.Base_path + "virtualenv_" + model_name + "/data/data_control.gzip",
+                {"path": Settings.Base_path + "virtualenv_" + model_name + "/data/data_control.gzip",
                     "content": "clear"},
-                {"path": settings.Base_path + "virtualenv_" + model_name + "/model/model.pkl",
+                {"path": Settings.Base_path + "virtualenv_" + model_name + "/model/model.pkl",
                     "content": "clear"},
-                {"path": settings.Base_path + "virtualenv_" + model_name + "/requirements.txt",
+                {"path": Settings.Base_path + "virtualenv_" + model_name + "/requirements.txt",
                     "content": requirements_content},
-                {"path": settings.Base_path + "virtualenv_" + model_name + "/docs/documentation.txt",
+                {"path": Settings.Base_path + "virtualenv_" + model_name + "/docs/documentation.txt",
                     "content": documentation_content},
-                {"path": settings.Base_path + "virtualenv_" + model_name + "/main.py",
+                {"path": Settings.Base_path + "virtualenv_" + model_name + "/main.py",
                     "content": main_content}
                 ]
 
@@ -172,13 +172,13 @@ class vmachine:
         #### Write PD to files ####
         print("Writing data")
         validation_content.to_parquet(
-            settings.Base_path + "virtualenv_" + model_name + "/data/data.gzip")
+            Settings.Base_path + "virtualenv_" + model_name + "/data/data.gzip")
         validation_control_content.to_parquet(
-            settings.Base_path + "virtualenv_" + model_name + "/data/data_control.gzip")
+            Settings.Base_path + "virtualenv_" + model_name + "/data/data_control.gzip")
 
         ### Copy machine learning model ###
         print("Writing Machine learning model")
-        copy_model_file = open(settings.Base_path + "virtualenv_" + model_name + "/model/model.pkl", "wb") 
+        copy_model_file = open(Settings.Base_path + "virtualenv_" + model_name + "/model/model.pkl", "wb")
         pickle.dump(model_file_content, copy_model_file)
 
         copy_model_file.close()
@@ -186,13 +186,13 @@ class vmachine:
 
         #### Create files needed for the virtual machine ####
         print("Generating VENV Data")
-        cmd = 'python -m venv ' + settings.Base_path + 'virtualenv_' + model_name
+        cmd = 'python -m venv ' + Settings.Base_path + 'virtualenv_' + model_name
         p = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE)
         print(p.stdout.decode())
 
         #### Finish ####
         print("Virtual machine folder structure created on: " +
-            settings.Base_path + "/virtualenv_" + model_name)
+            Settings.Base_path + "/virtualenv_" + model_name)
 
     #### This function will start the virtual enviroment on a local machine ####
     def Start_venv(self, localpath="", execution_code=""):
@@ -203,7 +203,7 @@ class vmachine:
 
             # Start the virtual enviroment with the code.
             p = subprocess.run(cmd,shell=True, stdout=subprocess.PIPE)
-            print(p.stdout.decode())    
+            print(p.stdout.decode())
 
         elif self._dev_platform == "Linux":
             print("starting virtual machine for Linux")
@@ -211,8 +211,8 @@ class vmachine:
 
             # Start the virtual enviroment with the code.
             p = subprocess.run(cmd,shell=True, stdout=subprocess.PIPE)
-            print(p.stdout.decode())    
-        
+            print(p.stdout.decode())
+
         elif self._dev_platform == "MacOS":
             print("starting virtual machine for Apple")
-        
+

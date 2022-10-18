@@ -1,4 +1,4 @@
-from .settings import settings
+from .settings import Settings
 import requests
 import base64
 import time
@@ -6,8 +6,8 @@ import json
 
 class Auth:
     def __init__(self, baseURL, username, password):
-        settings.Base_url = baseURL
-        settings.Username = username
+        Settings.Base_url = baseURL
+        Settings.Username = username
         global __USERNAME__
         global __PASSWORD__
         __USERNAME__ = username
@@ -22,8 +22,8 @@ class Auth:
 
 
     def refreshToken():
-        response = requests.post(settings.baseURL + 'api/user/auth', json={
+        response = requests.post(Settings.baseURL + 'api/user/auth', json={
             'username': __USERNAME__,
             'password': __PASSWORD__
         })
-        settings.token = response.json()["data"]["access_token"]
+        Settings.token = response.json()["data"]["access_token"]
