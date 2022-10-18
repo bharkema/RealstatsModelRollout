@@ -1,6 +1,6 @@
 import string
 from .settings import Settings
-from .global_functions import Globalfunctions
+from .global_functions import globalFunctions
 from github import Github
 from datetime import date
 import os
@@ -100,7 +100,7 @@ class Versioning():
         if isDirectory == False:
             return "This is not a correct directory"
 
-        indexes = Globalfunctions.Find(local_envpath, "/")
+        indexes = globalFunctions.Find(local_envpath, "/")
         max_count = len(indexes) - 1
         env_name = local_envpath[indexes[max_count - 1] + 1:indexes[max_count]]
 
@@ -206,7 +206,7 @@ class Versioning():
             print("Not able to get given repo: " + self.repo_name)
             return
 
-        local_envpath = Globalfunctions.Path_is_dir(localpath)
+        local_envpath = globalFunctions.Path_is_dir(localpath)
 
         ### Get Files from repo
         print("Downloading files from remote")
