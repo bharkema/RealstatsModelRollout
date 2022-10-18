@@ -3,6 +3,7 @@ from .vmachine import vmachine
 from .model import Model
 from .versioning import Versioning
 from .global_functions import globalFunctions
+from .validate import Validate
 
 Settings
 

@@ -1,14 +1,12 @@
-from nis import match
-from unittest import case
-from urllib import response
 from .settings import Settings
 from six import string_types
 import requests
 
 class Model:
-    def __init__(self):
-       self._model_port = "8000"
-       self._modelURL = "127.0.0.1"
+    def __init__(self, id="Development"):
+        self._id = id
+        self._model_port = "8000"
+        self._modelURL = "127.0.0.1"
 
     ### Port that is being used by the virtual env ###
     @property

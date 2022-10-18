@@ -5,7 +5,7 @@ import requests
 class Validate:
     def __init__(self, id="Development"):
        self._id = id
-       self._model_port = "8000"
+       self. = "8000"
        self._modelURL = "127.0.0.1"
 
     ### Port that is being used by the virtual env ###

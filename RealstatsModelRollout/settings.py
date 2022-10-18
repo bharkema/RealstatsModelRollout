@@ -32,7 +32,7 @@ class Settings:
             if isDirectory == True:
                 self._base_path = value
         except Exception as ex:
-            print(ex, "Given path is not correct")
+            print(ex, "Given path is not a directory")
 
     ### Premade code that can be used when not using custom code ###
     @property
