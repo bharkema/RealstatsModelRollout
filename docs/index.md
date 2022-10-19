@@ -13,9 +13,13 @@ Here you wil find a link to all functions and classes in the package where you w
 * [Globalfunctions()](https://bharkema.github.io/RealstatsModelRollout/classes/globalfunctions)
     * [Find()](https://bharkema.github.io/RealstatsModelRollout/functions/find)
     * [Path_is_dir()](https://bharkema.github.io/RealstatsModelRollout/functions/pathisdir)
+* [Model()](https://bharkema.github.io/RealstatsModelRollout/classes/model)
+    * [Info_request()](https://bharkema.github.io/RealstatsModelRollout/functions/model_info_request)
+    * [Predict_request()](https://bharkema.github.io/RealstatsModelRollout/functions/model_predict_request)
+    * [Custom_request()](https://bharkema.github.io/RealstatsModelRollout/functions/model_custom_request)
 
 ## Go to the changelog
-Here you can find the changelog of the official versions of the package wich will be rolled out when functions have been completed or when bugs are fixed. 
+Here you can find the changelog of the official versions of the package wich will be rolled out when functions have been completed or when bugs are fixed.
 
 [Go to changelog ->](https://bharkema.github.io/RealstatsModelRollout/changelog).
 
@@ -24,7 +28,7 @@ Here you can find the changelog of the official versions of the package wich wil
 These are usable versions within the package
 * Stable version:
     * Not yet released
-* Dev versions: 
+* Dev versions:
     * [0.0.1.dev61](https://bharkema.github.io/RealstatsModelRollout/changelog)
     * [0.0.1.dev22](https://bharkema.github.io/RealstatsModelRollout/changelog)
 

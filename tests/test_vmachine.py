@@ -6,6 +6,7 @@ from RealstatsModelRollout import globalFunctions as gf
 
 def test_Generate_structure():
     testing_files_path = "D:/comakership/package/tests/Testing_data/"
+    # testing_files_path = "https://raw.githubusercontent.com/bharkema/RealstatsModelRollout/Development/tests/Testing_data/"
     model_path = testing_files_path + "model/model_binary.dat.gz"
     data_path = testing_files_path + "data/breast_cancer.csv"
     base_path = 'C:/'
@@ -13,7 +14,8 @@ def test_Generate_structure():
 
     assert vm().Generate_structure(model_localpath=model_path, validation_data_localpath=data_path,
                                   validation_control_localpath=data_path, base_path=base_path, model_name=model_name) == True
-    assert gf.Path_is_dir(base_path + "virtualenv_" + model_name) == base_path + "virtualenv_" + model_name
+    assert gf.Path_is_dir(base_path + "virtualenv_" + model_name) == base_path + "virtualenv_" + model_name + "/"
+
 
 
 
