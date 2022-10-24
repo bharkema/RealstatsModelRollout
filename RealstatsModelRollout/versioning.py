@@ -254,17 +254,17 @@ class Versioning():
         #### Write files and directory's ####
         for item in folders:
             os.makedirs(os.path.dirname(item["path"]), exist_ok=True)
-            with open(item["path"], "w") as f:
-                if isinstance(item["content"], string_types):
+            if isinstance(item["content"], string_types):
+                with open(item["path"], "w") as f:
                     f.write(item["content"])
-                elif isinstance(item["content"], (bytes, bytearray)):
-                    try:
-                        fb = open(item["path"], "wb")
+            elif isinstance(item["content"], (bytes, bytearray)):
+                try:
+                    with open(item["path"], "wb") as fb:
                         fb.write([item["content"]])
-                    except:
-                        print("Failed to write data to: " + item["path"])
-                else:
-                    return "Not able to write file: " + item["path"]
+                except:
+                    print("Failed to write data to: " + item["path"])
+            else:
+                return "Not able to write file: " + item["path"]
 
         if generate_venv:
             print("Generating VENV Data")
