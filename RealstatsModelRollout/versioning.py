@@ -260,11 +260,11 @@ class Versioning():
             elif isinstance(item["content"], (bytes, bytearray)):
                 try:
                     with open(item["path"], "wb") as fb:
-                        fb.write([item["content"]])
+                        fb.write(item["content"])
                 except:
                     print("Failed to write data to: " + item["path"])
             else:
-                return "Not able to write file: " + item["path"]
+                return "Not able to write file: " + item["path"] + "at all."
 
         if generate_venv:
             print("Generating VENV Data")
