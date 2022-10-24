@@ -285,9 +285,3 @@ class Versioning():
             return
 
         return git_repo.get_contents(self._model_name + '/' + self._model_version + "/" + filename).decoded_content
-
-
-
-
-
-
