@@ -11,10 +11,10 @@ from six import string_types
 
 class Versioning():
     def __init__(self):
-        self._repo_name
-        self._model_version
-        self._gitaccesstoken
-        self._model_name
+        self._repo_name = ""
+        self._model_version = ""
+        self._gitaccesstoken = ""
+        self._model_name = ""
 
     @property
     def Repo_name(self):
@@ -203,7 +203,7 @@ class Versioning():
         try:
             git_repo = git.get_repo(self._repo_name)
         except:
-            print("Not able to get given repo: " + self.repo_name)
+            print("Not able to get given repo: " + self._repo_name)
             return
 
         local_envpath = globalFunctions.Path_is_dir(localpath)
