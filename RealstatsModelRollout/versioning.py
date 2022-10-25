@@ -293,6 +293,6 @@ class Versioning():
         elif isinstance(filename, list):
             print("Multiple files download")
             for item in filename:
-                downloaded_files.append(self._model_name + '/' + self._model_version + "/" + item)
+                downloaded_files.append(git_repo.get_contents(self._model_name + '/' + self._model_version + "/" + item))
 
         return downloaded_files
