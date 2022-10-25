@@ -5,7 +5,7 @@ from RealstatsModelRollout import globalFunctions as gf
 
 
 def test_Generate_structure():
-    testing_files_path = "D:/comakership/package/tests/Testing_data/"
+    testing_files_path = "C:/Users/Bowen/Desktop/ModelRollout/tests/Testing_data/"
     # testing_files_path = "https://raw.githubusercontent.com/bharkema/RealstatsModelRollout/Development/tests/Testing_data/"
     model_path = testing_files_path + "model/model_binary.dat.gz"
     data_path = testing_files_path + "data/breast_cancer.csv"
