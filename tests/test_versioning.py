@@ -3,6 +3,7 @@ from github import Github
 from RealstatsModelRollout import Versioning
 from .settings import settings
 from datetime import date
+import os
 
 def test_Download_enviroment():
     version = Versioning()
@@ -10,7 +11,7 @@ def test_Download_enviroment():
     version.Repo_name = "bharkema/model_test"
     version.Model_name = "virtualenv_Actual"
     version.Model_version = "11102022"
-    assert version.Download_enviroment("C:/test/", False) == "Finished downloading"
+    assert version.Download_enviroment(settings.Main_path, False) == "Finished downloading"
 
 def test_Get_file_content():
     version = Versioning()
@@ -26,7 +27,7 @@ def test_Upload_enviroment():
     version.Gitaccesstoken = settings.Gitaccesstoken
     version.Repo_name = "bharkema/model_test"
 
-    resultvalue = version.Upload_enviroment("C:/test/virtualenv_Actual/11102022/")
+    resultvalue = version.Upload_enviroment(settings.Main_path + "/virtualenv_Actual/11102022/")
 
     git = Github(version.Gitaccesstoken)
     git_repo = ""
