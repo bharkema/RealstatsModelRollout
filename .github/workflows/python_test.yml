@@ -6,6 +6,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      API_KEY: ${{secrets.ACCESSTOKEN}}
     strategy:
       matrix:
         python-version: ["3.7", "3.8", "3.9", "3.10"]
