@@ -290,7 +290,7 @@ class Versioning():
         if isinstance(filename, string_types):
             print("Single file download")
             downloaded_files.append(git_repo.get_contents(self._model_name + '/' + self._model_version + "/" + filename).decoded_content)
-        elif isinstance(filename, array):
+        elif isinstance(filename, list):
             print("Multiple files download")
             for item in filename:
                 downloaded_files.append(self._model_name + '/' + self._model_version + "/" + item)
