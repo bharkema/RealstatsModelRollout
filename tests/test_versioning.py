@@ -26,7 +26,7 @@ def test_Upload_enviroment():
     version.Gitaccesstoken = settings.Gitaccesstoken
     version.Repo_name = "bharkema/model_test"
 
-    resultvalue = version.Upload_enviroment("C:/test/")
+    resultvalue = version.Upload_enviroment("C:/test/virtualenv_Actual/11102022/")
 
     git = Github(version.Gitaccesstoken)
     git_repo = ""
@@ -46,7 +46,7 @@ def test_Upload_enviroment():
     additional = 1
     while versionInUse:
         try:
-            git_repo.get_contents("test/" + versionnumber + "/version_info.json")
+            git_repo.get_contents("11102022/" + versionnumber + "/version_info.json")
             if additional == 1:
                 versionnumber = versionnumber + "-" + str(additional)
             else:
@@ -62,4 +62,4 @@ def test_Upload_enviroment():
     versionnumber = versionnumber[0: charloc[0] + 1]
     versionnumber = versionnumber + str(additional - 2)
 
-    assert resultvalue == "Saved model data under: " + version.Repo_name + "/test/" + versionnumber
+    assert resultvalue == "Saved model data under: " + version.Repo_name + "/11102022/" + versionnumber
