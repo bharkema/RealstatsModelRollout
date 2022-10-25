@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       API_KEY: ${{secrets.ACCESSTOKEN}}
-      MAIN_PATH : ${{GITHUB_ENV}}
+      MAIN_PATH : $GITHUB_ENV
     strategy:
       matrix:
         python-version: ["3.10"]
