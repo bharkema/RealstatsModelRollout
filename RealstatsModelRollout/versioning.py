@@ -1,3 +1,4 @@
+from array import array
 import string
 from .settings import Settings
 from .global_functions import globalFunctions
@@ -257,7 +258,7 @@ class Versioning():
             if isinstance(item["content"], string_types):
                 with open(item["path"], "w") as f:
                     f.write(item["content"])
-            elif isinstance(item["content"], (bytes, bytearray)):
+            elif isinstance(item["content"], (bytes)):
                 try:
                     with open(item["path"], "wb") as fb:
                         fb.write(item["content"])
@@ -275,13 +276,23 @@ class Versioning():
         else:
             return "Finished downloading"
 
-    def Get_file_content(self, filename="version_info.json"):
+    def Get_file_content(self, filename):
         git = Github(self._gitaccesstoken)
         git_repo = ""
+        downloaded_files = []
+
         try:
             git_repo = git.get_repo(self._repo_name)
         except:
             print("Not able to get given repo: " + self.repo_name)
             return
 
-        return git_repo.get_contents(self._model_name + '/' + self._model_version + "/" + filename).decoded_content
+        if isinstance(filename, string_types):
+            print("Single file download")
+            downloaded_files.append(git_repo.get_contents(self._model_name + '/' + self._model_version + "/" + filename).decoded_content)
+        elif isinstance(filename, array):
+            print("Multiple files download")
+            for item in filename:
+                downloaded_files.append(self._model_name + '/' + self._model_version + "/" + item)
+
+        return downloaded_files
