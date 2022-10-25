@@ -1,4 +1,3 @@
-from logging import exception
 import os
 
 class Settings:
@@ -13,6 +12,7 @@ class Settings:
         self._base_url
         self._username
         self._token
+        self._platform_version
 
     ### Base path that will be used by the system to work with the system and work from ###
     @property
@@ -163,3 +163,17 @@ class Settings:
         :type: string
         """
         self._token = value
+
+    @property
+    def Platform_version(self):
+        """
+        :type: string
+        """
+        return self._platform_version
+
+    @Platform_version.setter
+    def Platform_version(self, value):
+        """
+        :type: string
+        """
+        self._platform_version = value[0:3]

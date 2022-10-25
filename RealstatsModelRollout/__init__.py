@@ -5,11 +5,13 @@ from .versioning import Versioning
 from .global_functions import globalFunctions
 from .validate import Validate
 from.auth import Auth
+import platform
 
 Settings
 
 Settings.Token = ""
 Settings.Package_version = "0.0.1.dev"
+Settings.Platform_version = platform.python_version()
 Settings.Premade_main_code_data = """# Local imports
 import datetime
 

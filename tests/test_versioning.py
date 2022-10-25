@@ -58,7 +58,8 @@ def test_Upload_enviroment():
             pass
             break
     
-    versionnumber = versionnumber[:-1]
+    charloc = [i for i, ltr in enumerate(versionnumber) if ltr == '-']
+    versionnumber = versionnumber[0: charloc[0] + 1]
     versionnumber = versionnumber + str(additional - 2)
 
     assert resultvalue == "Saved model data under: " + version.Repo_name + "/test/" + versionnumber

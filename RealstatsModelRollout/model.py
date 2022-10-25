@@ -1,5 +1,6 @@
 from .settings import Settings
 from six import string_types
+from .global_functions import globalFunctions as gf
 import requests
 
 class Model:
@@ -63,15 +64,15 @@ class Model:
     def Custom_request(self, request_type="", pathing="", json_data='Development'):
         request_type = request_type.lower()
         response = ""
-        match request_type:
-            case "post":
-                response = requests.post(url=self._modelURL + ':' + self._model_port + "/" + pathing, json=json_data)
-                return response
-            case "put":
-                response = requests.put(url=self._modelURL + ':' + self._model_port + "/" + pathing, json=json_data)
-                return response
-            case "get":
-                response = requests.get(url=self._modelURL + ':' + self._model_port + "/" + pathing)
-                return response
-            case "_":
-                return Exception("Request type not found please the following: get, put, post")
+
+        if request_type == "post":
+            response = requests.post(url=self._modelURL + ':' + self._model_port + "/" + pathing, json=json_data)
+            return response
+        elif request_type == "put":
+            response = requests.put(url=self._modelURL + ':' + self._model_port + "/" + pathing, json=json_data)
+            return response
+        elif request_type == "get":
+            response = requests.get(url=self._modelURL + ':' + self._model_port + "/" + pathing, json=json_data)
+            return response
+        else:
+            return Exception("Request type not found please the following: get, put, post")

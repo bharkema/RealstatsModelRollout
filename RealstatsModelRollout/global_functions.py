@@ -23,4 +23,3 @@ class globalFunctions:
             return local_envpath
         else:
             raise Exception("Given localpath: " + local_envpath + " is not a directory")
-
