@@ -1,4 +1,3 @@
-from .settings import Settings
 import os
 from six import string_types
 
