@@ -139,7 +139,8 @@ class Versioning():
                 if additional == 1:
                     version = version + "-" + str(additional)
                 else:
-                    version = version[:-1]
+                    charloc = [i for i, ltr in enumerate(version) if ltr == '-']
+                    version = version[0: charloc[0] + 1]
                     version = version + str(additional)
                 additional+=1
             except:
