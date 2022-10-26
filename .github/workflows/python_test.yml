@@ -1,4 +1,4 @@
-name: Python package testing
+name: Python package testing 3.8
 
 on: [push]
 
@@ -11,7 +11,7 @@ jobs:
       MAIN_PATH : "/home/test/"
     strategy:
       matrix:
-        python-version: ["3.8", "3.10"]
+        python-version: ["3.8"]
 
     steps:
       - uses: actions/checkout@v3
