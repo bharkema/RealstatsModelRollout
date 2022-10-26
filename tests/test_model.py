@@ -22,3 +22,12 @@ def test_Custom_request_unknown_request():
         model.Custom_request(request_type="Faulty", pathing="path")
         assert "Request type not found please the following: get, put, post" in str(exc.value)
 
+def test_Custom_request_get_request():
+    model = Model()
+
+    model.Model_URL = "https://google.com/"
+    model.Model_port = ""
+
+    response = model.Custom_request(request_type="get", pathing="info")
+    assert response.status_code == 404
+
