@@ -1,4 +1,5 @@
 import os
+from .global_functions import globalFunctions as GF
 
 class Settings:
     def __init__(self):
@@ -47,7 +48,7 @@ class Settings:
         """
         :type: string
         """
-        self._premade_main_code_data = value
+        self._premade_main_code_data = GF.Is_value_string(value=value)
 
     ### Premade function code that can be used when not using custom code ###
     @property
@@ -62,7 +63,7 @@ class Settings:
         """
         :type: string
         """
-        self._premade_function_code_data = value
+        self._premade_function_code_data = GF.Is_value_string(value=value)
 
     ### Premade requirements list that can be used when not using custom code ###
     @property
@@ -77,7 +78,7 @@ class Settings:
         """
         :type: string
         """
-        self._premade_requirements_data = value
+        self._premade_requirements_data = GF.Is_value_string(value=value)
 
     ### Premade documentation that can be used when not using custom code ###
     @property
@@ -92,7 +93,7 @@ class Settings:
         """
         :type: string
         """
-        self._premade_documentation_data = value
+        self._premade_documentation_data = GF.Is_value_string(value=value)
 
     @property
     def Enviroment_name(self):
@@ -106,7 +107,7 @@ class Settings:
         """
         :type: string
         """
-        self._enviroment_name = value
+        self._enviroment_name = GF.Is_value_string(value=value)
 
     @property
     def Package_version(self):
@@ -120,7 +121,7 @@ class Settings:
         """
         :type: string
         """
-        self._package_version = value
+        self._package_version = GF.Is_value_string(value=value)
 
     @property
     def Base_url(self):
@@ -134,7 +135,7 @@ class Settings:
         """
         :type: string
         """
-        self._base_url = value
+        self._base_url = GF.Is_value_string(value=value)
 
     @property
     def Username(self):
@@ -148,7 +149,7 @@ class Settings:
         """
         :type: string
         """
-        self._username = value
+        self._username = GF.Is_value_string(value=value)
 
     @property
     def Token(self):
@@ -162,7 +163,7 @@ class Settings:
         """
         :type: string
         """
-        self._token = value
+        self._token = GF.Is_value_string(value=value)
 
     @property
     def Platform_version(self):
@@ -176,4 +177,4 @@ class Settings:
         """
         :type: string
         """
-        self._platform_version = value[0:3]
+        self._platform_version = value[0:4]

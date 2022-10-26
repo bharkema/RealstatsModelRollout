@@ -1,6 +1,6 @@
 from .settings import Settings
 from six import string_types
-from .global_functions import globalFunctions as gf
+from .global_functions import globalFunctions as GF
 import requests
 
 class Model:
@@ -22,10 +22,7 @@ class Model:
         """
         :type: string
         """
-        if isinstance(value, string_types):
-            self._model_port = value
-        else:
-            raise Exception("Value must be string")
+        self._model_port = GF.Is_value_string(value=value)
 
     ### URL to model ###
     @property
@@ -40,10 +37,7 @@ class Model:
         """
         :type: string
         """
-        if isinstance(value, string_types):
-            self._modelURL = value
-        else:
-            raise Exception("Value must be string")
+        self._modelURL = GF.Is_value_string(value=value)
 
     def Info_request(self):
         response = ""

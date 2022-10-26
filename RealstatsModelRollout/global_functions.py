@@ -1,5 +1,6 @@
 from .settings import Settings
 import os
+from six import string_types
 
 class globalFunctions:
     def __init__(self):
@@ -23,3 +24,9 @@ class globalFunctions:
             return local_envpath
         else:
             raise Exception("Given localpath: " + local_envpath + " is not a directory")
+
+    def Is_value_string(value):
+        if isinstance(value, string_types):
+            return value
+        else:
+            return Exception("Type is not string")

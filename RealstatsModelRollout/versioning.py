@@ -1,7 +1,7 @@
 from array import array
 import string
 from .settings import Settings
-from .global_functions import globalFunctions
+from .global_functions import globalFunctions as GF
 from github import Github
 from datetime import date
 import os
@@ -29,7 +29,7 @@ class Versioning():
         """
         :type: string
         """
-        self._repo_name = value
+        self._repo_name = GF.Is_value_string(value=value)
 
     @property
     def Gitaccesstoken(self):
@@ -43,7 +43,7 @@ class Versioning():
         """
         :type: string
         """
-        self._gitaccesstoken = value
+        self._gitaccesstoken = GF.Is_value_string(value=value)
 
     @property
     def Model_version(self):
@@ -57,7 +57,7 @@ class Versioning():
         """
         :type: string
         """
-        self._model_version = value
+        self._model_version = GF.Is_value_string(value=value)
 
     @property
     def Model_name(self):
@@ -71,7 +71,7 @@ class Versioning():
         """
         :type: string
         """
-        self._model_name = value
+        self._model_name = GF.Is_value_string(value=value)
 
     ### Upload the model and all its data to the github repo
     def Upload_enviroment(self, enviroment_localpath="Development"):
@@ -101,7 +101,7 @@ class Versioning():
         if isDirectory == False:
             return "This is not a correct directory"
 
-        indexes = globalFunctions.Find(local_envpath, "/")
+        indexes = GF.Find(local_envpath, "/")
         max_count = len(indexes) - 1
         env_name = local_envpath[indexes[max_count - 1] + 1:indexes[max_count]]
 
@@ -208,7 +208,7 @@ class Versioning():
             print("Not able to get given repo: " + self._repo_name)
             return
 
-        local_envpath = globalFunctions.Path_is_dir(localpath)
+        local_envpath = GF.Path_is_dir(localpath)
 
         ### Get Files from repo
         print("Downloading files from remote")
