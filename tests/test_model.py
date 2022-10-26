@@ -29,5 +29,5 @@ def test_Custom_request_get_request():
     model.Model_port = ""
 
     response = model.Custom_request(request_type="get", pathing="info")
-    assert response.status_code == 404
+    assert response.status_code == 400
 
