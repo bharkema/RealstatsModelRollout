@@ -6,6 +6,7 @@ from .settings import Settings
 import pickle
 import gzip
 
+
 class Vmachine:
     def __init__(self):
         self._dev_platform = platform.system()
@@ -61,8 +62,8 @@ class Vmachine:
     #### END OF GLOBAL VARS ####
 
     #### Generates folder structer of the virtual enviroment and copy's data from given locations ####
-    def Generate_structure(self, model_localpath="", validation_data_localpath="", validation_control_localpath="", base_path="", model_name = "",
-                                requirements_localpath="Development", documentation_localpath="Development", function_code_localpath="Development", main_code_localpath="Development"):
+    def Generate_structure(self, model_localpath="", validation_data_localpath="", validation_control_localpath="", base_path="", model_name="",
+                           requirements_localpath="Optional", documentation_localpath="Optional", function_code_localpath="Optional", main_code_localpath="Optional"):
 
         Settings.Base_path = base_path
         Settings.Enviroment_name = model_name
@@ -108,16 +109,19 @@ class Vmachine:
             validation_control_localpath)
         print("File extension is: " + str(validation_control_file_extension))
         if validation_control_file_extension == ".csv":
-            validation_control_content = pd.read_csv(validation_control_localpath)
+            validation_control_content = pd.read_csv(
+                validation_control_localpath)
         elif validation_control_file_extension == ".pkl":
-            validation_control_content = pd.read_pickle(validation_control_localpath)
+            validation_control_content = pd.read_pickle(
+                validation_control_localpath)
         elif validation_control_file_extension == ".gzip":
-            validation_control_content = pd.read_parquet(validation_control_localpath)
+            validation_control_content = pd.read_parquet(
+                validation_control_localpath)
         print("Validation data collected")
 
         #### Function code copy ####
         print("Creating function code")
-        if function_code_localpath == "Development":
+        if function_code_localpath == "Optional":
             # Need to replace with globals when in package #
             function_content = Settings.Premade_function_code_data
         else:
@@ -125,22 +129,25 @@ class Vmachine:
 
         #### Main code copy ####
         print("Creating Main py code")
-        if function_code_localpath == "Development":
-            main_content = Settings.Premade_main_code_data  # Need to replace with globals when in package #
+        if function_code_localpath == "Optional":
+            # Need to replace with globals when in package #
+            main_content = Settings.Premade_main_code_data
         else:
             main_content = open(main_code_localpath, "r")
 
         #### Requirements copy ####
         print("Creating Requirements file")
-        if function_code_localpath == "Development":
-            requirements_content = Settings.Premade_requirements_data  # Need to replace with globals when in package #
+        if function_code_localpath == "Optional":
+            # Need to replace with globals when in package #
+            requirements_content = Settings.Premade_requirements_data
         else:
             requirements_content = open(requirements_localpath, "r")
 
         #### Documentation copy ####
         print("Creating documentation file")
-        if documentation_localpath == "Development":
-            documentation_content = Settings.Premade_documentation_data  # Need to replace with globals when in package #
+        if documentation_localpath == "Optional":
+            # Need to replace with globals when in package #
+            documentation_content = Settings.Premade_documentation_data
         else:
             documentation_content = open(documentation_localpath, "r")
 
@@ -148,19 +155,19 @@ class Vmachine:
         print("Generating folder structure with data points")
         folders = [{"path": Settings.Base_path + "virtualenv_" + model_name + "/code/validate.py",
                     "content": function_content},
-                {"path": Settings.Base_path + "virtualenv_" + model_name + "/data/data.gzip",
+                   {"path": Settings.Base_path + "virtualenv_" + model_name + "/data/data.gzip",
                     "content": "clear"},
-                {"path": Settings.Base_path + "virtualenv_" + model_name + "/data/data_control.gzip",
+                   {"path": Settings.Base_path + "virtualenv_" + model_name + "/data/data_control.gzip",
                     "content": "clear"},
-                {"path": Settings.Base_path + "virtualenv_" + model_name + "/model/model.pkl",
+                   {"path": Settings.Base_path + "virtualenv_" + model_name + "/model/model.pkl",
                     "content": "clear"},
-                {"path": Settings.Base_path + "virtualenv_" + model_name + "/requirements.txt",
+                   {"path": Settings.Base_path + "virtualenv_" + model_name + "/requirements.txt",
                     "content": requirements_content},
-                {"path": Settings.Base_path + "virtualenv_" + model_name + "/docs/documentation.txt",
+                   {"path": Settings.Base_path + "virtualenv_" + model_name + "/docs/documentation.txt",
                     "content": documentation_content},
-                {"path": Settings.Base_path + "virtualenv_" + model_name + "/main.py",
+                   {"path": Settings.Base_path + "virtualenv_" + model_name + "/main.py",
                     "content": main_content}
-                ]
+                   ]
 
         #### Write files and directory's ####
         for item in folders:
@@ -178,7 +185,8 @@ class Vmachine:
 
         ### Copy machine learning model ###
         print("Writing Machine learning model")
-        copy_model_file = open(Settings.Base_path + "virtualenv_" + model_name + "/model/model.pkl", "wb")
+        copy_model_file = open(
+            Settings.Base_path + "virtualenv_" + model_name + "/model/model.pkl", "wb")
         pickle.dump(model_file_content, copy_model_file)
 
         copy_model_file.close()
@@ -192,28 +200,31 @@ class Vmachine:
 
         #### Finish ####
         print("Virtual machine folder structure created on: " +
-            Settings.Base_path + "/virtualenv_" + model_name)
+              Settings.Base_path + "/virtualenv_" + model_name)
         return True
 
     #### This function will start the virtual enviroment on a local machine ####
     def Start_venv(self, localpath="", execution_code=""):
         if self._dev_platform == "Windows":
             print("starting virtual machine for Windows")
-            #& python code/' + execution_code + ' .py
-            cmd ='pip install virtualenv & cd ' + localpath + ' & virtualenv venv & ' + localpath + '/scripts/activate & cd c:/ & cd ' + localpath + ' & dir & pip install -r requirements.txt & uvicorn main:app'
+            # & python code/' + execution_code + ' .py
+            cmd = 'pip install virtualenv & cd ' + localpath + ' & virtualenv venv & ' + localpath + \
+                '/scripts/activate & cd c:/ & cd ' + localpath + \
+                ' & dir & pip install -r requirements.txt & uvicorn main:app'
 
             # Start the virtual enviroment with the code.
-            p = subprocess.run(cmd,shell=True, stdout=subprocess.PIPE)
+            p = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE)
             print(p.stdout.decode())
 
         elif self._dev_platform == "Linux":
             print("starting virtual machine for Linux")
-            cmd ='pip install virtualenv ; cd ' + localpath + ' ; virtualenv venv ; ' + localpath + '/scripts/activate ; cd c:/ ; cd ' + localpath + ' ; dir ; pip install -r requirements.txt ; python code/' + execution_code + ' ; uvicorn main:app'
+            cmd = 'pip install virtualenv ; cd ' + localpath + ' ; virtualenv venv ; ' + localpath + '/scripts/activate ; cd c:/ ; cd ' + \
+                localpath + ' ; dir ; pip install -r requirements.txt ; python code/' + \
+                execution_code + ' ; uvicorn main:app'
 
             # Start the virtual enviroment with the code.
-            p = subprocess.run(cmd,shell=True, stdout=subprocess.PIPE)
+            p = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE)
             print(p.stdout.decode())
 
         elif self._dev_platform == "MacOS":
             print("starting virtual machine for Apple")
-

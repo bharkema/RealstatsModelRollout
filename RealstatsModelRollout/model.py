@@ -3,8 +3,9 @@ from six import string_types
 from .global_functions import globalFunctions as GF
 import requests
 
+
 class Model:
-    def __init__(self, id="Development"):
+    def __init__(self, id="Optional"):
         self._id = id
         self._model_port = "8000"
         self._modelURL = "127.0.0.1"
@@ -42,7 +43,8 @@ class Model:
     def Info_request(self):
         response = ""
         try:
-            response = requests.get(url=self._modelURL + ':' + self._model_port + "/info")
+            response = requests.get(
+                url=self._modelURL + ':' + self._model_port + "/info")
         except:
             return Exception("Not able to get data from URL please check if model is running or online")
         return response
@@ -50,7 +52,8 @@ class Model:
     def Predict_request(self, json_data=''):
         response = ""
         try:
-            response = requests.post(url=self._modelURL + ':' + self._model_port + "/predict", json=json_data)
+            response = requests.post(
+                url=self._modelURL + ':' + self._model_port + "/predict", json=json_data)
         except:
             return Exception("Not able to get data from URL please check if model is running or online")
         return response
@@ -60,13 +63,16 @@ class Model:
         response = ""
 
         if request_type == "post":
-            response = requests.post(url=self._modelURL + ':' + self._model_port + "/" + pathing, json=json_data)
+            response = requests.post(
+                url=self._modelURL + ':' + self._model_port + "/" + pathing, json=json_data)
             return response
         elif request_type == "put":
-            response = requests.put(url=self._modelURL + ':' + self._model_port + "/" + pathing, json=json_data)
+            response = requests.put(
+                url=self._modelURL + ':' + self._model_port + "/" + pathing, json=json_data)
             return response
         elif request_type == "get":
-            response = requests.get(url=self._modelURL + ':' + self._model_port + "/" + pathing, json=json_data)
+            response = requests.get(
+                url=self._modelURL + ':' + self._model_port + "/" + pathing, json=json_data)
             return response
         else:
             return Exception("Request type not found please the following: get, put, post")

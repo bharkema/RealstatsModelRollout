@@ -1,11 +1,11 @@
+import platform
 from .settings import Settings
 from .vmachine import Vmachine
 from .model import Model
 from .versioning import Versioning
 from .global_functions import globalFunctions
 from .validate import Validate
-from.auth import Auth
-import platform
+from .auth import Auth
 
 Settings
 

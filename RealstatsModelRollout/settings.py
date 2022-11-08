@@ -1,19 +1,22 @@
 import os
 from .global_functions import globalFunctions as GF
 
+
 class Settings:
     def __init__(self):
-        self._base_path
-        self._premade_main_code_data
-        self._premade_function_code_data
-        self._premade_requirements_data
-        self._premade_documentation_data
-        self._enviroment_name
-        self._package_version
-        self._base_url
-        self._username
-        self._token
-        self._platform_version
+        self._base_path = ""
+        self._premade_main_code_data = ""
+        self._premade_function_code_data = ""
+        self._premade_requirements_data = ""
+        self._premade_documentation_data = ""
+        self._enviroment_name = ""
+        self._enviroment_version = ""
+        self._package_version = ""
+        self._base_url = ""
+        self._username = ""
+        self._token = ""
+        self._platform_version = ""
+        self._gitaccesstoken = ""
 
     ### Base path that will be used by the system to work with the system and work from ###
     @property
@@ -110,6 +113,20 @@ class Settings:
         self._enviroment_name = GF.Is_value_string(value=value)
 
     @property
+    def Enviroment_version(self):
+        """
+        :type: string
+        """
+        return self._enviroment_version
+
+    @Enviroment_name.setter
+    def Enviroment_version(self, value):
+        """
+        :type: string
+        """
+        self._enviroment_version = GF.Is_value_string(value=value)
+
+    @property
     def Package_version(self):
         """
         :type: string
@@ -178,3 +195,17 @@ class Settings:
         :type: string
         """
         self._platform_version = value[0:4]
+
+    @property
+    def Gitaccesstoken(self):
+        """
+        :type: string
+        """
+        return self._gitaccesstoken
+
+    @Gitaccesstoken.setter
+    def Gitaccesstoken(self, value):
+        """
+        :type: string
+        """
+        self._gitaccesstoken = GF.Is_value_string(value=value)
