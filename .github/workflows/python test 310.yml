@@ -1,6 +1,10 @@
-name: Python package testing 3.8
+name: Python package testing 3.10
 
-on: [push]
+on:
+  workflow_run:
+    workflows: ["Python package testing 3.8"]
+    types:
+      - completed
 
 jobs:
   build:
@@ -11,7 +15,7 @@ jobs:
       MAIN_PATH : "/home/test/"
     strategy:
       matrix:
-        python-version: ["3.8"]
+        python-version: ["3.10"]
 
     steps:
       - uses: actions/checkout@v3
