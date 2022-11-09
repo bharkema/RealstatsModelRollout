@@ -181,8 +181,10 @@ class Vmachine:
         ms_init_content = ""
         ms_functions_content = ""
 
+        #### Start generating folder and files within folder ####
         print("Starting folder generation...")
         for file in collectible_files:
+            os.makedirs(os.path.dirname(item["saving_path"]), exist_ok=True)
             if file["file_name"] == "main":
                 if file["file_path"] == "":
                     main_content = Settings.Premade_main_code_data
