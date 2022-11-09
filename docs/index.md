@@ -11,7 +11,7 @@ Welcome to the Realstats Model Rollout package documentation. This documentation
 ## Functions within package
 Here you wil find a link to all functions and classes in the package where you will a more in depth description
 * [Vmachine()](https://bharkema.github.io/RealstatsModelRollout/classes/vmachine)
-    * [Generate_structure()](https://bharkema.github.io/RealstatsModelRollout/functions/generate_structure)
+    * [Generate_structure()](https://bharkema.github.io/RealstatsModelRollout/functions/generate_structure_rework)
     * [Start_venv()](https://bharkema.github.io/RealstatsModelRollout/functions/start_venv)
 * [Versioning()](https://bharkema.github.io/RealstatsModelRollout/classes/versioning)
     * [Upload_enviroment()](https://bharkema.github.io/RealstatsModelRollout/functions/upload_enviro)
