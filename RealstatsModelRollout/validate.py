@@ -93,7 +93,7 @@ class Validate:
         if model_port != "Optional":
             model.Model_port = model_port
 
-        response = model.Custom_request("get", "/validate")
+        response = model.Custom_request("post", "/validate")
         response_json = response.json()
         self._mae_value = response_json["MAE_value"]
         self._r2_value = response_json["R2_value"] * 100
