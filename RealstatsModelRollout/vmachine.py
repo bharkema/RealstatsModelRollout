@@ -123,6 +123,9 @@ class Vmachine:
             }
         ]
 
+        #### Var to keep it from going to deep ####
+        depth = 0
+
         # For loop to go trough first folder and get all files + remaining folders
         for path in os.listdir(model_current_location):
             if path.endswith(".py") or path.endswith(".txt") or path.endswith(".pkl") or path.endswith(".csv") or path.endswith(".gzip"):
@@ -141,10 +144,12 @@ class Vmachine:
                         item["file_extension"] = ".gzip"
             elif "." not in path:
                 if path == "model" or path == "ms" or path == "docs" or path == "data" or path == "code":
-                    folder_pathlist.append(model_current_location + "/" + path)
+                    folder_pathlist.append(model_current_location + path)
 
         # For loop to get fill extra folders and find remaining files
         for folder in folder_pathlist:
+            if depth >= 10:
+                raise SystemExit("Looking too deep in folder structure please check location given")
             for path in os.listdir(folder):
                 if path.endswith(".py") or path.endswith(".txt") or path.endswith(".pkl") or path.endswith(".csv") or path.endswith(".gzip"):
                     file_pathlist.append(folder + "/" + path)
@@ -162,6 +167,8 @@ class Vmachine:
                             item["file_extension"] = ".gzip"
                 elif "." not in path and "activate" not in path:
                     folder_pathlist.append(folder + "/" + path)
+                    depth += 1
+                
 
         #### Check if needed files are in the system ####
         print("Checking if needed files are found...")
@@ -180,44 +187,50 @@ class Vmachine:
         main_content = ""
         ms_init_content = ""
         ms_functions_content = ""
+        model_file_content = b""
 
         #### Start generating folder and files within folder ####
         print("Starting folder generation...")
         for file in collectible_files:
-            os.makedirs(os.path.dirname(item["saving_path"]), exist_ok=True)
+            os.makedirs(os.path.dirname(file["saving_path"]), exist_ok=True)
             if file["file_name"] == "main":
                 if file["file_path"] == "":
                     main_content = Settings.Premade_main_code_data
                 else:
-                    main_content = open(file["file_path"], "r")
+                    with open(file["file_path"], "r") as f:
+                        main_content = f.read()
                 with open(file["saving_path"], "w") as f:
                     f.write(main_content)
             elif file["file_name"] == "functions":
                 if file["file_path"] == "":
                     ms_functions_content = Settings.Premade_main_code_data
                 else:
-                    ms_functions_content = open(file["file_path"], "r")
+                    with open(file["file_path"], "r") as f:
+                        ms_functions_content = f.read()
                 with open(file["saving_path"], "w") as f:
                     f.write(ms_functions_content)
             elif file["file_name"] == "__init__":
                 if file["file_path"] == "":
                     ms_init_content = Settings.Premade_main_code_data
                 else:
-                    ms_init_content = open(file["file_path"], "r")
+                    with open(file["file_path"], "r") as f:
+                        ms_init_content = f.read()
                 with open(file["saving_path"], "w") as f:
                     f.write(ms_init_content)
             elif file["file_name"] == "documentation":
                 if file["file_path"] == "":
                     documentation_content = Settings.Premade_documentation_data
                 else:
-                    documentation_content = open(file["file_path"], "r")
+                    with open(file["file_path"], "r") as f:
+                        documentation_content = f.read()
                 with open(file["saving_path"], "w") as f:
                     f.write(documentation_content)
             elif file["file_name"] == "requirements":
                 if file["file_path"] == "":
                     requirements_content = Settings.Premade_requirements_data
                 else:
-                    requirements_content = open(file["file_path"], "r")
+                    with open(file["file_path"], "r") as f:
+                        requirements_content = f.read()
                 with open(file["saving_path"], "w") as f:
                     f.write(requirements_content)
             elif file["file_name"] == "model":
@@ -229,7 +242,6 @@ class Vmachine:
                 copy_model_file = open(file["saving_path"], "wb")
                 pickle.dump(model_file_content, copy_model_file)
                 copy_model_file.close()
-                model_file.close()
             elif file["file_name"] == "data":
                 if file["file_extension"] == ".csv":
                     validation_content = pd.read_csv(file["file_path"])
@@ -242,23 +254,19 @@ class Vmachine:
                 if file["file_extension"] == ".csv":
                     validation_control_content = pd.read_csv(file["file_path"])
                 elif file["file_extension"] == ".pkl":
-                    validation_control_content = pd.read_pickle(
-                        file["file_path"])
+                    validation_control_content = pd.read_pickle(file["file_path"])
                 elif file["file_extension"] == ".gzip":
-                    validation_control_content = pd.read_parquet(
-                        file["file_path"])
-                validation_control_content.to_parquet(item["saving_path"])
+                    validation_control_content = pd.read_parquet(file["file_path"])
+                validation_control_content.to_parquet(file["saving_path"])
 
         #### Create files needed for the virtual machine ####
         print("Generating VENV Data")
-        cmd = 'python -m venv ' + Settings.Base_path + 'virtualenv_' + model_name
+        cmd = 'python -m venv ' + model_save_location + 'virtualenv_' + model_name
         p = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE)
         print(p.stdout.decode())
 
         #### Finish ####
-        print("Virtual machine folder structure created on: " +
-              Settings.Base_path + "/virtualenv_" + model_name)
-        return True
+        print("Virtual machine folder structure created on: " + model_save_location + "virtualenv_" + model_name)
 
 
     #### This function will start the virtual enviroment on a local machine ####
