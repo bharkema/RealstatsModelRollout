@@ -270,7 +270,7 @@ class Vmachine:
 
 
     #### This function will start the virtual enviroment on a local machine ####
-    def Start_venv(self, localpath="", execution_code=""):
+    def Start_venv(self, localpath="", execution_code="Optional"):
         if self._dev_platform == "Windows":
             print("starting virtual machine for Windows")
             # & python code/' + execution_code + ' .py

@@ -26,6 +26,10 @@ Here you wil find a link to all functions and classes in the package where you w
     * [Predict_request()](https://bharkema.github.io/RealstatsModelRollout/functions/model_predict_request)
     * [Custom_request()](https://bharkema.github.io/RealstatsModelRollout/functions/model_custom_request)
 
+## How to use the package
+The package is simple to use and easy to implement for more information look here:
+[usage](https://bharkema.github.io/RealstatsModelRollout/usage)
+
 ## Go to the changelog
 Here you can find the changelog of the official versions of the package wich will be rolled out when functions have been completed or when bugs are fixed.
 
@@ -35,8 +39,9 @@ Here you can find the changelog of the official versions of the package wich wil
 ### Version list
 These are usable versions within the package
 * Stable version:
-    * Not yet released
+    * [0.2.1](https://bharkema.github.io/RealstatsModelRollout/changelog)
 * Dev versions:
+    * [0.2.1.dev3](https://bharkema.github.io/RealstatsModelRollout/changelog)
     * [0.0.1.dev61](https://bharkema.github.io/RealstatsModelRollout/changelog)
     * [0.0.1.dev22](https://bharkema.github.io/RealstatsModelRollout/changelog)
 

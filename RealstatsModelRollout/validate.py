@@ -37,14 +37,14 @@ class Validate:
         self._mae_deviation_percentage = value
 
     @property
-    def Mae_expected_value(self):
+    def MAE_expected_value(self):
         """
         :type: float
         """
         return self._mae_expected_value
 
-    @Mae_expected_value.setter
-    def Mae_expected_value(self, value):
+    @MAE_expected_value.setter
+    def MAE_expected_value(self, value):
         """
         :type: float
         """
