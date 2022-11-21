@@ -58,6 +58,24 @@ class Model:
             return Exception("Not able to get data from URL please check if model is running or online")
         return response
 
+    def Validate_request(self, payload):
+        response = ""
+        try:
+            response = requests.put(
+                url=self._modelURL + ':' + self._model_port + "/validate", json=payload)
+        except:
+            return Exception("Not able to get data from URL please check if model is running or online")
+        return response
+
+    def Load_model(self):
+        response = ""
+        try:
+            response = requests.put(
+                url=self._modelURL + ':' + self._model_port + "/loadmodel")
+        except:
+            return Exception("Not able to get data from URL please check if model is running or online")
+        return response
+
     def Custom_request(self, request_type="", pathing="", json_data='Development'):
         request_type = request_type.lower()
         response = ""

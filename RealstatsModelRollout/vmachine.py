@@ -69,9 +69,10 @@ class Vmachine:
         model_save_location = GF.Path_is_dir(model_save_location)
 
         print("Searching for needed files...")
-        file_pathlist = []
-        folder_pathlist = []
-        needed_files = ["model", "data_control", "data"]
+        #### Files that are needed ####
+        needed_files = ["data"]
+
+        #### Files that can be collected ####
         collectible_files = [
             {
                 "file_name": "main",
@@ -90,6 +91,12 @@ class Vmachine:
                 "file_path": "",
                 "file_extension": ".py",
                 "saving_path": model_save_location + "virtualenv_" + model_name + "/ms/__init__.py"
+            },
+            {
+                "file_name": "train_model",
+                "file_path": "",
+                "file_extension": ".py",
+                "saving_path": model_save_location + "virtualenv_" + model_name + "/ms/train_model.py"
             },
             {
                 "file_name": "documentation",
@@ -123,8 +130,10 @@ class Vmachine:
             }
         ]
 
-        #### Var to keep it from going to deep ####
+        #### Var to keep it from going to deep and loop vars ####
         depth = 0
+        file_pathlist = []
+        folder_pathlist = []
 
         # For loop to go trough first folder and get all files + remaining folders
         for path in os.listdir(model_current_location):
@@ -169,7 +178,6 @@ class Vmachine:
                     folder_pathlist.append(folder + "/" + path)
                     depth += 1
                 
-
         #### Check if needed files are in the system ####
         print("Checking if needed files are found...")
         for item in collectible_files:
@@ -181,7 +189,7 @@ class Vmachine:
         # vars for saving data
         validation_content = pd.DataFrame()
         validation_control_content = pd.DataFrame()
-        function_content = ""
+        ms_train_model = ""
         requirements_content = ""
         documentation_content = ""
         main_content = ""
@@ -193,6 +201,7 @@ class Vmachine:
         print("Starting folder generation...")
         for file in collectible_files:
             os.makedirs(os.path.dirname(file["saving_path"]), exist_ok=True)
+            #### Main py code for running the fastapi ####
             if file["file_name"] == "main":
                 if file["file_path"] == "":
                     main_content = Settings.Premade_main_code_data
@@ -201,22 +210,38 @@ class Vmachine:
                         main_content = f.read()
                 with open(file["saving_path"], "w") as f:
                     f.write(main_content)
+
+            #### function code for the model ####
             elif file["file_name"] == "functions":
                 if file["file_path"] == "":
-                    ms_functions_content = Settings.Premade_main_code_data
+                    ms_functions_content = Settings.Premade_ms_function_code_data
                 else:
                     with open(file["file_path"], "r") as f:
                         ms_functions_content = f.read()
                 with open(file["saving_path"], "w") as f:
                     f.write(ms_functions_content)
+
+            #### train model code for the model ####
+            elif file["file_name"] == "train_model":
+                if file["file_path"] == "":
+                    ms_train_model = Settings.Premade_ms_train_code
+                else:
+                    with open(file["file_path"], "r") as f:
+                        ms_train_model = f.read()
+                with open(file["saving_path"], "w") as f:
+                    f.write(ms_train_model)
+
+            #### init file for the model and the function code ####
             elif file["file_name"] == "__init__":
                 if file["file_path"] == "":
-                    ms_init_content = Settings.Premade_main_code_data
+                    ms_init_content = Settings.Premade_ms_init_code
                 else:
                     with open(file["file_path"], "r") as f:
                         ms_init_content = f.read()
                 with open(file["saving_path"], "w") as f:
                     f.write(ms_init_content)
+
+            #### Documentation of the model if wanted ####
             elif file["file_name"] == "documentation":
                 if file["file_path"] == "":
                     documentation_content = Settings.Premade_documentation_data
@@ -225,6 +250,8 @@ class Vmachine:
                         documentation_content = f.read()
                 with open(file["saving_path"], "w") as f:
                     f.write(documentation_content)
+
+            #### Requirements list for running the model ####
             elif file["file_name"] == "requirements":
                 if file["file_path"] == "":
                     requirements_content = Settings.Premade_requirements_data
@@ -233,31 +260,39 @@ class Vmachine:
                         requirements_content = f.read()
                 with open(file["saving_path"], "w") as f:
                     f.write(requirements_content)
+
+            #### Model data ####
             elif file["file_name"] == "model":
-                if file["file_extension"] == ".gz":
-                    model_file = gzip.open(file["file_path"], "rb")
-                    model_file_content = model_file.read()
-                elif file["file_extension"] == ".pkl":
-                    model_file = pd.read_pickle(file["file_path"])
-                copy_model_file = open(file["saving_path"], "wb")
-                pickle.dump(model_file_content, copy_model_file)
-                copy_model_file.close()
+                if file["file_path"] != "":
+                    if file["file_extension"] == ".gz":
+                        model_file = gzip.open(file["file_path"], "rb")
+                        model_file_content = model_file.read()
+                    elif file["file_extension"] == ".pkl":
+                        model_file = pd.read_pickle(file["file_path"])
+                    copy_model_file = open(file["saving_path"], "wb")
+                    pickle.dump(model_file_content, copy_model_file)
+                    copy_model_file.close()
+
+            #### Data for validation use ####
             elif file["file_name"] == "data":
-                if file["file_extension"] == ".csv":
-                    validation_content = pd.read_csv(file["file_path"])
-                elif file["file_extension"] == ".pkl":
-                    validation_content = pd.read_pickle(file["file_path"])
-                elif file["file_extension"] == ".gzip":
-                    validation_content = pd.read_parquet(file["file_path"])
-                validation_content.to_parquet(item["saving_path"])
+                if file["file_path"] != "":
+                    if file["file_extension"] == ".csv":
+                        validation_content = pd.read_csv(file["file_path"])
+                    elif file["file_extension"] == ".pkl":
+                        validation_content = pd.read_pickle(file["file_path"])
+                    elif file["file_extension"] == ".gzip":
+                        validation_content = pd.read_parquet(file["file_path"])
+                    validation_content.to_parquet(item["saving_path"])
+            #### Data that acts as a control / backup of the validation data ####
             elif file["file_name"] == "data_control":
-                if file["file_extension"] == ".csv":
-                    validation_control_content = pd.read_csv(file["file_path"])
-                elif file["file_extension"] == ".pkl":
-                    validation_control_content = pd.read_pickle(file["file_path"])
-                elif file["file_extension"] == ".gzip":
-                    validation_control_content = pd.read_parquet(file["file_path"])
-                validation_control_content.to_parquet(file["saving_path"])
+                if file["file_path"] != "":
+                    if file["file_extension"] == ".csv":
+                        validation_control_content = pd.read_csv(file["file_path"])
+                    elif file["file_extension"] == ".pkl":
+                        validation_control_content = pd.read_pickle(file["file_path"])
+                    elif file["file_extension"] == ".gzip":
+                        validation_control_content = pd.read_parquet(file["file_path"])
+                    validation_control_content.to_parquet(file["saving_path"])
 
         #### Create files needed for the virtual machine ####
         print("Generating VENV Data")

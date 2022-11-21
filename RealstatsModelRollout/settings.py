@@ -1,12 +1,13 @@
 import os
 from .global_functions import globalFunctions as GF
 
-
 class Settings:
     def __init__(self):
         self._base_path = ""
         self._premade_main_code_data = ""
+        self._premade_ms_init_code = ""
         self._premade_function_code_data = ""
+        self._premade_train_code
         self._premade_requirements_data = ""
         self._premade_documentation_data = ""
         self._enviroment_name = ""
@@ -17,6 +18,8 @@ class Settings:
         self._token = ""
         self._platform_version = ""
         self._gitaccesstoken = ""
+        self._validation_data_path = ""
+        self._validation_control_data_path = ""
 
     ### Base path that will be used by the system to work with the system and work from ###
     @property
@@ -55,18 +58,49 @@ class Settings:
 
     ### Premade function code that can be used when not using custom code ###
     @property
-    def Premade_function_code_data(self):
+    def Premade_ms_function_code_data(self):
         """
         :type: string
         """
         return self._premade_function_code_data
 
-    @Premade_function_code_data.setter
-    def Premade_function_code_data(self, value):
+    @Premade_ms_function_code_data.setter
+    def Premade_ms_function_code_data(self, value):
         """
         :type: string
         """
         self._premade_function_code_data = GF.Is_value_string(value=value)
+
+    ### Premade function code that can be used when not using custom code ###
+    @property
+    def Premade_ms_init_code(self):
+        """
+        :type: string
+        """
+        return self._premade_ms_init_code
+
+    @Premade_ms_init_code.setter
+    def Premade_ms_init_code(self, value):
+        """
+        :type: string
+        """
+        self._premade_ms_init_code = GF.Is_value_string(value=value)
+
+
+    ### Premade train code that can be used when not using custom code ###
+    @property
+    def Premade_ms_train_code(self):
+        """
+        :type: string
+        """
+        return self._premade_train_code
+
+    @Premade_ms_train_code.setter
+    def Premade_ms_train_code(self, value):
+        """
+        :type: string
+        """
+        self._premade_train_code = GF.Is_value_string(value=value)
 
     ### Premade requirements list that can be used when not using custom code ###
     @property
