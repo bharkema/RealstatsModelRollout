@@ -1,11 +1,13 @@
 import platform
 from .settings import Settings
-# from .vmachine import Vmachine
-# from .model import Model
-# from .versioning import Versioning
-# from .global_functions import globalFunctions
-# from .validate import Validate
-# from .auth import Auth
+from .vmachine import Vmachine
+from .model import Model
+from .versioning import Versioning
+from .global_functions import globalFunctions
+from .validate import Validate
+from .auth import Auth
+
+Settings
 
 Settings.Token = ""
 Settings.Package_version = "0.0.1.dev"
