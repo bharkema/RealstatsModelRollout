@@ -15,6 +15,42 @@ def test_Predict_request_inactive():
         model.Predict_request(json_data={})
         assert "Not able to get data from URL please check if model is running or online" in str(exc.value)
 
+def test_validate_request_inactive():
+    model = Model()
+
+    features = [
+        'leefbaarheid_score',
+        'score_wonen',
+        'score_veiligheid',
+        'score_voorzieningen',
+        'leeftijdscategorie_0_15',
+        'leeftijdscategorie_15_25',
+        'leeftijdscategorie_25_45'
+    ]
+
+    best_param_values = {
+        'boosting_type': 0, 
+        'colsample_by_tree': 0.42578475315406
+    }
+
+    payload = {
+        "feature_array": features,
+        "param_values": best_param_values,
+        "target": "testing_price"
+    }
+
+    with pytest.raises(Exception) as exc:
+        model.Validate_request(payload=payload)
+        assert "Not able to get data from URL please check if model is running or online" in str(exc.value)
+
+def test_load_request_inactive():
+    model = Model()
+
+    with pytest.raises(Exception) as exc:
+        model.Load_model()
+        assert "Not able to get data from URL please check if model is running or online" in str(exc.value)
+
+
 def test_Custom_request_unknown_request():
     model = Model()
 

@@ -114,8 +114,8 @@ class Versioning():
         requirements_file = open(local_envpath + "docs/documentation.txt", "r")
         requirements_string = requirements_file.read()
 
-        validation_data = open(local_envpath + "main.py", "r")
-        main_py_file_data = main_py_file.read()
+        # main_py_file = open(local_envpath + "main.py", "r")
+        # main_py_file_data = main_py_file.read()
 
         model_file = open(local_envpath + "model/trained_model.pkl", "rb")
         model_file_data = model_file.read()
