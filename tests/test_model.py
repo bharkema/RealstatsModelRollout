@@ -1,6 +1,7 @@
 import pytest
 from RealstatsModelRollout import Model
 
+
 def test_Info_request_inactive():
     model = Model()
 
@@ -8,12 +9,14 @@ def test_Info_request_inactive():
         model.Info_request()
         assert "Not able to get data from URL please check if model is running or online" in str(exc.value)
 
+
 def test_Predict_request_inactive():
     model = Model()
 
     with pytest.raises(Exception) as exc:
         model.Predict_request(json_data={})
         assert "Not able to get data from URL please check if model is running or online" in str(exc.value)
+
 
 def test_validate_request_inactive():
     model = Model()
@@ -29,7 +32,7 @@ def test_validate_request_inactive():
     ]
 
     best_param_values = {
-        'boosting_type': 0, 
+        'boosting_type': 0,
         'colsample_by_tree': 0.42578475315406
     }
 
@@ -42,6 +45,7 @@ def test_validate_request_inactive():
     with pytest.raises(Exception) as exc:
         model.Validate_request(payload=payload)
         assert "Not able to get data from URL please check if model is running or online" in str(exc.value)
+
 
 def test_load_request_inactive():
     model = Model()
@@ -58,6 +62,7 @@ def test_Custom_request_unknown_request():
         model.Custom_request(request_type="Faulty", pathing="path")
         assert "Request type not found please the following: get, put, post" in str(exc.value)
 
+
 def test_Custom_request_get_request():
     model = Model()
 
@@ -66,4 +71,3 @@ def test_Custom_request_get_request():
 
     response = model.Custom_request(request_type="get", pathing="info")
     assert response.status_code == 400
-

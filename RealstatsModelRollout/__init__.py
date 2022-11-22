@@ -1,13 +1,11 @@
 import platform
 from .settings import Settings
-from .vmachine import Vmachine
-from .model import Model
-from .versioning import Versioning
-from .global_functions import globalFunctions
-from .validate import Validate
-from .auth import Auth
-
-Settings
+# from .vmachine import Vmachine
+# from .model import Model
+# from .versioning import Versioning
+# from .global_functions import globalFunctions
+# from .validate import Validate
+# from .auth import Auth
 
 Settings.Token = ""
 Settings.Package_version = "0.0.1.dev"
@@ -31,7 +29,7 @@ version = "v1.0.0"
 class Inputs(BaseModel):
     temp: str
     ## TODO
-    
+
 # Ouput for data validation
 class Output(BaseModel):
     label: str
@@ -77,13 +75,13 @@ async def model_predict(inputs: Inputs):
 @app.put('/validate', response_model=Validation_output)
 async def model_validate(input: Validation_input):
     response = train_model.Execute_training_testing(feature_array=input.feature_array, param_values=input.param_values, target=input.target)
-    Load_model()    
+    Load_model()
     return response
 
 @app.put('/loadmodel', response_model=loaded_output)
 async def model_load():
     try:
-        Load_model()    
+        Load_model()
         return {
             "loaded": True
         }
@@ -220,7 +218,7 @@ def get_model_response(input):
         'label': label,
         'prediction': int(prediction)
     }
-    
+
 def percentage_error(actual, predicted):
     res = np.empty(actual.shape)
     for j in range(actual.shape[0]):

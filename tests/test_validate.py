@@ -1,6 +1,6 @@
-import pytest
-import RealstatsModelRollout as RMR
-from .settings import settings
+# import pytest
+# import RealstatsModelRollout as RMR
+# from .settings import settings
 
 # def test_save_validation():
 #     validation = RMR.Validate()
@@ -14,27 +14,3 @@ from .settings import settings
 #     validation.MAPE_Deviation_percentage = 5
 
 #     validation.Save_validation_results("c:/")
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

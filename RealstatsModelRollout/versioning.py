@@ -1,4 +1,3 @@
-from array import array
 from .settings import Settings
 from .global_functions import globalFunctions as GF
 from github import Github
@@ -79,15 +78,16 @@ class Versioning():
         git_repo = ""
         try:
             git_repo = git.get_repo(self._repo_name)
-        except:
-            print("Not able to get given repo: " + self.repo_name)
+        except Exception as e:
+            print(e)
+            print("Not able to get given repo: " + self._repo_name)
             return
 
         git_user = git.get_user()
         git_user_data = git_user.get_emails()
 
         local_envpath = ""
-        ### Get directory ###
+        # Get directory #
         print("Looking for directory")
         if enviroment_localpath != "Optional":
             if enviroment_localpath[-1] == '/':
@@ -99,14 +99,14 @@ class Versioning():
                 "virtualenv_" + Settings.Enviroment_name + "/"
 
         isDirectory = os.path.isdir(local_envpath)
-        if isDirectory == False:
+        if isDirectory is False:
             return "This is not a correct directory"
 
         indexes = GF.Find(local_envpath, "/")
         max_count = len(indexes) - 1
         env_name = local_envpath[indexes[max_count - 1] + 1:indexes[max_count]]
 
-        ### Collect all data needed in dir ###
+        # Collect all data needed in dir #
         print("Collecting data")
         requirements_file = open(local_envpath + "requirements.txt", "r")
         requirements_string = requirements_file.read()
@@ -135,7 +135,7 @@ class Versioning():
 
         init_py_file = open(local_envpath + "ms/__init__.py", "r")
         init_py_file_data = init_py_file.read()
-                
+
         train_py_file = open(local_envpath + "ms/train_model.py", "r")
         train_py_file = train_py_file.read()
 
@@ -159,7 +159,8 @@ class Versioning():
                     version = version[0: charloc[0] + 1]
                     version = version + str(additional)
                 additional += 1
-            except:
+            except Exception as e:
+                print(e)
                 versionInUse = False
                 pass
                 break
@@ -172,7 +173,7 @@ class Versioning():
             "uploaded_by": git_user_data[0].email
         }
 
-        ### Upload to Git ###
+        # Upload to Git #
         print("Uploading to Git")
         gitFilePath = env_name + "/" + version + "/"
         commitMessage = env_name + " - " + version + " published"
@@ -201,18 +202,17 @@ class Versioning():
                              init_py_file_data, branch=self._branch_name)
         print("Custom code... done!")
 
-
         # Create Validation data file
         appFilePath = gitFilePath + "validation_data.gzip"
         git_repo.create_file(appFilePath, commitMessage,
                              validation_data_file_data, branch=self._branch_name)
         print("Validation data... done!")
 
-        # Create validation control data file
-        appFilePath = gitFilePath + "validation_control_data.gzip"
-        git_repo.create_file(appFilePath, commitMessage,
-                             validation_data_control_file_data, branch=self._branch_name)
-        print("Validation control data... done!")
+        # # Create validation control data file
+        # appFilePath = gitFilePath + "validation_control_data.gzip"
+        # git_repo.create_file(appFilePath, commitMessage,
+        #                      validation_data_control_file_data, branch=self._branch_name)
+        # print("Validation control data... done!")
 
         # Create model data file
         appFilePath = gitFilePath + "model.pkl"
@@ -233,7 +233,8 @@ class Versioning():
         git_repo = ""
         try:
             git_repo = git.get_repo(self._repo_name)
-        except:
+        except Exception as e:
+            print(e)
             print("Not able to get given repo: " + self._repo_name)
             return
 
@@ -282,7 +283,7 @@ class Versioning():
             self._model_name + '/' + self._model_version + "/version_info.json")
         print("Version info... Done!")
 
-        ### Generate folder ###
+        # Generate folder #
         # Folder structure
         print("Generating folder structure with data points")
         folders = [{"path": local_envpath + self._model_name + "/" + self._model_version + "/ms/functions.py",
@@ -303,7 +304,7 @@ class Versioning():
                     "content": main_code_data.decoded_content.decode("utf-8")}
                    ]
 
-        #### Write files and directory's ####
+        # Write files and directory's #
         for item in folders:
             os.makedirs(os.path.dirname(item["path"]), exist_ok=True)
             if isinstance(item["content"], string_types):
@@ -313,7 +314,8 @@ class Versioning():
                 try:
                     with open(item["path"], "wb") as fb:
                         fb.write(item["content"])
-                except:
+                except Exception as e:
+                    print(e)
                     print("Failed to write data to: " + item["path"])
             else:
                 return "Not able to write file: " + item["path"] + "at all."
@@ -335,8 +337,9 @@ class Versioning():
 
         try:
             git_repo = git.get_repo(self._repo_name)
-        except:
-            print("Not able to get given repo: " + self.repo_name)
+        except Exception as e:
+            print(e)
+            print("Not able to get given repo: " + self._repo_name)
             return
 
         # Checks if the instance is a string or an array
