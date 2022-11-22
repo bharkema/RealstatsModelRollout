@@ -66,8 +66,8 @@ def test_Custom_request_unknown_request():
 def test_Custom_request_get_request():
     model = Model()
 
-    model.Model_URL = "https://httpbin.org/get"
+    model.Model_URL = "https://httpbin.org/"
     model.Model_port = ""
 
-    response = model.Custom_request(request_type="get", pathing="info")
+    response = model.Custom_request(request_type="get", pathing="get")
     assert response.status_code == 200
