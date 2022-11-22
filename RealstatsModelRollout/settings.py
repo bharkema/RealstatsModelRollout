@@ -8,7 +8,7 @@ class Settings:
         self._premade_main_code_data = ""
         self._premade_ms_init_code = ""
         self._premade_function_code_data = ""
-        self._premade_train_code
+        self._premade_train_code = ""
         self._premade_requirements_data = ""
         self._premade_documentation_data = ""
         self._enviroment_name = ""

@@ -1,35 +1,45 @@
 import pytest
 from github import Github
 from RealstatsModelRollout import Versioning
+import RealstatsModelRollout as RMR
 from .settings import settings
 from datetime import date
 import os
 
 def test_Download_enviroment():
     version = Versioning()
-    version.Gitaccesstoken = settings.Gitaccesstoken
+    RMR.Settings.Gitaccesstoken = settings.Gitaccesstoken
     version.Repo_name = "bharkema/model_test"
     version.Model_name = "virtualenv_Actual"
     version.Model_version = "11102022"
     assert version.Download_enviroment(settings.Main_path, False) == "Finished downloading"
 
-def test_Get_file_content():
+def test_Get_files_content():
     version = Versioning()
-    version.Gitaccesstoken = settings.Gitaccesstoken
+    RMR.Settings.Gitaccesstoken = settings.Gitaccesstoken
     version.Repo_name = "bharkema/model_test"
     version.Model_name = "virtualenv_Actual"
     version.Model_version = "11102022"
     data = version.Get_file_content(["model.pkl", "main.py"])
     assert data[0] == b'\x80\x04\x95\x04\x00\x00\x00\x00\x00\x00\x00C\x00\x94.'
 
+def test_Get_file_content():
+    version = Versioning()
+    RMR.Settings.Gitaccesstoken = settings.Gitaccesstoken
+    version.Repo_name = "bharkema/model_test"
+    version.Model_name = "virtualenv_Actual"
+    version.Model_version = "11102022"
+    data = version.Get_file_content("model.pkl")
+    assert data[0] == b'\x80\x04\x95\x04\x00\x00\x00\x00\x00\x00\x00C\x00\x94.'
+
 def test_Upload_enviroment():
     version = Versioning()
-    version.Gitaccesstoken = settings.Gitaccesstoken
+    RMR.Settings.Gitaccesstoken = settings.Gitaccesstoken
     version.Repo_name = "bharkema/model_test"
 
     resultvalue = version.Upload_enviroment(settings.Main_path + "/virtualenv_Actual/11102022/")
 
-    git = Github(version.Gitaccesstoken)
+    git = Github(settings.Gitaccesstoken)
     git_repo = ""
     try:
         git_repo = git.get_repo(version.Repo_name)

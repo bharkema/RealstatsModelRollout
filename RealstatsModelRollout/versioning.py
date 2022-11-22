@@ -258,10 +258,10 @@ class Versioning():
             self._model_name + '/' + self._model_version + "/validation_data.gzip")
         print("Validation data... Done!")
 
-        # Download validation control data
-        validation_control_data = git_repo.get_contents(
-            self._model_name + '/' + self._model_version + "/validation_control_data.gzip")
-        print("Validation control data... Done!")
+        # # Download validation control data
+        # validation_control_data = git_repo.get_contents(
+        #     self._model_name + '/' + self._model_version + "/validation_control_data.gzip")
+        # print("Validation control data... Done!")
 
         # Download main python code
         main_code_data = git_repo.get_contents(
@@ -278,23 +278,29 @@ class Versioning():
             self._model_name + '/' + self._model_version + "/__init__.py")
         print("init python code... Done!")
 
+        # Download training code for model
+        train_model_data = git_repo.get_contents(
+            self._model_name + '/' + self._model_version + "/train_model.py")
+        print("init python code... Done!")
+
         # Download version info
         version_info_data = git_repo.get_contents(
             self._model_name + '/' + self._model_version + "/version_info.json")
         print("Version info... Done!")
 
-        # Generate folder #
-        # Folder structure
+        # Generate folder structure #
         print("Generating folder structure with data points")
         folders = [{"path": local_envpath + self._model_name + "/" + self._model_version + "/ms/functions.py",
                     "content": function_code_data.decoded_content.decode("utf-8")},
                    {"path": local_envpath + self._model_name + "/" + self._model_version + "/ms/__init__.py",
                     "content": init_code_data.decoded_content.decode("utf-8")},
+                   {"path": local_envpath + self._model_name + "/" + self._model_version + "/ms/train_model.py",
+                    "content": train_model_data.decoded_content.decode("utf-8")},
                    {"path": local_envpath + self._model_name + "/" + self._model_version + "/data/data.gzip",
                     "content": validation_data.decoded_content},
-                   {"path": local_envpath + self._model_name + "/" + self._model_version + "/data/data_control.gzip",
-                    "content": validation_control_data.decoded_content},
-                   {"path": local_envpath + self._model_name + "/" + self._model_version + "/model/model.pkl",
+                   #    {"path": local_envpath + self._model_name + "/" + self._model_version + "/data/data_control.gzip",
+                   #     "content": validation_control_data.decoded_content},
+                   {"path": local_envpath + self._model_name + "/" + self._model_version + "/model/trained_model.pkl",
                     "content": model_data.decoded_content},
                    {"path": local_envpath + self._model_name + "/" + self._model_version + "/requirements.txt",
                     "content": requirements.decoded_content.decode("utf-8")},
