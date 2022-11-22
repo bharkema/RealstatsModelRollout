@@ -33,16 +33,17 @@ def test_Upload_enviroment():
     git_repo = ""
     try:
         git_repo = git.get_repo(version.Repo_name)
-    except:
+    except Exception as e:
+        print(e)
         print("Not able to get given repo: " + version.Repo_name)
         return
 
-    ### Generate date version
+    # Generate date version #
     print("Generating version data")
     today = date.today()
     versionnumber = today.strftime("%d%m%Y")
 
-    # Check if app with version already exists, if it does, append number
+    # Check if app with version already exists, if it does, append  mber
     versionInUse = True
     additional = 1
     while versionInUse:
@@ -53,19 +54,20 @@ def test_Upload_enviroment():
             else:
                 versionnumber = versionnumber[:-1]
                 versionnumber = versionnumber + str(additional)
-            additional+=1
-        except:
+            additional += 1
+        except Exception as e:
+            print(e)
             versionInUse = False
             pass
             break
-    
+
     charloc = [i for i, ltr in enumerate(versionnumber) if ltr == '-']
     versionnumber = versionnumber[0: charloc[0] + 1]
     versionnumber = versionnumber + str(additional - 2)
 
-    ## If the last digit is a 0 then remove that zero
+    # If the last digit is a 0 then remove that zero #
     if versionnumber[len(versionnumber) - 1] == "0":
-            if versionnumber[len(versionnumber) - 2] == "-":
-                versionnumber = versionnumber[0 : charloc[0]]
+        if versionnumber[len(versionnumber) - 2] == "-":
+            versionnumber = versionnumber[0: charloc[0]]
 
     assert resultvalue == "Saved model data under: " + version.Repo_name + "/11102022/" + versionnumber
