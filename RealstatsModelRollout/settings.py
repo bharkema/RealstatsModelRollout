@@ -1,6 +1,7 @@
 import os
 from .global_functions import globalFunctions as GF
 
+
 class Settings:
     def __init__(self):
         self._base_path = ""
@@ -21,7 +22,7 @@ class Settings:
         self._validation_data_path = ""
         self._validation_control_data_path = ""
 
-    ### Base path that will be used by the system to work with the system and work from ###
+    # Base path that will be used by the system to work with the system and work from #
     @property
     def Base_path(self):
         """
@@ -36,12 +37,12 @@ class Settings:
         """
         try:
             isDirectory = os.path.isdir(value)
-            if isDirectory == True:
+            if isDirectory is True:
                 self._base_path = value
         except Exception as ex:
             print(ex, "Given path is not a directory")
 
-    ### Premade code that can be used when not using custom code ###
+    # Premade code that can be used when not using custom code #
     @property
     def Premade_main_code_data(self):
         """
@@ -56,7 +57,7 @@ class Settings:
         """
         self._premade_main_code_data = GF.Is_value_string(value=value)
 
-    ### Premade function code that can be used when not using custom code ###
+    # Premade function code that can be used when not using custom code #
     @property
     def Premade_ms_function_code_data(self):
         """
@@ -71,7 +72,7 @@ class Settings:
         """
         self._premade_function_code_data = GF.Is_value_string(value=value)
 
-    ### Premade function code that can be used when not using custom code ###
+    # Premade function code that can be used when not using custom code #
     @property
     def Premade_ms_init_code(self):
         """
@@ -86,8 +87,7 @@ class Settings:
         """
         self._premade_ms_init_code = GF.Is_value_string(value=value)
 
-
-    ### Premade train code that can be used when not using custom code ###
+    # Premade train code that can be used when not using custom code #
     @property
     def Premade_ms_train_code(self):
         """
@@ -102,7 +102,7 @@ class Settings:
         """
         self._premade_train_code = GF.Is_value_string(value=value)
 
-    ### Premade requirements list that can be used when not using custom code ###
+    # Premade requirements list that can be used when not using custom code #
     @property
     def Premade_requirements_data(self):
         """
@@ -117,7 +117,7 @@ class Settings:
         """
         self._premade_requirements_data = GF.Is_value_string(value=value)
 
-    ### Premade documentation that can be used when not using custom code ###
+    # Premade documentation that can be used when not using custom code #
     @property
     def Premade_documentation_data(self):
         """
@@ -153,7 +153,7 @@ class Settings:
         """
         return self._enviroment_version
 
-    @Enviroment_name.setter
+    @Enviroment_version.setter
     def Enviroment_version(self, value):
         """
         :type: string
