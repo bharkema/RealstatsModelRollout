@@ -1,6 +1,11 @@
-name: Python package testing
 
-on: [push]
+name: Python package testing 3.6
+
+on:
+  workflow_run:
+    workflows: ["Python package testing 3.8"]
+    types:
+      - completed
 
 jobs:
   build:
@@ -8,10 +13,13 @@ jobs:
     runs-on: ubuntu-latest
     env:
       API_KEY: ${{secrets.ACCESSTOKEN}}
+      PARAMS: ${{secrets.PARAMS}}
+      FEATURES: ${{secrets.FEATURES}}
+      TARGET: ${{secrets.TARGET}}
       MAIN_PATH : "/home/test/"
     strategy:
       matrix:
-        python-version: ["3.8", "3.10"]
+        python-version: ["3.6"]
 
     steps:
       - uses: actions/checkout@v3

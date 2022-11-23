@@ -1,16 +1,17 @@
-from .settings import Settings
 import os
+from six import string_types
+
 
 class globalFunctions:
     def __init__(self):
-        self._id = "Development"
+        self._id = "Optional"
 
     ### get index location of char in string ###
     def Find(s, ch):
         return [i for i, ltr in enumerate(s) if ltr == ch]
 
-    def Path_is_dir(localpath = ""):
-        local_envpath=""
+    def Path_is_dir(localpath=""):
+        local_envpath = ""
         ### Get directory ###
         print("Looking for directory")
         if localpath[-1] == '/':
@@ -22,4 +23,11 @@ class globalFunctions:
         if isDirectory == True:
             return local_envpath
         else:
-            raise Exception("Given localpath: " + local_envpath + " is not a directory")
+            raise Exception("Given localpath: " +
+                            local_envpath + " is not a directory")
+
+    def Is_value_string(value):
+        if isinstance(value, string_types):
+            return value
+        else:
+            return Exception("Type is not string")
