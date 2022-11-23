@@ -1,4 +1,4 @@
-[<- Go back to main page](https://bharkema.github.io/RealstatsModelRollout/)
+[<- Go back to Model()](../model.md)
 
 ## Predict_request()
 Predict_request(self, json_data=''):

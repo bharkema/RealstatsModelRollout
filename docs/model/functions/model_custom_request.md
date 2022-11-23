@@ -1,4 +1,4 @@
-[<- Go back to main page](https://bharkema.github.io/RealstatsModelRollout/)
+[<- Go back to Model()](../model.md)
 
 ## Custom_request()
 Custom_request(self, request_type="", pathing="", json_data='Optional'):

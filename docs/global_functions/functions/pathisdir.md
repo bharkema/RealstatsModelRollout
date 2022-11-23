@@ -1,4 +1,4 @@
-[<- Go back to main page](https://bharkema.github.io/RealstatsModelRollout/)
+[<- Go back to Globalfunctions()](../globalfunctions.md)
 
 ## Path_is_dir()
 

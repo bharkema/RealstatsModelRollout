@@ -1,4 +1,4 @@
-[<- Go back to main page](https://bharkema.github.io/RealstatsModelRollout/)
+[<- Go back to main page](../index.md)
 
 ## Vmachine()
 
@@ -6,8 +6,8 @@
 Vmachine can be used for generating virtual enviroments and generating the folder structure needed to be able to use the model created by the data scientist.
 
 the following functions are available in Vmachine():
-* [Generate_structure()](https://bharkema.github.io/RealstatsModelRollout/functions/generate_structure_rework)
-* [Start_venv()](https://bharkema.github.io/RealstatsModelRollout/functions/start_venv)
+* [Generate_structure()](./functions/generate_structure_rework.md)
+* [Start_venv()](./functions/start_venv.md)
 
 More in depth information can be found in the links above
 

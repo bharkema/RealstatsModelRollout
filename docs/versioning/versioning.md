@@ -1,4 +1,4 @@
-[<- Go back to main page](https://bharkema.github.io/RealstatsModelRollout/)
+[<- Go back to main page](../index.md)
 
 ## Versioning()
 
@@ -6,9 +6,9 @@
 With versioning you have the ability to upload generated Vmachine folders and corresponding data to the cloud. It has default systems in place wich makes it easier for the user to auto upload the data online
 
 the following functions are available in Versioning():
-* [Upload_enviroment()](https://bharkema.github.io/RealstatsModelRollout/functions/upload_enviro)
-* [Download_enviroment()](https://bharkema.github.io/RealstatsModelRollout/functions/download_enviro)
-* [Get_file_content()](https://bharkema.github.io/RealstatsModelRollout/functions/download_file)
+* [Upload_enviroment()](./functions/upload_enviro.md)
+* [Download_enviroment()](./functions/download_enviro.md)
+* [Get_file_content()](./functions/download_file.md)
 
 More in depth information can be found in the links above
 

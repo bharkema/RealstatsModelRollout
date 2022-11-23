@@ -2,10 +2,6 @@
 
 # Usage of the package
 
-The package can be used in multiple ways. You can either start from
-* scratch 
-* partway
-
 
 ## Starting from scratch
 ``` py
@@ -17,11 +13,11 @@ import RealstatsModelRollout as RMR
 # | project root
 #     |__ data
 #         |__> data (.gzip, .csv, .pkl)               (MUST)
-#         |__> data_control (.gzip, .csv, .pkl)       (MUST)
+#         |__> data_control (.gzip, .csv, .pkl)       (OPTIONAL)
 #     |__ docs
 #         |__> documentation.txt                      (OPTIONAL)
 #     |__ model
-#         |__> model.pkl (.gz)                        (MUST)
+#         |__> model.pkl (.gz)                        (OPTIONAL)
 #     |__ ms
 #         |__> __init__.py                            (OPTIONAL)
 #         |__> functions.py                           (OPTIONAL)

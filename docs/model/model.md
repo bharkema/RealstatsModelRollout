@@ -1,4 +1,4 @@
-[<- Go back to main page](https://bharkema.github.io/RealstatsModelRollout/)
+[<- Go back to main page](../index)
 
 ## Model()
 
@@ -6,9 +6,9 @@
 The model class is used to communicate with the model that is either local or online. By default the settings of the model are set to test locally. you can update propertys to function with any URL or port
 
 the following functions are available in Model():
-* [Info_request()](https://bharkema.github.io/RealstatsModelRollout/functions/model_info_request)
-* [Predict_request()](https://bharkema.github.io/RealstatsModelRollout/functions/model_predict_request)
-* [Custom_request()](https://bharkema.github.io/RealstatsModelRollout/functions/model_custom_request)
+* [Info_request()](./functions/model_info_request.md)
+* [Predict_request()](./functions/model_predict_request.md)
+* [Custom_request()](./functions/model_custom_request.md)
 
 ### Code examples
 ``` python

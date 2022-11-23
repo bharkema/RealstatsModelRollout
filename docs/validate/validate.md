@@ -1,4 +1,4 @@
-[<- Go back to main page](https://bharkema.github.io/RealstatsModelRollout/)
+[<- Go back to main page](../index.md)
 
 ## Validate()
 
@@ -6,8 +6,8 @@
 Validate can be used to create the validation files needed for saving the model to a repo 
 
 the following functions are available in Versioning():
-* [Start_validation()](https://bharkema.github.io/RealstatsModelRollout/classes/versioning)
-* [Save_validation_results()]() <br>
+* [Start_validation()](./functions/start_validation.md)
+* [Save_validation_results()](./functions/save_validation.md) <br>
 This function is more for internal use and not for use by users but can be referenced if needed
 
 More in depth information can be found in the links above

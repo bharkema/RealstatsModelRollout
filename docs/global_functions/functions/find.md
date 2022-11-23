@@ -1,4 +1,4 @@
-[<- Go back](../globalfunctions.md)
+[<- Go back to Globalfunctions()](../globalfunctions.md)
 
 ## Find()
 

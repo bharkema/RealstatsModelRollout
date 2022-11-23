@@ -1,4 +1,4 @@
-[<- Go back to main page](https://bharkema.github.io/RealstatsModelRollout/)
+[<- Go back to Validate()](../validate.md)
 
 ## Save_validation_results()
 Save_validation_results(self, localpath):

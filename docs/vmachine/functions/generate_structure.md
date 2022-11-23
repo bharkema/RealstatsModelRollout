@@ -1,4 +1,4 @@
-[<- Go back to main page](https://bharkema.github.io/RealstatsModelRollout/)
+[<- Go back to Vmachine()](../vmachine.md)
 
 ## Generate_structure()
 The system automatically checks the operating system and executes commands accordingly.

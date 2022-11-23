@@ -6,8 +6,8 @@
 Globalfunctions is a class for internal use but can be accessed from the outside. this class uses standerdized functions and returns certain values
 
 the following functions are available in Versioning():
-* [Find()](https://bharkema.github.io/RealstatsModelRollout/functions/find)
-* [Path_is_dir()](https://bharkema.github.io/RealstatsModelRollout/functions/pathisdir)
+* [Find()](./functions/find.md)
+* [Path_is_dir()](./functions/pathisdir.md)
 
 More in depth information can be found in the links above
 
