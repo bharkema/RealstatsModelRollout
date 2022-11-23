@@ -25,37 +25,37 @@ for local
 127.0.0.1:8000/docs
 ```
 
-* [Validate()](https://bharkema.github.io/RealstatsModelRollout/functions/generate_structure_rework)
-    * [Start_validation()](https://bharkema.github.io/RealstatsModelRollout/functions/generate_structure_rework) <br>
+* [Validate()](./validate/validate.md)
+    * [Start_validation()](./validate/functions/start_validation.md) <br>
     This function starts the validation and training of a model using the data and methods generated my Vmachine and when it is running which will then provide the following values:
         * MAE
         * MAPE
         * R2 
     
-    * [Save_validation_results()](https://bharkema.github.io/RealstatsModelRollout/functions/generate_structure_rework) <br>
+    * [Save_validation_results()](./validate/functions/save_validation.md) <br>
     This function will save the result given back by the ML model and save it to a file under the folder generatedby the package
 
-* [Globalfunctions()](https://bharkema.github.io/RealstatsModelRollout/classes/globalfunctions)
-    * [Is_value_string()](https://bharkema.github.io/RealstatsModelRollout/functions/find) <br>
+* [Globalfunctions()](./global_functions/globalfunctions.md)
+    * [Is_value_string()](./global_functions/functions/) <br>
     This function is used to check parameters written within the package but can be used if wanted outside the package. The function checks if the given value is a string
 
-* [Model()](https://bharkema.github.io/RealstatsModelRollout/classes/model)
-    * [Validate_request()](https://bharkema.github.io/RealstatsModelRollout/functions/model_info_request) <br>
+* [Model()](./model/model.md)
+    * [Validate_request()](./model/functions/model_validate_request.md) <br>
     This uses the default validation and training script that will be created when no alternative is found
-    * [Load_model()](https://bharkema.github.io/RealstatsModelRollout/functions/model_predict_request) <br>
+    * [Load_model()](./model/functions/model_load_request.md) <br>
     This uses the default loading script that will be created when no alternative is found this call can be used when a premade model is given  nad needs to be loaded.
 
 ### Updates
 the following updates have been made to the following classes and functionality's
-* [Generate_structure()](https://bharkema.github.io/RealstatsModelRollout/functions/generate_structure_rework) <br>
+* [Generate_structure()](./vmachine/functions/generate_structure_rework.md) <br>
     The functionalitys behind this class is still the same the underlying system and needead files have been updated. for this function you only need to provide the data needed to train the ML model. the data is still a necessary file and MUST be included for the system to work. 
     furthermore all other files are still optional files that if you want to use something else or update the learning code this is still possible. do make sure to look at the documentation en premad code and make sure you use the same setup for the package to use it correctly.
 
 
-* [Versioning()](https://bharkema.github.io/RealstatsModelRollout/classes/versioning)
-    * [Upload_enviroment()](https://bharkema.github.io/RealstatsModelRollout/functions/upload_enviro)
-    * [Download_enviroment()](https://bharkema.github.io/RealstatsModelRollout/functions/download_enviro)
-    * [Get_file_content()](https://bharkema.github.io/RealstatsModelRollout/functions/download_file)
+* [Versioning()](./versioning/versioning.md)
+    * [Upload_enviroment()](./versioning/functions/upload_enviro.md)
+    * [Download_enviroment()](./versioning/functions/download_enviro.md)
+    * [Get_file_content()](./versioning/functions/download_file.md)
 
 # version 0.2.1.dev3
 This is a update to version 0.2.1 in this update the main focus is a rework to the generation of the virtual enviroment the folder structure was one of the first functions written and has always been an annoyance. in this update the function has been rewritten and does all the work for you now. 
@@ -75,27 +75,27 @@ There are certain names for the files the system is looking for these can be fou
 * Cleaner code
 
 for more information on the function please look at the function documentation
-* [Generate_structure()](https://bharkema.github.io/RealstatsModelRollout/functions/generate_structure_rework)
+* [Generate_structure()](./vmachine/functions/generate_structure_rework.md)
 
 
 # version 0.2.1
 The first official version with all functions currently available created.
 please check the information available:
-* [Vmachine()](https://bharkema.github.io/RealstatsModelRollout/classes/vmachine)
-    * [Generate_structure()](https://bharkema.github.io/RealstatsModelRollout/functions/generate_structure)
-    * [Start_venv()](https://bharkema.github.io/RealstatsModelRollout/functions/start_venv)
-* [Versioning()](https://bharkema.github.io/RealstatsModelRollout/classes/versioning)
-    * [Upload_enviroment()](https://bharkema.github.io/RealstatsModelRollout/functions/upload_enviro)
-    * [Download_enviroment()](https://bharkema.github.io/RealstatsModelRollout/functions/download_enviro)
-    * [Get_file_content()](https://bharkema.github.io/RealstatsModelRollout/functions/download_file)
-* [Auth()](https://bharkema.github.io/RealstatsModelRollout/classes/auth)
-* [Globalfunctions()](https://bharkema.github.io/RealstatsModelRollout/classes/globalfunctions)
-    * [Find()](https://bharkema.github.io/RealstatsModelRollout/functions/find)
-    * [Path_is_dir()](https://bharkema.github.io/RealstatsModelRollout/functions/pathisdir)
-* [Model()](https://bharkema.github.io/RealstatsModelRollout/classes/model)
-    * [Info_request()](https://bharkema.github.io/RealstatsModelRollout/functions/model_info_request)
-    * [Predict_request()](https://bharkema.github.io/RealstatsModelRollout/functions/model_predict_request)
-    * [Custom_request()](https://bharkema.github.io/RealstatsModelRollout/functions/model_custom_request)
+* [Vmachine()](./vmachine/vmachine.md)
+    * [Generate_structure()](./vmachine/functions/generate_structure.md)
+    * [Start_venv()](./vmachine/functions/start_venv.md)
+* [Versioning()](./versioning/versioning.md)
+    * [Upload_enviroment()](./versioning/functions/upload_enviro.md)
+    * [Download_enviroment()](./versioning/functions/download_enviro.md)
+    * [Get_file_content()](./versioning/functions/download_file.md)
+* [Auth()](./classes/auth.md)
+* [Globalfunctions()](./global_functions/globalfunctions.md)
+    * [Find()](./global_functions/functions/find.md)
+    * [Path_is_dir()](./global_functions/functions/pathisdir.md)
+* [Model()](./model/model.md)
+    * [Info_request()](./model/functions/model_info_request.md)
+    * [Predict_request()](./model/functions/model_predict_request.md)
+    * [Custom_request()](./model/functions/model_custom_request.md)
 
 
 

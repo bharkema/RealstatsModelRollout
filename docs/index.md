@@ -8,7 +8,7 @@
 
 Welcome to the Realstats Model Rollout package documentation. This documentation page has been created to help users find their way in the package.
 
-## Functions within package
+# Functions within package
 Here you wil find a link to all functions and classes in the package where you will a more in depth description
 * [Vmachine()](./vmachine/vmachine)
     * [Generate_structure()](./vmachine/functions/generate_structure_rework)
@@ -26,15 +26,15 @@ Here you wil find a link to all functions and classes in the package where you w
 * [Model()](./model/model)
     * [Info_request()](./model/functions/model_info_request)
     * [Predict_request()](./model/functions/model_predict_request)
-    * [Validate_request()](./model/model) 
-    * [Load_model()](./model/model)
+    * [Validate_request()](./model/functions/model_validate_request.md) 
+    * [Load_model()](./model/functions/model_load_request.md)
     * [Custom_request()](./model/functions/model_custom_request)
 
-## How to use the package
+# How to use the package
 The package is simple to use and easy to implement for more information look here:
 [usage](./usage)
 
-### Premade scripts
+## Premade scripts
 The package uses premade scripts for generating the folder structure of the virtual machine for the model you can find them here
 * [Main.py](./premade_scripts/main.md)
 * [functions.py](./premade_scripts/functions.md)
@@ -42,10 +42,10 @@ The package uses premade scripts for generating the folder structure of the virt
 * [train_model.py](./premade_scripts/train.md)
 
 
-## Go to the changelog
+# Changelog
 Here you can find the changelog of the official versions of the package wich will be rolled out when functions have been completed or when bugs are fixed.
 
-[Go to changelog ->](./changelog).
+[Go to changelog ->](./changelog)
 
 ### Version list
 These are usable versions within the package

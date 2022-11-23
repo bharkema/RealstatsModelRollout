@@ -39,7 +39,7 @@ class Validation_output(BaseModel):
     features: list[str]
 
 class loaded_output(BaseModel):
-    Loaded: bool
+    loaded: bool
 
 @app.get('/')
 async def help():
