@@ -6,6 +6,7 @@ from .settings import Settings
 from .global_functions import globalFunctions as GF
 import pickle
 import gzip
+import shlex
 
 
 class Vmachine:
@@ -307,24 +308,22 @@ class Vmachine:
     def Start_venv(self, localpath="", execution_code="Optional"):
         if self._dev_platform == "Windows":
             print("starting virtual machine for Windows")
-            # & python code/' + execution_code + ' .py
-            cmd = 'pip install virtualenv & cd ' + localpath + ' & virtualenv venv & ' + localpath + \
-                '/scripts/activate & cd c:/ & cd ' + localpath + \
-                ' & dir & pip install -r requirements.txt & uvicorn main:app'
+            command_lines = '"start" "cmd.exe" "@cmd /K" "' + localpath + 'scripts/activate"'
 
-            # Start the virtual enviroment with the code.
-            p = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE)
-            print(p.stdout.decode())
-
+            args = shlex.split(command_lines)
+            print(args)
+            p = subprocess.Popen(args, shell=True)
         elif self._dev_platform == "Linux":
             print("starting virtual machine for Linux")
-            cmd = 'pip install virtualenv ; cd ' + localpath + ' ; virtualenv venv ; ' + localpath + '/scripts/activate ; cd c:/ ; cd ' + \
-                localpath + ' ; dir ; pip install -r requirements.txt ; python code/' + \
-                execution_code + ' ; uvicorn main:app'
+            command_lines = '"start" "cmd.exe" "@cmd /K" "' + localpath + 'scripts/activate"'
 
-            # Start the virtual enviroment with the code.
-            p = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE)
-            print(p.stdout.decode())
-
+            args = shlex.split(command_lines)
+            print(args)
+            p = subprocess.Popen(args, shell=True)
         elif self._dev_platform == "MacOS":
             print("starting virtual machine for Apple")
+            command_lines = '"start" "cmd.exe" "@cmd /K" "' + localpath + 'scripts/activate"'
+
+            args = shlex.split(command_lines)
+            print(args)
+            p = subprocess.Popen(args, shell=True)
