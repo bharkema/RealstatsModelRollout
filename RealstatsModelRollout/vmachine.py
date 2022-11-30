@@ -60,7 +60,7 @@ class Vmachine:
         """
         self._dev_platform_release = value
 
-    #### Generates folder structer of the virtual enviroment and copy's data from given locations ####
+    # Generates folder structer of the virtual enviroment and copy's data from given locations #
     def Generate_structure(self, model_save_location, model_name, model_current_location):
         Settings.Base_path = model_save_location
         Settings.Enviroment_name = model_name
@@ -69,10 +69,10 @@ class Vmachine:
         model_save_location = GF.Path_is_dir(model_save_location)
 
         print("Searching for needed files...")
-        #### Files that are needed ####
+        # Files that are needed #
         needed_files = ["data"]
 
-        #### Files that can be collected ####
+        # Files that can be collected #
         collectible_files = [
             {
                 "file_name": "main",
@@ -130,7 +130,7 @@ class Vmachine:
             }
         ]
 
-        #### Var to keep it from going to deep and loop vars ####
+        # Var to keep it from going to deep and loop vars #
         depth = 0
         file_pathlist = []
         folder_pathlist = []
@@ -177,15 +177,15 @@ class Vmachine:
                 elif "." not in path and "activate" not in path:
                     folder_pathlist.append(folder + "/" + path)
                     depth += 1
-                
-        #### Check if needed files are in the system ####
+
+        # Check if needed files are in the system #
         print("Checking if needed files are found...")
         for item in collectible_files:
             if item["file_name"] in needed_files and item["file_path"] == "":
                 raise FileNotFoundError(
                     "Not able to find: " + item["file_name"])
 
-        #### Start copying files to generated folder structure ####
+        # Start copying files to generated folder structure #
         # vars for saving data
         validation_content = pd.DataFrame()
         validation_control_content = pd.DataFrame()
@@ -197,11 +197,11 @@ class Vmachine:
         ms_functions_content = ""
         model_file_content = b""
 
-        #### Start generating folder and files within folder ####
+        # Start generating folder and files within folder #
         print("Starting folder generation...")
         for file in collectible_files:
             os.makedirs(os.path.dirname(file["saving_path"]), exist_ok=True)
-            #### Main py code for running the fastapi ####
+            # Main py code for running the fastapi #
             if file["file_name"] == "main":
                 if file["file_path"] == "":
                     main_content = Settings.Premade_main_code_data
@@ -211,7 +211,7 @@ class Vmachine:
                 with open(file["saving_path"], "w") as f:
                     f.write(main_content)
 
-            #### function code for the model ####
+            # function code for the model #
             elif file["file_name"] == "functions":
                 if file["file_path"] == "":
                     ms_functions_content = Settings.Premade_ms_function_code_data
@@ -221,7 +221,7 @@ class Vmachine:
                 with open(file["saving_path"], "w") as f:
                     f.write(ms_functions_content)
 
-            #### train model code for the model ####
+            # train model code for the model #
             elif file["file_name"] == "train_model":
                 if file["file_path"] == "":
                     ms_train_model = Settings.Premade_ms_train_code
@@ -231,7 +231,7 @@ class Vmachine:
                 with open(file["saving_path"], "w") as f:
                     f.write(ms_train_model)
 
-            #### init file for the model and the function code ####
+            # init file for the model and the function code #
             elif file["file_name"] == "__init__":
                 if file["file_path"] == "":
                     ms_init_content = Settings.Premade_ms_init_code
@@ -241,7 +241,7 @@ class Vmachine:
                 with open(file["saving_path"], "w") as f:
                     f.write(ms_init_content)
 
-            #### Documentation of the model if wanted ####
+            # Documentation of the model if wanted #
             elif file["file_name"] == "documentation":
                 if file["file_path"] == "":
                     documentation_content = Settings.Premade_documentation_data
@@ -251,7 +251,7 @@ class Vmachine:
                 with open(file["saving_path"], "w") as f:
                     f.write(documentation_content)
 
-            #### Requirements list for running the model ####
+            # Requirements list for running the model #
             elif file["file_name"] == "requirements":
                 if file["file_path"] == "":
                     requirements_content = Settings.Premade_requirements_data
@@ -261,7 +261,7 @@ class Vmachine:
                 with open(file["saving_path"], "w") as f:
                     f.write(requirements_content)
 
-            #### Model data ####
+            # Model data #
             elif file["file_name"] == "model":
                 if file["file_path"] != "":
                     if file["file_extension"] == ".gz":
@@ -273,7 +273,7 @@ class Vmachine:
                     pickle.dump(model_file_content, copy_model_file)
                     copy_model_file.close()
 
-            #### Data for validation use ####
+            # Data for validation use #
             elif file["file_name"] == "data":
                 if file["file_path"] != "":
                     if file["file_extension"] == ".csv":
@@ -283,7 +283,7 @@ class Vmachine:
                     elif file["file_extension"] == ".gzip":
                         validation_content = pd.read_parquet(file["file_path"])
                     validation_content.to_parquet(item["saving_path"])
-            #### Data that acts as a control / backup of the validation data ####
+            # Data that acts as a control / backup of the validation data #
             elif file["file_name"] == "data_control":
                 if file["file_path"] != "":
                     if file["file_extension"] == ".csv":
@@ -294,17 +294,16 @@ class Vmachine:
                         validation_control_content = pd.read_parquet(file["file_path"])
                     validation_control_content.to_parquet(file["saving_path"])
 
-        #### Create files needed for the virtual machine ####
+        # Create files needed for the virtual machine #
         print("Generating VENV Data")
         cmd = 'python -m venv ' + model_save_location + 'virtualenv_' + model_name
         p = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE)
         print(p.stdout.decode())
 
-        #### Finish ####
+        # Finish #
         print("Virtual machine folder structure created on: " + model_save_location + "virtualenv_" + model_name)
 
-
-    #### This function will start the virtual enviroment on a local machine ####
+    # This function will start the virtual enviroment on a local machine #
     def Start_venv(self, localpath="", execution_code="Optional"):
         if self._dev_platform == "Windows":
             print("starting virtual machine for Windows")

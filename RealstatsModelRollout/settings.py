@@ -55,7 +55,7 @@ class Settings:
         """
         :type: string
         """
-        self._premade_main_code_data = GF.Is_value_string(value=value)
+        self._premade_main_code_data = GF.Check_instance(value=value, instance_type="string")
 
     # Premade function code that can be used when not using custom code #
     @property
@@ -70,7 +70,7 @@ class Settings:
         """
         :type: string
         """
-        self._premade_function_code_data = GF.Is_value_string(value=value)
+        self._premade_function_code_data = GF.Check_instance(value=value, instance_type="string")
 
     # Premade function code that can be used when not using custom code #
     @property
@@ -85,7 +85,7 @@ class Settings:
         """
         :type: string
         """
-        self._premade_ms_init_code = GF.Is_value_string(value=value)
+        self._premade_ms_init_code = GF.Check_instance(value=value, instance_type="string")
 
     # Premade train code that can be used when not using custom code #
     @property
@@ -100,7 +100,7 @@ class Settings:
         """
         :type: string
         """
-        self._premade_train_code = GF.Is_value_string(value=value)
+        self._premade_train_code = GF.Check_instance(value=value, instance_type="string")
 
     # Premade requirements list that can be used when not using custom code #
     @property
@@ -115,7 +115,7 @@ class Settings:
         """
         :type: string
         """
-        self._premade_requirements_data = GF.Is_value_string(value=value)
+        self._premade_requirements_data = GF.Check_instance(value=value, instance_type="string")
 
     # Premade documentation that can be used when not using custom code #
     @property
@@ -130,7 +130,7 @@ class Settings:
         """
         :type: string
         """
-        self._premade_documentation_data = GF.Is_value_string(value=value)
+        self._premade_documentation_data = GF.Check_instance(value=value, instance_type="string")
 
     @property
     def Enviroment_name(self):
@@ -144,7 +144,7 @@ class Settings:
         """
         :type: string
         """
-        self._enviroment_name = GF.Is_value_string(value=value)
+        self._enviroment_name = GF.Check_instance(value=value, instance_type="string")
 
     @property
     def Enviroment_version(self):
@@ -158,7 +158,7 @@ class Settings:
         """
         :type: string
         """
-        self._enviroment_version = GF.Is_value_string(value=value)
+        self._enviroment_version = GF.Check_instance(value=value, instance_type="string")
 
     @property
     def Package_version(self):
@@ -172,7 +172,7 @@ class Settings:
         """
         :type: string
         """
-        self._package_version = GF.Is_value_string(value=value)
+        self._package_version = GF.Check_instance(value=value, instance_type="string")
 
     @property
     def Base_url(self):
@@ -186,7 +186,7 @@ class Settings:
         """
         :type: string
         """
-        self._base_url = GF.Is_value_string(value=value)
+        self._base_url = GF.Check_instance(value=value, instance_type="string")
 
     @property
     def Username(self):
@@ -200,7 +200,7 @@ class Settings:
         """
         :type: string
         """
-        self._username = GF.Is_value_string(value=value)
+        self._username = GF.Check_instance(value=value, instance_type="string")
 
     @property
     def Token(self):
@@ -214,7 +214,7 @@ class Settings:
         """
         :type: string
         """
-        self._token = GF.Is_value_string(value=value)
+        self._token = GF.Check_instance(value=value, instance_type="string")
 
     @property
     def Platform_version(self):
@@ -242,4 +242,4 @@ class Settings:
         """
         :type: string
         """
-        self._gitaccesstoken = GF.Is_value_string(value=value)
+        self._gitaccesstoken = GF.Check_instance(value=value, instance_type="string")

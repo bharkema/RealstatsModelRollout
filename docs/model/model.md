@@ -9,6 +9,8 @@ the following functions are available in Model():
 * [Info_request()](./functions/model_info_request.md)
 * [Predict_request()](./functions/model_predict_request.md)
 * [Custom_request()](./functions/model_custom_request.md)
+* [Validate_request()](./functions/model_validate_request.md) 
+* [Load_model()](./functions/model_load_request.md)
 
 ### Code examples
 ``` python
@@ -16,14 +18,39 @@ import RealstatsModelRollout as RMR
 
 model = RMR.Model()
 
+# Get information from virtual enviroment
 model.Info_request()
 
+# let the virtual enviroment load a machine learning model
+model.Load_model()
+
+# Get a prediction from the machine learning model
 json_data = {}
 model.Predict_request(json_data=json_data)
 
+# Send a custom request to the virtual enviroment
 model.Model_URL = "URL"
 model.Model_port = "8000"
 model.Custom_request(request_type="post", pathing="user/auth", json_data='Development')
+
+# Validate and train machine learning model
+import RealstatsModelRollout as RMR
+
+features = ["string"]
+best_param_values = {
+    "param_value": 1
+}
+
+payload = {
+    "feature_array": features,
+    "param_values": best_param_values,
+    "target": "listing_price"
+}
+
+model = RMR.Model()
+model.Model_URL = "http://127.0.0.1"
+
+model.Validate_request(payload=payload)
 
 ```
 

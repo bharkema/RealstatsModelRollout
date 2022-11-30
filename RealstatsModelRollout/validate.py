@@ -163,7 +163,7 @@ class Validate:
 
     def Start_validation(self, localpath="Optional", model_url="Optional", model_port="Optional"):
         if localpath == "Optional":
-            if(Settings.Enviroment_version != ""):
+            if Settings.Enviroment_version != "":
                 localpath = gf.Path_is_dir(
                     Settings.Base_path + "/" + Settings.Enviroment_name + "/" + Settings.Enviroment_version + "/")
             else:
@@ -178,7 +178,7 @@ class Validate:
         if model_url != "Optional":
             model.Model_URL = model_url
         if model_port != "Optional":
-            model.Model_port = model_port        
+            model.Model_port = model_port
 
         payload = {
             "feature_array": self._model_features,
@@ -225,7 +225,6 @@ class Validate:
             print("R2 value is within range")
             self._mape_valid = True
 
-
         print("Writing validation data to: " + localpath)
         self.Save_validation_results(localpath)
         print("Done writing validation results")
@@ -254,7 +253,7 @@ class Validate:
             "actual_mape_value": self._mape_value,
             "mae_within_expected_range": self._mae_valid,
             "r2_within_expected_range": self._r2_valid,
-            "used_model_features": self._model_features 
+            "used_model_features": self._model_features
         }
 
         path = localpath + "/validation_data/validation_data.json"

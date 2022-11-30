@@ -79,5 +79,7 @@ def test_Upload_enviroment():
     if versionnumber[len(versionnumber) - 1] == "0":
         if versionnumber[len(versionnumber) - 2] == "-":
             versionnumber = versionnumber[0: charloc[0]]
+        elif versionnumber[len(versionnumber) - 3] == "-":
+            versionnumber = versionnumber[0: charloc[0]]
 
     assert resultvalue == "Saved model data under: " + version.Repo_name + "/11102022/" + versionnumber

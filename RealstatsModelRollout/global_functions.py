@@ -6,13 +6,13 @@ class globalFunctions:
     def __init__(self):
         self._id = "Optional"
 
-    ### get index location of char in string ###
+    # get index location of char in string #
     def Find(s, ch):
         return [i for i, ltr in enumerate(s) if ltr == ch]
 
     def Path_is_dir(localpath=""):
         local_envpath = ""
-        ### Get directory ###
+        # Get directory #
         print("Looking for directory")
         if localpath[-1] == '/':
             local_envpath = localpath
@@ -20,14 +20,29 @@ class globalFunctions:
             local_envpath = localpath + "/"
 
         isDirectory = os.path.isdir(local_envpath)
-        if isDirectory == True:
+        if isDirectory is True:
             return local_envpath
         else:
-            raise Exception("Given localpath: " +
-                            local_envpath + " is not a directory")
+            raise Exception("Given localpath: " + local_envpath + " is not a directory")
 
-    def Is_value_string(value):
-        if isinstance(value, string_types):
-            return value
-        else:
-            return Exception("Type is not string")
+    def Check_instance(value, instance_type):
+        if instance_type == "string":
+            if isinstance(value, string_types):
+                return value
+            else:
+                return Exception("Type is not string")
+        elif instance_type == "float":
+            if isinstance(value, string_types):
+                return value
+            else:
+                return Exception("Type is not float")
+        elif instance_type == "int":
+            if isinstance(value, string_types):
+                return value
+            else:
+                return Exception("Type is not int")
+        elif instance_type == "list":
+            if isinstance(value, string_types):
+                return value
+            else:
+                return Exception("Type is not list")

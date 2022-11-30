@@ -28,7 +28,7 @@ class Versioning():
         """
         :type: string
         """
-        self._repo_name = GF.Is_value_string(value=value)
+        self._repo_name = GF.Check_instance(value=value, instance_type="string")
 
     @property
     def Branch_name(self):
@@ -42,7 +42,7 @@ class Versioning():
         """
         :type: string
         """
-        self._branch_name = GF.Is_value_string(value=value)
+        self._branch_name = GF.Check_instance(value=value, instance_type="string")
 
     @property
     def Model_version(self):
@@ -56,7 +56,7 @@ class Versioning():
         """
         :type: string
         """
-        self._model_version = GF.Is_value_string(value=value)
+        self._model_version = GF.Check_instance(value=value, instance_type="string")
 
     @property
     def Model_name(self):
@@ -70,7 +70,7 @@ class Versioning():
         """
         :type: string
         """
-        self._model_name = GF.Is_value_string(value=value)
+        self._model_name = GF.Check_instance(value=value, instance_type="string")
 
     # Upload the model and all its data to the github repo
     def Upload_enviroment(self, enviroment_localpath="Optional"):

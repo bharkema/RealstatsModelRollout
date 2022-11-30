@@ -16,8 +16,18 @@ after which the model will load the model for use
 ```python 
 import RealstatsModelRollout as RMR
 
-model = RMR.Model()
+features = ["string"]
+best_param_values = {
+    "param_value": 1
+}
 
+payload = {
+    "feature_array": features,
+    "param_values": best_param_values,
+    "target": "listing_price"
+}
+
+model = RMR.Model()
 model.Model_URL = "http://127.0.0.1"
 
 model.Validate_request(payload=payload)
