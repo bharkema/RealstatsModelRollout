@@ -208,7 +208,6 @@ class Validate:
         else:
             print("MAE value is not within range")
 
-
         # Calculate max MAPE and min MAPE
         max_mape = self._mape_expected_value + \
             ((self._mape_expected_value / 100) * self._mape_deviation_percentage)
@@ -240,7 +239,7 @@ class Validate:
         print("Done writing validation results")
 
         if self._mae_valid and self._r2_valid and self._mape_valid:
-            Versioning.Upload_enviroment()
+            Versioning().Upload_enviroment()
 
     def Save_validation_results(self, localpath):
         git = Github(Settings.Gitaccesstoken)
