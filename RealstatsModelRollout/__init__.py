@@ -32,7 +32,7 @@ localpath = ""
 class Inputs(BaseModel):
     temp: str
     # TODO
-    
+
 # Ouput for data validation
 class Output(BaseModel):
     label: str
@@ -81,7 +81,7 @@ async def model_validate(input: Validation_input):
     response = train_model.Execute_training_testing(feature_array=input.feature_array, param_values=input.param_values, target=input.target, localpath=input.localpath)
     localpath = input.localpath
 
-    Load_model(localpath)    
+    Load_model(localpath)
     return response
 
 @app.put('/loadmodel', response_model=loaded_output)
@@ -225,7 +225,7 @@ def get_model_response(input):
         'label': label,
         'prediction': int(prediction)
     }
-    
+
 def percentage_error(actual, predicted):
     res = np.empty(actual.shape)
     for j in range(actual.shape[0]):

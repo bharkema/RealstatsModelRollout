@@ -189,8 +189,6 @@ class Validate:
             "localpath": localpath
         }
 
-        print(load)
-
         response = model.Validate_request(payload=load)
         response_json = response.json()
         self._mae_value = response_json["mae_value"]
@@ -208,17 +206,6 @@ class Validate:
             print("MAE value is within range")
             self._mae_valid = True
 
-        # Calculate max R2% and min R2%
-        max_r2 = self._r2_expected_value + \
-            ((self._r2_expected_value / 100) * self._r2_deviation_percentage)
-        min_r2 = self._r2_expected_value + \
-            ((self._r2_expected_value / 100) * self._r2_deviation_percentage)
-
-        # check if R2 value is within range
-        if self._r2_value >= min_r2 and self._r2_value <= max_r2:
-            print("R2 value is within range")
-            self._r2_valid = True
-
         # Calculate max MAPE and min MAPE
         max_mape = self._mape_expected_value + \
             ((self._mape_expected_value / 100) * self._mape_deviation_percentage)
@@ -227,14 +214,25 @@ class Validate:
 
         # check if MAPE value is within range
         if self._mape_value >= min_mape and self._mape_value <= max_mape:
-            print("R2 value is within range")
+            print("Mape value is within range")
             self._mape_valid = True
+
+        # Calculate max R2% and min R2%
+        max_r2 = self._r2_expected_value + \
+            ((self._r2_expected_value / 100) * self._r2_deviation_percentage)
+        min_r2 = self._r2_expected_value - \
+            ((self._r2_expected_value / 100) * self._r2_deviation_percentage)
+
+        # check if R2 value is within range
+        if self._r2_value >= min_r2 and self._r2_value <= max_r2:
+            print("R2 value is within range")
+            self._r2_valid = True
 
         print("Writing validation data to: " + localpath)
         self.Save_validation_results(localpath)
         print("Done writing validation results")
 
-        if self._mae_valid and self._r2_valid:
+        if self._mae_valid and self._r2_valid and self._mape_valid:
             version = Versioning()
             version.Upload_enviroment()
 
@@ -258,6 +256,7 @@ class Validate:
             "actual_mape_value": self._mape_value,
             "mae_within_expected_range": self._mae_valid,
             "r2_within_expected_range": self._r2_valid,
+            "mape_within_expected_range": self._mape_valid,
             "used_model_features": self._model_features
         }
 
