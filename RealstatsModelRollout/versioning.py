@@ -78,7 +78,7 @@ class Versioning():
         git_repo = ""
         try:
             git_repo = git.get_repo(self._repo_name)
-        except Exception as e:
+        except Exception as e:  
             print(e)
             print("Not able to get given repo: " + self._repo_name)
             return
@@ -174,6 +174,13 @@ class Versioning():
         gitFilePath = env_name + "/" + version + "/"
         commitMessage = env_name + " - " + version + " published"
 
+        # Create version data file
+        version_info_json = json.dumps(version_data)
+        appFilePath = gitFilePath + "version_info.json"
+        git_repo.create_file(appFilePath, commitMessage,
+                             version_info_json, branch=self._branch_name)
+        print("Version data... done!")
+
         # Create requirements file
         appFilePath = gitFilePath + "_requirements.txt"
         git_repo.create_file(appFilePath, commitMessage,
@@ -199,10 +206,14 @@ class Versioning():
         print("Model data... done!")
 
         # Create train data file
-        appFilePath = gitFilePath + "train_data_model.pkl"
-        git_repo.create_file(appFilePath, commitMessage,
-                             train_data_file_data, branch=self._branch_name)
-        print("Train data... done!")
+        # Github supports only to max 25MB so we have to limit 
+        if os.stat(local_envpath + 'data/train_data_model.pkl').st_size <= 24999999:
+            appFilePath = gitFilePath + "train_data_model.pkl"
+            git_repo.create_file(appFilePath, commitMessage,
+                                 train_data_file_data, branch=self._branch_name)
+            print("Train data... done!")
+        else:
+            print("Had to skip train data because of size limitations")
 
         # Create main.py file
         appFilePath = gitFilePath + "main.py"
@@ -227,13 +238,6 @@ class Versioning():
         git_repo.create_file(appFilePath, commitMessage,
                              train_py_file_data, branch=self._branch_name)
         print("Training and validation code... done!")
-
-        # Create version data file
-        version_info_json = json.dumps(version_data)
-        appFilePath = gitFilePath + "version_info.json"
-        git_repo.create_file(appFilePath, commitMessage,
-                             version_info_json, branch=self._branch_name)
-        print("Version data... done!")
         return "Saved model data under: " + self._repo_name + "/" + env_name + "/" + version
 
     def Download_enviroment(self, localpath="", generate_venv=True):
