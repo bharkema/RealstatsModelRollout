@@ -25,24 +25,24 @@ class globalFunctions:
         else:
             raise Exception("Given localpath: " + local_envpath + " is not a directory")
 
-    def Check_instance(value, instance_type):
+    def Check_instance(check, instance_type):
         if instance_type == "string":
-            if isinstance(value, string_types):
-                return value
+            if isinstance(check, string_types):
+                return check
             else:
                 return Exception("Type is not string")
         elif instance_type == "float":
-            if isinstance(value, string_types):
-                return value
+            if isinstance(check, float):
+                return check
             else:
                 return Exception("Type is not float")
         elif instance_type == "int":
-            if isinstance(value, string_types):
-                return value
+            if isinstance(check, int):
+                return check
             else:
                 return Exception("Type is not int")
         elif instance_type == "list":
-            if isinstance(value, string_types):
-                return value
+            if isinstance(check, list):
+                return check
             else:
                 return Exception("Type is not list")

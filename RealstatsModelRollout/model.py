@@ -20,7 +20,7 @@ class Model:
         """
         :type: string
         """
-        self._model_port = GF.Check_instance(value=value, instance_type="string")
+        self._model_port = GF.Check_instance(check=value, instance_type="string")
 
     # URL to model #
     @property
@@ -35,7 +35,7 @@ class Model:
         """
         :type: string
         """
-        self._modelURL = GF.Check_instance(value=value, instance_type="string")
+        self._modelURL = GF.Check_instance(check=value, instance_type="string")
 
     def Info_request(self):
         response = ""
