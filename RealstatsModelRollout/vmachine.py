@@ -118,16 +118,16 @@ class Vmachine:
                 "saving_path": model_save_location + "virtualenv_" + model_name + "/model/model.pkl"
             },
             {
-                "file_name": "data_control",
+                "file_name": "train_data_model_control",
                 "file_path": "",
                 "file_extension": "",
-                "saving_path": model_save_location + "virtualenv_" + model_name + "/data/data_control.gzip"
+                "saving_path": model_save_location + "virtualenv_" + model_name + "/data/train_data_model_control.pkl"
             },
             {
-                "file_name": "data",
+                "file_name": "train_data_model",
                 "file_path": "",
                 "file_extension": "",
-                "saving_path": model_save_location + "virtualenv_" + model_name + "/data/data.gzip"
+                "saving_path": model_save_location + "virtualenv_" + model_name + "/data/train_data_model.pkl"
             }
         ]
 
