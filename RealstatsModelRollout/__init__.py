@@ -26,12 +26,13 @@ from ms import Load_model
 
 model_name = "Testing model"
 version = "v1.0.0"
+localpath = ""
 
 # Input for data validation
 class Inputs(BaseModel):
     temp: str
-    ## TODO
-
+    # TODO
+    
 # Ouput for data validation
 class Output(BaseModel):
     label: str
@@ -41,6 +42,7 @@ class Validation_input(BaseModel):
     feature_array: list[str]
     param_values: object
     target: str
+    localpath: str
 
 class Validation_output(BaseModel):
     mae_value: float
@@ -49,7 +51,7 @@ class Validation_output(BaseModel):
     features: list[str]
 
 class loaded_output(BaseModel):
-    Loaded: bool
+    loaded: bool
 
 @app.get('/')
 async def help():
@@ -76,14 +78,16 @@ async def model_predict(inputs: Inputs):
 
 @app.put('/validate', response_model=Validation_output)
 async def model_validate(input: Validation_input):
-    response = train_model.Execute_training_testing(feature_array=input.feature_array, param_values=input.param_values, target=input.target)
-    Load_model()
+    response = train_model.Execute_training_testing(feature_array=input.feature_array, param_values=input.param_values, target=input.target, localpath=input.localpath)
+    localpath = input.localpath
+
+    Load_model(localpath)    
     return response
 
 @app.put('/loadmodel', response_model=loaded_output)
 async def model_load():
     try:
-        Load_model()
+        Load_model(localpath)
         return {
             "loaded": True
         }
@@ -102,9 +106,9 @@ model = ""
 # Initialize FastAPI app
 app = FastAPI()
 
-def Load_model():
+def Load_model(localpath):
     # Load model
-    model = joblib.load('model/trained_model.pkl')
+    model = joblib.load(localpath + 'model/trained_model.pkl')
 
 """
 Settings.Premade_ms_train_code = """
@@ -127,10 +131,10 @@ from sklearn.model_selection import train_test_split
 # Class for the model and training
 class train_model:
     # General function for calling and training model
-    def Execute_training_testing(feature_array, param_values, target):
+    def Execute_training_testing(feature_array, param_values, target, localpath):
         # Save locations
-        SAVE_MODEL = os.getcwd() + '/model/trained_model.pkl'
-        train_data = pd.read_pickle(os.getcwd() + '/data/train_data_model.pkl')
+        SAVE_MODEL = localpath + 'model/trained_model.pkl'
+        train_data = pd.read_pickle(localpath + 'data/train_data_model.pkl')
 
         # Define features
         features = feature_array
@@ -198,6 +202,7 @@ class train_model:
             "mape_value": mape,
             "features": features
         }
+
 """
 Settings.Premade_ms_function_code_data = """
 import pandas as pd
@@ -220,7 +225,7 @@ def get_model_response(input):
         'label': label,
         'prediction': int(prediction)
     }
-
+    
 def percentage_error(actual, predicted):
     res = np.empty(actual.shape)
     for j in range(actual.shape[0]):

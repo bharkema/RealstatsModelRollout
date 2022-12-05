@@ -169,7 +169,6 @@ class Validate:
             else:
                 localpath = gf.Path_is_dir(
                     Settings.Base_path + "/" + Settings.Enviroment_name + "/")
-
         else:
             localpath = gf.Path_is_dir(localpath)
 
@@ -183,7 +182,8 @@ class Validate:
         payload = {
             "feature_array": self._model_features,
             "param_values": self._param_settings,
-            "target": self._target
+            "target": self._target,
+            "localpath": localpath
         }
 
         response = model.Validate_request(payload=payload)
