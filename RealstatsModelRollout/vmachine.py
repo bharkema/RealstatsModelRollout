@@ -275,7 +275,7 @@ class Vmachine:
                     copy_model_file.close()
 
             # Data for validation use #
-            elif file["file_name"] == "data":
+            elif file["file_name"] == "train_data_model":
                 if file["file_path"] != "":
                     if file["file_extension"] == ".csv":
                         validation_content = pd.read_csv(file["file_path"])
