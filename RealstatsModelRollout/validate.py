@@ -120,14 +120,14 @@ class Validate:
     @property
     def Feature_array(self):
         """
-        :type: float
+        :type: list
         """
         return self._model_features
 
     @Feature_array.setter
     def Feature_array(self, value):
         """
-        :type: float
+        :type: list
         """
         self._model_features = value
 
@@ -135,14 +135,14 @@ class Validate:
     @property
     def Model_target(self):
         """
-        :type: float
+        :type: string
         """
         return self._target
 
     @Model_target.setter
     def Model_target(self, value):
         """
-        :type: float
+        :type: string
         """
         self._target = value
 
@@ -150,14 +150,14 @@ class Validate:
     @property
     def Model_parameters(self):
         """
-        :type: float
+        :type: object
         """
         return self._param_settings
 
     @Model_parameters.setter
     def Model_parameters(self, value):
         """
-        :type: float
+        :type: object
         """
         self._param_settings = value
 
@@ -179,14 +179,16 @@ class Validate:
         if model_port != "Optional":
             model.Model_port = model_port
 
-        payload = {
+        load = {
             "feature_array": self._model_features,
             "param_values": self._param_settings,
             "target": self._target,
             "localpath": localpath
         }
 
-        response = model.Validate_request(payload=payload)
+        print(load)
+
+        response = model.Validate_request(payload=load)
         response_json = response.json()
         self._mae_value = response_json["mae_value"]
         self._r2_value = response_json["r2_value"] * 100

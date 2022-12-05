@@ -325,19 +325,16 @@ class Vmachine:
             command_lines = '"start" "cmd.exe" "@cmd /K" "' + localpath + 'scripts/activate"'
 
             args = shlex.split(command_lines)
-            print(args)
             p = subprocess.Popen(args, shell=True)
         elif self._dev_platform == "Linux":
             print("starting virtual machine for Linux")
             command_lines = '"start" "cmd.exe" "@cmd /K" "' + localpath + 'scripts/activate"'
 
             args = shlex.split(command_lines)
-            print(args)
             p = subprocess.Popen(args, shell=True)
         elif self._dev_platform == "MacOS":
             print("starting virtual machine for Apple")
             command_lines = '"start" "cmd.exe" "@cmd /K" "' + localpath + 'scripts/activate"'
 
             args = shlex.split(command_lines)
-            print(args)
             p = subprocess.Popen(args, shell=True)

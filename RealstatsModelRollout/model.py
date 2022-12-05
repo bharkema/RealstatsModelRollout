@@ -5,7 +5,7 @@ import requests
 class Model:
     def __init__(self):
         self._model_port = "8000"
-        self._modelURL = "127.0.0.1"
+        self._modelURL = "http://127.0.0.1"
 
     # Port that is being used by the virtual env #
     @property
