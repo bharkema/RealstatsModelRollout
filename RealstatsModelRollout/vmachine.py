@@ -279,21 +279,25 @@ class Vmachine:
                 if file["file_path"] != "":
                     if file["file_extension"] == ".csv":
                         validation_content = pd.read_csv(file["file_path"])
+                        validation_content.to_parquet(item["saving_path"])
                     elif file["file_extension"] == ".pkl":
                         validation_content = pd.read_pickle(file["file_path"])
+                        validation_content.to_pickle(item["saving_path"])
                     elif file["file_extension"] == ".gzip":
                         validation_content = pd.read_parquet(file["file_path"])
-                    validation_content.to_parquet(item["saving_path"])
+                        validation_content.to_parquet(item["saving_path"])
             # Data that acts as a control / backup of the validation data #
             elif file["file_name"] == "data_control":
                 if file["file_path"] != "":
                     if file["file_extension"] == ".csv":
                         validation_control_content = pd.read_csv(file["file_path"])
+                        validation_control_content.to_parquet(file["saving_path"])
                     elif file["file_extension"] == ".pkl":
                         validation_control_content = pd.read_pickle(file["file_path"])
+                        validation_control_content.to_pickle(item["saving_path"])
                     elif file["file_extension"] == ".gzip":
                         validation_control_content = pd.read_parquet(file["file_path"])
-                    validation_control_content.to_parquet(file["saving_path"])
+                        validation_control_content.to_parquet(file["saving_path"])
 
         # Create files needed for the virtual machine #
         print("Generating VENV Data")
