@@ -240,8 +240,7 @@ class Validate:
         print("Done writing validation results")
 
         if self._mae_valid and self._r2_valid and self._mape_valid:
-            version = Versioning()
-            version.Upload_enviroment()
+            Versioning.Upload_enviroment()
 
     def Save_validation_results(self, localpath):
         git = Github(Settings.Gitaccesstoken)
