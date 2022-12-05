@@ -205,6 +205,9 @@ class Validate:
         if self._mae_value >= min_mae and self._mae_value <= max_mae:
             print("MAE value is within range")
             self._mae_valid = True
+        else:
+            print("MAE value is not within range")
+
 
         # Calculate max MAPE and min MAPE
         max_mape = self._mape_expected_value + \
@@ -216,6 +219,8 @@ class Validate:
         if self._mape_value >= min_mape and self._mape_value <= max_mape:
             print("Mape value is within range")
             self._mape_valid = True
+        else:
+            print("Mape value is not within range")
 
         # Calculate max R2% and min R2%
         max_r2 = self._r2_expected_value + \
@@ -227,6 +232,8 @@ class Validate:
         if self._r2_value >= min_r2 and self._r2_value <= max_r2:
             print("R2 value is within range")
             self._r2_valid = True
+        else:
+            print("R2 value is not within range")
 
         print("Writing validation data to: " + localpath)
         self.Save_validation_results(localpath)
