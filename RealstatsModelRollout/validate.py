@@ -161,7 +161,7 @@ class Validate:
         """
         self._param_settings = value
 
-    def Start_validation(self, Gitaccestoken="Optional", localpath="Optional", model_url="Optional", model_port="Optional"):
+    def Start_validation(self, Gitaccestoken="Optional", localpath="Optional", model_url="Optional", model_port="Optional", repo_name="Optional"):
         if localpath == "Optional":
             if Settings.Enviroment_version != "":
                 localpath = gf.Path_is_dir(
@@ -189,6 +189,7 @@ class Validate:
             "localpath": localpath
         }
 
+        print("Starting validation...")
         response = model.Validate_request(payload=load)
         response_json = response.json()
         self._mae_value = response_json["mae_value"]
@@ -196,6 +197,7 @@ class Validate:
         self._mape_value = response_json["mape_value"]
 
         # Calculate max MAE and min MAE
+        print("Starting calculation of results...")
         max_mae = self._mae_expected_value + \
             ((self._mae_expected_value / 100) * self._mae_deviation_percentage)
         min_mae = self._mae_expected_value - \
@@ -238,8 +240,10 @@ class Validate:
         self.Save_validation_results(localpath)
         print("Done writing validation results")
 
-        if self._mae_valid and self._r2_valid and self._mape_valid:
-            Versioning().Upload_enviroment()
+        if self._mae_valid and self._r2_valid and self._mape_valid and repo_name != "Optional":
+            version = Versioning()
+            version.Repo_name = repo_name
+            version.Upload_enviroment()
 
     def Save_validation_results(self, localpath):
         git = Github(Settings.Gitaccesstoken)
