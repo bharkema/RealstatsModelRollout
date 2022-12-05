@@ -139,18 +139,18 @@ class Vmachine:
         # For loop to go trough first folder and get all files + remaining folders
         for path in os.listdir(model_current_location):
             if path.endswith(".py") or path.endswith(".txt") or path.endswith(".pkl") or path.endswith(".csv") or path.endswith(".gzip"):
-                file_pathlist.append(model_current_location + "/" + path)
+                file_pathlist.append(model_current_location + path)
                 for item in collectible_files:
                     if path == item["file_name"] + item["file_extension"]:
-                        item["file_path"] = model_current_location + "/" + path
+                        item["file_path"] = model_current_location + path
                     elif path == item["file_name"] + ".csv":
                         item["file_extension"] = ".csv"
-                        item["file_path"] = model_current_location + "/" + path
+                        item["file_path"] = model_current_location + path
                     elif path == item["file_name"] + ".pkl":
                         item["file_extension"] = ".pkl"
-                        item["file_path"] = model_current_location + "/" + path
+                        item["file_path"] = model_current_location + path
                     elif path == item["file_name"] + ".gzip":
-                        item["file_path"] = model_current_location + "/" + path
+                        item["file_path"] = model_current_location + path
                         item["file_extension"] = ".gzip"
             elif "." not in path:
                 if path == "model" or path == "ms" or path == "docs" or path == "data" or path == "code":

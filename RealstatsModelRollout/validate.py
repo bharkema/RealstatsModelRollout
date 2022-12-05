@@ -161,7 +161,7 @@ class Validate:
         """
         self._param_settings = value
 
-    def Start_validation(self, localpath="Optional", model_url="Optional", model_port="Optional"):
+    def Start_validation(self, Gitaccestoken="Optional", localpath="Optional", model_url="Optional", model_port="Optional"):
         if localpath == "Optional":
             if Settings.Enviroment_version != "":
                 localpath = gf.Path_is_dir(
@@ -171,6 +171,9 @@ class Validate:
                     Settings.Base_path + "/" + Settings.Enviroment_name + "/")
         else:
             localpath = gf.Path_is_dir(localpath)
+
+        if Gitaccestoken != "Optional":
+            Settings.Gitaccesstoken = Gitaccestoken
 
         # Get Values from model
         model = Model()

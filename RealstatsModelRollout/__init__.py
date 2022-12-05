@@ -268,6 +268,7 @@ starlette==0.17.1
 threadpoolctl==3.1.0
 typing_extensions==4.2.0
 uvicorn==0.17.6
+lightgbm
 """
 Settings.Premade_documentation_data = """
 # POST
