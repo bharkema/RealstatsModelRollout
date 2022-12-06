@@ -28,7 +28,8 @@ class Versioning():
         """
         :type: string
         """
-        self._repo_name = GF.Check_instance(check=value, instance_type="string")
+        self._repo_name = GF.Check_instance(
+            check=value, instance_type="string")
 
     @property
     def Branch_name(self):
@@ -42,7 +43,8 @@ class Versioning():
         """
         :type: string
         """
-        self._branch_name = GF.Check_instance(check=value, instance_type="string")
+        self._branch_name = GF.Check_instance(
+            check=value, instance_type="string")
 
     @property
     def Model_version(self):
@@ -56,7 +58,8 @@ class Versioning():
         """
         :type: string
         """
-        self._model_version = GF.Check_instance(check=value, instance_type="string")
+        self._model_version = GF.Check_instance(
+            check=value, instance_type="string")
 
     @property
     def Model_name(self):
@@ -70,7 +73,8 @@ class Versioning():
         """
         :type: string
         """
-        self._model_name = GF.Check_instance(check=value, instance_type="string")
+        self._model_name = GF.Check_instance(
+            check=value, instance_type="string")
 
     # Upload the model and all its data to the github repo
     def Upload_enviroment(self, enviroment_localpath="Optional"):
@@ -78,7 +82,7 @@ class Versioning():
         git_repo = ""
         try:
             git_repo = git.get_repo(self._repo_name)
-        except Exception as e:  
+        except Exception as e:
             print(e)
             print("Not able to get given repo: " + self._repo_name)
             return
@@ -114,13 +118,15 @@ class Versioning():
         docs_file = open(local_envpath + "docs/documentation.txt", "r")
         docs_file_data = docs_file.read()
 
-        validation_file = open(local_envpath + "validation_data/validation_data.json", "r")
+        validation_file = open(
+            local_envpath + "validation_data/validation_data.json", "r")
         validation_file_data = validation_file.read()
 
         model_file = open(local_envpath + "model/trained_model.pkl", "rb")
         model_file_data = model_file.read()
 
-        train_data_file = open(local_envpath + "data/train_data_model.pkl", "rb")
+        train_data_file = open(
+            local_envpath + "data/train_data_model.pkl", "rb")
         train_data_file_data = train_data_file.read()
 
         main_py_file = open(local_envpath + "main.py", "r")
@@ -206,7 +212,7 @@ class Versioning():
         print("Model data... done!")
 
         # Create train data file
-        # Github supports only to max 25MB so we have to limit 
+        # Github supports only to max 25MB so we have to limit
         if os.stat(local_envpath + 'data/train_data_model.pkl').st_size <= 24999999:
             appFilePath = gitFilePath + "train_data_model.pkl"
             git_repo.create_file(appFilePath, commitMessage,
@@ -262,12 +268,12 @@ class Versioning():
 
         # Download model
         model_data = git_repo.get_contents(
-            self._model_name + '/' + self._model_version + "/model.pkl")
+            self._model_name + '/' + self._model_version + "/trained_model.pkl")
         print("Model... Done!")
 
         # Download validation data
         validation_data = git_repo.get_contents(
-            self._model_name + '/' + self._model_version + "/validation_data.gzip")
+            self._model_name + '/' + self._model_version + "/validation_data.json")
         print("Validation data... Done!")
 
         # Download main python code
@@ -277,7 +283,7 @@ class Versioning():
 
         # Download Function code for model
         function_code_data = git_repo.get_contents(
-            self._model_name + '/' + self._model_version + "/function.py")
+            self._model_name + '/' + self._model_version + "/functions.py")
         print("Function python code... Done!")
 
         # Download init code for model
@@ -295,25 +301,30 @@ class Versioning():
             self._model_name + '/' + self._model_version + "/version_info.json")
         print("Version info... Done!")
 
-        # Generate folder structure #
+        # Documentation version info
+        documentation_data = git_repo.get_contents(
+            self._model_name + '/' + self._model_version + "/documentation.txt")
+        print("Version info... Done!")
+
+        # Generate folder structure
         print("Generating folder structure with data points")
-        folders = [{"path": local_envpath + self._model_name + "/" + self._model_version + "/ms/functions.py",
+        folders = [{"path": local_envpath + self._model_name + "/ms/functions.py",
                     "content": function_code_data.decoded_content.decode("utf-8")},
-                   {"path": local_envpath + self._model_name + "/" + self._model_version + "/ms/__init__.py",
+                   {"path": local_envpath + self._model_name + "/ms/__init__.py",
                     "content": init_code_data.decoded_content.decode("utf-8")},
-                   {"path": local_envpath + self._model_name + "/" + self._model_version + "/ms/train_model.py",
+                   {"path": local_envpath + self._model_name + "/ms/train_model.py",
                     "content": train_model_data.decoded_content.decode("utf-8")},
-                   {"path": local_envpath + self._model_name + "/" + self._model_version + "/data/data.gzip",
-                    "content": validation_data.decoded_content},
-                   #    {"path": local_envpath + self._model_name + "/" + self._model_version + "/data/data_control.gzip",
-                   #     "content": validation_control_data.decoded_content},
-                   {"path": local_envpath + self._model_name + "/" + self._model_version + "/model/trained_model.pkl",
+                   {"path": local_envpath + self._model_name + "/model/trained_model.pkl",
                     "content": model_data.decoded_content},
-                   {"path": local_envpath + self._model_name + "/" + self._model_version + "/requirements.txt",
+                   {"path": local_envpath + self._model_name + "/requirements.txt",
                     "content": requirements.decoded_content.decode("utf-8")},
-                   {"path": local_envpath + self._model_name + "/" + self._model_version + "/docs/documentation.txt",
-                    "content": version_info_data.decoded_content.decode("utf-8")},
-                   {"path": local_envpath + self._model_name + "/" + self._model_version + "/main.py",
+                   {"path": local_envpath + self._model_name + "/docs/documentation.txt",
+                    "content": documentation_data.decoded_content.decode("utf-8")},
+                   {"path": local_envpath + self._model_name + "/validation_data/validation_data.json",
+                    "content": validation_data.decoded_content.decode("utf-8")},
+                   {"path": local_envpath + self._model_name + "/version_info.json",
+                    "content": validation_data.decoded_content.decode("utf-8")},
+                   {"path": local_envpath + self._model_name + "/main.py",
                     "content": main_code_data.decoded_content.decode("utf-8")}
                    ]
 

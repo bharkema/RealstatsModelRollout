@@ -35,12 +35,7 @@ class Settings:
         """
         :type: string
         """
-        try:
-            isDirectory = os.path.isdir(value)
-            if isDirectory is True:
-                self._base_path = value
-        except Exception as ex:
-            print(ex, "Given path is not a directory")
+        self._base_path = GF.Path_is_dir(value)
 
     # Premade code that can be used when not using custom code #
     @property

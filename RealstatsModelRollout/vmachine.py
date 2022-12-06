@@ -291,20 +291,16 @@ class Vmachine:
         print("Virtual machine folder structure created on: " + model_save_location + "virtualenv_" + model_name)
 
     # This function will start the virtual enviroment on a local machine #
-    def Start_venv(self, localpath="Optional", execution_code="Optional"):
+    def Start_venv(self, localpath="Optional"):
         if localpath == "Optional":
-            if Settings.Enviroment_version != "":
-                localpath = GF.Path_is_dir(
-                    Settings.Base_path + "/" + Settings.Enviroment_name + "/" + Settings.Enviroment_version + "/")
-            else:
-                localpath = GF.Path_is_dir(
-                    Settings.Base_path + "/" + Settings.Enviroment_name + "/")
+            localpath = GF.Path_is_dir(
+                Settings.Base_path + "/" + Settings.Enviroment_name + "/")
         else:
             localpath = GF.Path_is_dir(localpath)
 
         if self._dev_platform == "Windows":
             print("starting virtual machine for Windows")
-            command_lines = '"start" "cmd.exe" "@cmd /K" "' + localpath + 'scripts/activate"'
+            command_lines = '"start" "cmd.exe" "@cmd/K" \"' + localpath + 'scripts/activate & cd ' + localpath + ' & pip install -r requirements.txt & uvicorn main:app\"'
 
             args = shlex.split(command_lines)
             p = subprocess.Popen(args, shell=True)
