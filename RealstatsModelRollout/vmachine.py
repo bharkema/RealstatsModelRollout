@@ -294,7 +294,7 @@ class Vmachine:
     def Start_venv(self, localpath="Optional"):
         if localpath == "Optional":
             localpath = GF.Path_is_dir(
-                Settings.Base_path + "/" + Settings.Enviroment_name + "/")
+                Settings.Base_path + "virtualenv_" + Settings.Enviroment_name + "/")
         else:
             localpath = GF.Path_is_dir(localpath)
 
