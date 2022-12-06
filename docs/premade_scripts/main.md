@@ -16,12 +16,13 @@ from ms import Load_model
 
 model_name = "Testing model"
 version = "v1.0.0"
+localpath = ""
 
 # Input for data validation
 class Inputs(BaseModel):
     temp: str
-    ## TODO
-    
+    # TODO
+
 # Ouput for data validation
 class Output(BaseModel):
     label: str
@@ -31,6 +32,7 @@ class Validation_input(BaseModel):
     feature_array: list[str]
     param_values: object
     target: str
+    localpath: str
 
 class Validation_output(BaseModel):
     mae_value: float
@@ -66,14 +68,17 @@ async def model_predict(inputs: Inputs):
 
 @app.put('/validate', response_model=Validation_output)
 async def model_validate(input: Validation_input):
-    response = train_model.Execute_training_testing(feature_array=input.feature_array, param_values=input.param_values, target=input.target)
-    Load_model()    
+    response = train_model.Execute_training_testing(feature_array=input.feature_array,
+    param_values=input.param_values, target=input.target, localpath=input.localpath)
+    localpath = input.localpath
+
+    Load_model(localpath)
     return response
 
 @app.put('/loadmodel', response_model=loaded_output)
 async def model_load():
     try:
-        Load_model()    
+        Load_model(localpath)
         return {
             "loaded": True
         }
@@ -81,5 +86,4 @@ async def model_load():
         return {
             "loaded": False
         }
-
 ```

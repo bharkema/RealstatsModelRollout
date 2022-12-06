@@ -18,49 +18,29 @@ import RealstatsModelRollout as RMR
 # Generation of virtual enviroment folder base usage
 RMR.Vmachine().Generate_structure(model_save_location="WHERE YOU WANT TO SAVE", model_name="MODEL NAME", model_current_location="PATH OF WHERE PROJECT IS")
 
+# by calling Start_venv the enviroment will start
+venv_machine.Start_venv()
+
 ```
 
 
 ### Properties within class
 ``` python
+    @property
     def Dev_platform(self):
         """
         :type: string
         """
-        return self._dev_platform
-
-    @Dev_platform.setter
-    def Dev_platform(self, value):
-        """
-        :type: string
-        """
-        self._dev_platform = value
 
     @property
     def Dev_platform_vers(self):
         """
         :type: string
         """
-        return self._dev_platform_vers
-
-    @Dev_platform_vers.setter
-    def Dev_platform_vers(self, value):
-        """
-        :type: string
-        """
-        self._dev_platform_vers = value
 
     @property
     def Dev_platform_release(self):
         """
         :type: string
         """
-        return self._dev_platform_release
-
-    @Dev_platform_release.setter
-    def Dev_platform_release(self, value):
-        """
-        :type: string
-        """
-        self._dev_platform_release = value
 ```

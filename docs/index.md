@@ -23,6 +23,7 @@ Here you wil find a link to all functions and classes in the package where you w
 * [Globalfunctions()](./global_functions/globalfunctions)
     * [Find()](./global_functions/functions/find)
     * [Path_is_dir()](./global_functions/functions/pathisdir)
+    * [Check_instance()](./global_functions/functions/check_instance.md)
 * [Model()](./model/model)
     * [Info_request()](./model/functions/model_info_request)
     * [Predict_request()](./model/functions/model_predict_request)
@@ -53,6 +54,7 @@ These are usable versions within the package
     * [0.2.2](./changelog#version-022)
     * [0.2.1](./changelog#version-021)
 * Dev versions:
+    * [0.2.2.dev14](./changelog#version-021dev3)
     * [0.2.1.dev3](./changelog#version-021dev3)
     * [0.0.1.dev22](./changelog#version-001dev22)
 

@@ -27,14 +27,14 @@ Furthermore this function has been reworked in version 0.2.1dev3 bettering the u
 this does bring some drawbacks of which a clear folder structure is one please use the following naming of files and folder structer for the best experience:
 * project root
     * data
-        * data (.gzip, .csv, .pkl)
-        * data_control (.gzip, .csv, .pkl)
+        * train_data_model (.gzip, .csv, .pkl)
     * docs
         * documentation.txt
     * model
-        * model.pkl (.gz)
+        * trained_model.pkl (.gz)
     * ms
-        * __init__.py
+        * __ init __.py
         * functions.py
+        * train_model.py
     * main.py
     * requirements.txt

@@ -1,6 +1,4 @@
----
-layout: default
----
+[<- Go back to main page](index.md)
 
 Welcome to the changelog here you will see past versions of the changelog and what the changes were within the package and functionality
 

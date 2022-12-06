@@ -1,4 +1,4 @@
-[<- Go back to main page](https://bharkema.github.io/RealstatsModelRollout/)
+[<- Go back to main page](index.md)
 
 # Usage of the package
 
@@ -12,44 +12,32 @@ import RealstatsModelRollout as RMR
 # The files with a MUST behind the line must be available for the system to use
 # | project root
 #     |__ data
-#         |__> data (.gzip, .csv, .pkl)               (MUST)
-#         |__> data_control (.gzip, .csv, .pkl)       (OPTIONAL)
+#         |__> train_data_model (.gzip, .csv, .pkl)   (MUST)
 #     |__ docs
 #         |__> documentation.txt                      (OPTIONAL)
 #     |__ model
-#         |__> model.pkl (.gz)                        (OPTIONAL)
+#         |__> trained_model.pkl (.gz)                (OPTIONAL)
 #     |__ ms
 #         |__> __init__.py                            (OPTIONAL)
 #         |__> functions.py                           (OPTIONAL)
 #     |__> main.py                                    (OPTIONAL)
 #     |__> requirements.txt                           (OPTIONAL)
 
-# Please use the naming used in the above folder structure diagram for 
-# the files so the system can automatically find the files
+# Please use the naming used in the above folder structure diagram for
+# the files so the system can automatically find the files or supply the files in a single folder.
+# The system will also build the venv in the same structure
 
 # Following the setup of the folder vmachine can be used by calling the following
-vmachine = RMR.Vmachine()
+venv_machine = RMR.Vmachine()
 
-vmachine.Generate_structure(model_save_location="WHERE YOU WANT TO SAVE", 
-                                model_name="MODEL NAME", model_current_location="PATH OF WHERE PROJECT IS")
+venv_machine.Generate_structure(model_current_location="Location of where the data is", model_save_location="Where do you wish to save the data", model_name="the name of the model")
+
+# by calling Start_venv the enviroment will start
+venv_machine.Start_venv()
 
 # Vmachine will find the files needed if it can and will look in folders as well. 
 # Do make sure the files are within a maximum of 10 folders the system will stop the operation when the 
-# count is exceeded. When the system is succesful you will see the following logs:
-
-# >>> Looking for directory
-# >>> Looking for directory
-# >>> Searching for needed files...
-# >>> Checking if needed files are found...
-# >>> Starting folder generation...
-# >>> Generating VENV Data
-# >>> 
-# >>> Virtual machine folder structure created on: PATH PROVIDED + MODEL_NAME
-
-# by calling Start_venv the enviroment will start
-vmachine.Start_venv(self, localpath="%PATH TO ENVIROMENT FOLDER%",
-                            execution_code="%NAME OF CODE FILE YOU WISH TO EXECUTE%"):
-
+# count is exceeded.
 
 # You can now start using the model by using either of the following:
 model = RMR.Model()
@@ -66,16 +54,32 @@ model.Predict_request(json_data=json_data)
 # To send a custom request to the model if possible
 model.Custom_request(request_type="post", pathing="user/auth", json_data='Development')
 
-# You can also start the validation of the model
-validation = RMR.Validate()
-validation.MAE_Deviation_percentage = 3 # % (from 0 to 100)
-validation.Mae_expected_value = 20
-validation.R2_Deviation_percentage = 2 # % (from 0 to 100)
-validation.R2_expected_value = 80 # % (from 0 to 100)
+# You can also start the validation of the model and saving og the model
+features = []
+best_param_values = {}
 
-validation.Start_validation()
+valid.MAE_Deviation_percentage = 5 # % (from 0 to 100)
+valid.MAE_expected_value = 150 # Any value
+valid.MAPE_Deviation_percentage = 3 # % (from 0 to 100)
+valid.MAPE_expected_value = 90 # % (from 0 to 100)
+valid.R2_Deviation_percentage = 10 # % (from 0 to 100)
+valid.R2_expected_value = 80 # % (from 0 to 100)
 
-# This wil the start the validation and if the conditions have been met 
-# it wil save the model to the default github repo and ready it for online deployment
+valid.Feature_array = features
+valid.Model_parameters = best_param_values
+valid.Model_target = "Target name"
+
+RMR.Settings.Gitaccesstoken = "Your personal github access token" 
+
+# Please look at the github documentation for how to use this key. DO MAKE SURE TO USE YOUR OWN. 
+# The package uses the access token to write and sign the model when it is uploaded this is for communication sake
+
+valid.Start_validation(repo_name="bharkema/model_test")
+
+# This wil the start the validation and if the conditions have been met, it wil save the model 
+# to the default github repo and ready it for online deployment.
+
+# if you do not provide the repo name it will still run the validation and 
+# save the results locally but will not save the model and results to Github
 
 ```

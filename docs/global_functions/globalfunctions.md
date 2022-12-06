@@ -8,6 +8,7 @@ Globalfunctions is a class for internal use but can be accessed from the outside
 the following functions are available in Versioning():
 * [Find()](./functions/find.md)
 * [Path_is_dir()](./functions/pathisdir.md)
+* [Check_instance()](./functions/check_instance.md)
 
 More in depth information can be found in the links above
 
@@ -24,6 +25,9 @@ RMR.globalFunctions.find(string, ch)
 path = "C:/virtualenv_Actual/"
 
 RMR.globalFunctions.Path_is_dir(path)
+
+## Check instance
+RMR.globalFunctions.Check_instance(check=value, instance_type="string")
 
 ```
 
