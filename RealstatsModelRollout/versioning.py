@@ -244,7 +244,7 @@ class Versioning():
         git_repo.create_file(appFilePath, commitMessage,
                              train_py_file_data, branch=self._branch_name)
         print("Training and validation code... done!")
-        return "Saved model data under: " + self._repo_name + "/" + env_name + "/" + version
+        return self._repo_name + "/" + env_name + "/" + version
 
     def Download_enviroment(self, localpath="", generate_venv=True):
         git = Github(Settings.Gitaccesstoken)
@@ -378,3 +378,11 @@ class Versioning():
                     self._model_name + '/' + self._model_version + "/" + item).decoded_content)
 
         return downloaded_files
+
+    def Delete_saved_model(self, model_name, model_version):
+        git = Github(Settings.Gitaccesstoken)
+        repo = git.get_repo(self._repo_name)
+        contents = repo.get_contents("virtualenv_" + model_name + "/" + model_version)
+
+        for item in contents:
+            repo.delete_file(item.path, "remove", item.sha, branch=self._branch_name)
