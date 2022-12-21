@@ -188,7 +188,7 @@ class Versioning():
         print("Version data... done!")
 
         # Create requirements file
-        appFilePath = gitFilePath + "_requirements.txt"
+        appFilePath = gitFilePath + "requirements.txt"
         git_repo.create_file(appFilePath, commitMessage,
                              requirements_file_data, branch=self._branch_name)
         print("Requirements... done!")
@@ -206,9 +206,10 @@ class Versioning():
         print("Validation data... done!")
 
         # Create model data file
+
         appFilePath = gitFilePath + "trained_model.pkl"
         git_repo.create_file(appFilePath, commitMessage,
-                             model_file_data, branch=self._branch_name)
+                            model_file_data, branch=self._branch_name)
         print("Model data... done!")
 
         # Create train data file
@@ -216,7 +217,7 @@ class Versioning():
         if os.stat(local_envpath + 'data/train_data_model.pkl').st_size <= 24999999:
             appFilePath = gitFilePath + "train_data_model.pkl"
             git_repo.create_file(appFilePath, commitMessage,
-                                 train_data_file_data, branch=self._branch_name)
+                                train_data_file_data, branch=self._branch_name)
             print("Train data... done!")
         else:
             print("Had to skip train data because of size limitations")
@@ -320,8 +321,6 @@ class Versioning():
                    {"path": local_envpath + self._model_name + "/main.py",
                     "content": main_code_data.decoded_content.decode("utf-8")}
                    ]
-
-        
 
         # Write files and directory's #
         for item in folders:

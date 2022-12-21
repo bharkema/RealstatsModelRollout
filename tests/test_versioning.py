@@ -11,8 +11,8 @@ def test_Download_enviroment():
     version = Versioning()
     RMR.Settings.Gitaccesstoken = settings.Gitaccesstoken
     version.Repo_name = "bharkema/model_test"
-    version.Model_name = "virtualenv_Actual"
-    version.Model_version = "11102022"
+    version.Model_name = "11102022"
+    version.Model_version = "21122022-1"
     assert version.Download_enviroment(settings.Main_path, False) == "Finished downloading"
 
 def test_Get_files_content():
@@ -74,8 +74,17 @@ def test_Upload_enviroment():
 
     settings.versionnumber = version
 
-    resultvalue = rmrversion.Upload_enviroment(settings.Main_path + "virtualenv_Actual/11102022/")
+    # Need to add data file in testing because of download limitations
+    os.makedirs(os.path.dirname(settings.Main_path + "11102022/data/train_data_model.pkl"), exist_ok=True)
+    with open(settings.Main_path + "11102022/data/train_data_model.pkl", "wb") as fb:
+        fb.write(b'')
 
+    # Need to add model file in testing because of download limitations
+    os.makedirs(os.path.dirname(settings.Main_path + "11102022/model/trained_model.pkl"), exist_ok=True)
+    with open(settings.Main_path + "11102022/model/trained_model.pkl", "wb") as fb:
+        fb.write(b'')
+
+    resultvalue = rmrversion.Upload_enviroment(settings.Main_path + "11102022/")
     assert resultvalue == rmrversion.Repo_name + "/11102022/" + version
 
 
