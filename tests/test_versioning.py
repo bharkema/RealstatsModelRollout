@@ -17,7 +17,7 @@ def test_Download_enviroment():
 
 def test_Get_files_content():
     version = Versioning()
-    RMR.Settings.Gitaccesstoken = "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"
+    RMR.Settings.Gitaccesstoken = settings.Gitaccesstoken
     version.Repo_name = "bharkema/model_test"
     version.Model_name = "virtualenv_Actual"
     version.Model_version = "11102022"
