@@ -1,9 +1,7 @@
 from .settings import Settings
-from six import string_types
 from .model import Model
 from .versioning import Versioning
 from .global_functions import globalFunctions as gf
-import pandas as pd
 from datetime import date
 from github import Github
 import os

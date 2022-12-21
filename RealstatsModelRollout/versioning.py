@@ -263,13 +263,8 @@ class Versioning():
 
         # Download requirements
         requirements = git_repo.get_contents(
-            self._model_name + '/' + self._model_version + "/_requirements.txt")
+            self._model_name + '/' + self._model_version + "/requirements.txt")
         print("Requirements... Done!")
-
-        # Download model
-        model_data = git_repo.get_contents(
-            self._model_name + '/' + self._model_version + "/trained_model.pkl")
-        print("Model... Done!")
 
         # Download validation data
         validation_data = git_repo.get_contents(
@@ -301,10 +296,10 @@ class Versioning():
             self._model_name + '/' + self._model_version + "/version_info.json")
         print("Version info... Done!")
 
-        # Documentation version info
+        # Documentation download
         documentation_data = git_repo.get_contents(
             self._model_name + '/' + self._model_version + "/documentation.txt")
-        print("Version info... Done!")
+        print("documentation info... Done!")
 
         # Generate folder structure
         print("Generating folder structure with data points")
@@ -314,8 +309,6 @@ class Versioning():
                     "content": init_code_data.decoded_content.decode("utf-8")},
                    {"path": local_envpath + self._model_name + "/ms/train_model.py",
                     "content": train_model_data.decoded_content.decode("utf-8")},
-                   {"path": local_envpath + self._model_name + "/model/trained_model.pkl",
-                    "content": model_data.decoded_content},
                    {"path": local_envpath + self._model_name + "/requirements.txt",
                     "content": requirements.decoded_content.decode("utf-8")},
                    {"path": local_envpath + self._model_name + "/docs/documentation.txt",
@@ -323,10 +316,12 @@ class Versioning():
                    {"path": local_envpath + self._model_name + "/validation_data/validation_data.json",
                     "content": validation_data.decoded_content.decode("utf-8")},
                    {"path": local_envpath + self._model_name + "/version_info.json",
-                    "content": validation_data.decoded_content.decode("utf-8")},
+                    "content": version_info_data.decoded_content.decode("utf-8")},
                    {"path": local_envpath + self._model_name + "/main.py",
                     "content": main_code_data.decoded_content.decode("utf-8")}
                    ]
+
+        
 
         # Write files and directory's #
         for item in folders:
@@ -374,6 +369,7 @@ class Versioning():
         elif isinstance(filename, list):
             print("Multiple files download")
             for item in filename:
+                print(item)
                 downloaded_files.append(git_repo.get_contents(
                     self._model_name + '/' + self._model_version + "/" + item).decoded_content)
 
@@ -382,7 +378,8 @@ class Versioning():
     def Delete_saved_model(self, model_name, model_version):
         git = Github(Settings.Gitaccesstoken)
         repo = git.get_repo(self._repo_name)
-        contents = repo.get_contents("virtualenv_" + model_name + "/" + model_version)
+        contents = repo.get_contents(model_name + "/" + model_version)
 
         for item in contents:
             repo.delete_file(item.path, "remove", item.sha, branch=self._branch_name)
+        return True

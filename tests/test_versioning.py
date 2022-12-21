@@ -6,6 +6,7 @@ from .settings import settings
 from datetime import date
 import os
 
+
 def test_Download_enviroment():
     version = Versioning()
     RMR.Settings.Gitaccesstoken = settings.Gitaccesstoken
@@ -16,12 +17,12 @@ def test_Download_enviroment():
 
 def test_Get_files_content():
     version = Versioning()
-    RMR.Settings.Gitaccesstoken = settings.Gitaccesstoken
+    RMR.Settings.Gitaccesstoken = "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"
     version.Repo_name = "bharkema/model_test"
     version.Model_name = "virtualenv_Actual"
     version.Model_version = "11102022"
-    data = version.Get_file_content(["model.pkl", "main.py"])
-    assert data[0] == b'\x80\x04\x95\x04\x00\x00\x00\x00\x00\x00\x00C\x00\x94.'
+    data = version.Get_file_content(["functions.py", "main.py"])
+    assert data[0] == b'\nimport pandas as pd\nimport numpy as np\nfrom ms import model\nfrom sklearn.metrics import mean_absolute_error\n\ndef predict(X, model):\n    prediction = model.predict(X)[0]\n    return prediction\n\ndef get_model_response(input):\n    X = pd.json_normalize(input.__dict__)\n    prediction = predict(X, model)\n    if prediction == 1:\n        label = "M"\n    else:\n        label = "B"\n    return {\n        \'label\': label,\n        \'prediction\': int(prediction)\n    }\n\ndef percentage_error(actual, predicted):\n    res = np.empty(actual.shape)\n    for j in range(actual.shape[0]):\n        if actual[j] != 0:\n            res[j] = (actual[j] - predicted[j]) / actual[j]\n        else:\n            res[j] = predicted[j] / np.mean(actual)\n    return res\n\ndef mean_absolute_percentage_error(y_true, y_pred):\n    return (1 - np.mean(np.abs(percentage_error(np.asarray(y_true), np.asarray(y_pred))))) * 100\n\n'
 
 def test_Get_file_content():
     version = Versioning()
@@ -29,41 +30,41 @@ def test_Get_file_content():
     version.Repo_name = "bharkema/model_test"
     version.Model_name = "virtualenv_Actual"
     version.Model_version = "11102022"
-    data = version.Get_file_content("model.pkl")
-    assert data[0] == b'\x80\x04\x95\x04\x00\x00\x00\x00\x00\x00\x00C\x00\x94.'
+    data = version.Get_file_content("functions.py")
+    assert data[0] == b'\nimport pandas as pd\nimport numpy as np\nfrom ms import model\nfrom sklearn.metrics import mean_absolute_error\n\ndef predict(X, model):\n    prediction = model.predict(X)[0]\n    return prediction\n\ndef get_model_response(input):\n    X = pd.json_normalize(input.__dict__)\n    prediction = predict(X, model)\n    if prediction == 1:\n        label = "M"\n    else:\n        label = "B"\n    return {\n        \'label\': label,\n        \'prediction\': int(prediction)\n    }\n\ndef percentage_error(actual, predicted):\n    res = np.empty(actual.shape)\n    for j in range(actual.shape[0]):\n        if actual[j] != 0:\n            res[j] = (actual[j] - predicted[j]) / actual[j]\n        else:\n            res[j] = predicted[j] / np.mean(actual)\n    return res\n\ndef mean_absolute_percentage_error(y_true, y_pred):\n    return (1 - np.mean(np.abs(percentage_error(np.asarray(y_true), np.asarray(y_pred))))) * 100\n\n'
 
 def test_Upload_enviroment():
-    version = Versioning()
+    rmrversion = Versioning()
     RMR.Settings.Gitaccesstoken = settings.Gitaccesstoken
-    version.Repo_name = "bharkema/model_test"
-
-    resultvalue = version.Upload_enviroment(settings.Main_path + "/virtualenv_Actual/11102022/")
+    rmrversion.Repo_name = "bharkema/model_test"
 
     git = Github(settings.Gitaccesstoken)
     git_repo = ""
     try:
-        git_repo = git.get_repo(version.Repo_name)
+        git_repo = git.get_repo(rmrversion.Repo_name)
     except Exception as e:
         print(e)
-        print("Not able to get given repo: " + version.Repo_name)
+        print("Not able to get given repo: " + rmrversion.Repo_name)
         return
 
-    # Generate date version #
-    print("Generating version data")
+    # Code to get the correct version
     today = date.today()
-    versionnumber = today.strftime("%d%m%Y")
+    version = today.strftime("%d%m%Y")
 
-    # Check if app with version already exists, if it does, append  mber
+    # Check if app with version already exists, if it does, append number
     versionInUse = True
     additional = 1
     while versionInUse:
         try:
-            git_repo.get_contents("11102022/" + versionnumber + "/version_info.json")
+            git_repo.get_contents(
+                "11102022/" + version + "/version_info.json")
             if additional == 1:
-                versionnumber = versionnumber + "-" + str(additional)
+                version = version + "-" + str(additional)
             else:
-                versionnumber = versionnumber[:-1]
-                versionnumber = versionnumber + str(additional)
+                charloc = [i for i, ltr in enumerate(
+                    version) if ltr == '-']
+                version = version[0: charloc[0] + 1]
+                version = version + str(additional)
             additional += 1
         except Exception as e:
             print(e)
@@ -71,15 +72,16 @@ def test_Upload_enviroment():
             pass
             break
 
-    charloc = [i for i, ltr in enumerate(versionnumber) if ltr == '-']
-    versionnumber = versionnumber[0: charloc[0] + 1]
-    versionnumber = versionnumber + str(additional - 2)
+    settings.versionnumber = version
 
-    # If the last digit is a 0 then remove that zero #
-    if versionnumber[len(versionnumber) - 1] == "0":
-        if versionnumber[len(versionnumber) - 2] == "-":
-            versionnumber = versionnumber[0: charloc[0]]
-        elif versionnumber[len(versionnumber) - 3] == "-":
-            versionnumber = versionnumber[0: charloc[0]]
+    resultvalue = rmrversion.Upload_enviroment(settings.Main_path + "virtualenv_Actual/11102022/")
 
-    assert resultvalue == "Saved model data under: " + version.Repo_name + "/11102022/" + versionnumber
+    assert resultvalue == rmrversion.Repo_name + "/11102022/" + version
+
+
+def test_Delete_saved_model():
+    rmrversion = Versioning()
+    RMR.Settings.Gitaccesstoken = settings.Gitaccesstoken
+    rmrversion.Repo_name = "bharkema/model_test"
+    result = rmrversion.Delete_saved_model(model_name="11102022", model_version=settings.versionnumber)
+    assert result is True

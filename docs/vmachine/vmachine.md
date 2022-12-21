@@ -26,18 +26,21 @@ venv_machine.Start_venv()
 
 ### Properties within class
 ``` python
+    # Identification of the platform the package is running on
     @property
     def Dev_platform(self):
         """
         :type: string
         """
 
+    # Identification of the platform version the package is running on
     @property
     def Dev_platform_vers(self):
         """
         :type: string
         """
 
+    # Identification of the platform release version the package is running on
     @property
     def Dev_platform_release(self):
         """
