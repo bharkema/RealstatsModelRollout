@@ -1,10 +1,6 @@
 name: Python package testing 3.10
 
-on:
-  workflow_run:
-    workflows: ["Python package testing 3.8"]
-    types:
-      - completed
+on: [push]
 
 jobs:
   build:
