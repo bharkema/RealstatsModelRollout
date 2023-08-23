@@ -1,39 +1,47 @@
-Welcome to the Realstats Model Rollout package documentation. This
-documentation page has been created to help users find their way in the
-package.
+Welcome toy the Clappform pypi package
+===================================
 
-Functions within package
-========================
+Clappform allows one to easily connect and interact with a Clappform B.V. API. There is no need to manually program HTTP requests to authenticate and consume the API. Many resources of the API are able to be created, read, updated and deleted.
 
-Here you wil find a link to all functions and classes in the package
-where you will a more in depth description 
+.. note::
 
-.. automodule:: RealstatsModelRollout
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   This project is under active development.
 
-How to use the package
-======================
+Installation
+------------
 
-The package is simple to use and easy to implement for more information
-look here: `usage <./usage>`__
+.. code:: console
 
-Premade scripts
----------------
+    $ pip install clappform
 
-The package uses premade scripts for generating the folder structure of
-the virtual machine for the model you can find them here \*
-* `Main.py <./premade_scripts/main.md>`__ \*
-* `functions.py <./premade_scripts/functions.md>`__ \* `\_\_ init
-* __.py <./premade_scripts/init.md>`__ \*
-* `train_model.py <./premade_scripts/train.md>`__
 
-Changelog
-=========
+Quick start
+------------
 
-Here you can find the changelog of the official versions of the package
-wich will be rolled out when functions have been completed or when bugs
-are fixed.
+.. code:: python
 
-`Go to changelog -> <./changelog>`__
+   from clappform import Clappform
+   import clappform.dataclasses as c_dataclasses
+
+   # Get a environment token from the given environment
+   c_auth = Clappform("ENVIRONMENT_URL", "J.Doe@clappform.com", "SUPERSECRETPASSWORD")
+
+   # Get all applications
+   apps = c_auth.Get(c_dataclasses.App())
+
+   for app in apps:
+      print(app.name)
+
+
+Usage
+------
+Check out the :doc:`usage` section for further information.
+
+
+Contents
+--------
+
+.. toctree::
+
+   usage
+   api
