@@ -1,22 +1,71 @@
-Welcome to Lumache's documentation!
-===================================
+|Testing| |issues| |License| |Release|
 
-**Lumache** (/lu'make/) is a Python library for cooks and food lovers
-that creates recipes mixing random ingredients.
-It pulls data from the `Open Food Facts database <https://world.openfoodfacts.org/>`_
-and offers a *simple* and *intuitive* API.
+Welcome to the Realstats Model Rollout package documentation. This
+documentation page has been created to help users find their way in the
+package.
 
-Check out the :doc:`usage` section for further information, including
-how to :ref:`installation` the project.
+Functions within package
+========================
 
-.. note::
+Here you wil find a link to all functions and classes in the package
+where you will a more in depth description \*
+`Vmachine() <./vmachine/vmachine>`__ \*
+`Generate_structure() <./vmachine/functions/generate_structure_rework>`__
+\* `Start_venv() <./vmachine/functions/start_venv>`__ \*
+`Validate() <./validate/validate>`__ \*
+`Start_validation() <./validate/functions/start_validation>`__ \*
+`Save_validation_results() <./validate/functions/save_validation>`__ \*
+`Versioning() <./versioning/versioning>`__ \*
+`Upload_enviroment() <./versioning/functions/upload_enviro>`__ \*
+`Download_enviroment() <./versioning/functions/download_enviro>`__ \*
+`Get_file_content() <./versioning/functions/download_file>`__ \*
+`Globalfunctions() <./global_functions/globalfunctions>`__ \*
+`Find() <./global_functions/functions/find>`__ \*
+`Path_is_dir() <./global_functions/functions/pathisdir>`__ \*
+`Check_instance() <./global_functions/functions/check_instance.md>`__ \*
+`Model() <./model/model>`__ \*
+`Info_request() <./model/functions/model_info_request>`__ \*
+`Predict_request() <./model/functions/model_predict_request>`__ \*
+`Validate_request() <./model/functions/model_validate_request.md>`__ \*
+`Load_model() <./model/functions/model_load_request.md>`__ \*
+`Custom_request() <./model/functions/model_custom_request>`__
 
-   This project is under active development.
+How to use the package
+======================
 
-Contents
---------
+The package is simple to use and easy to implement for more information
+look here: `usage <./usage>`__
 
-.. toctree::
+Premade scripts
+---------------
 
-   usage
-   api
+The package uses premade scripts for generating the folder structure of
+the virtual machine for the model you can find them here \*
+`Main.py <./premade_scripts/main.md>`__ \*
+`functions.py <./premade_scripts/functions.md>`__ \* `\_\_ init
+\__.py <./premade_scripts/init.md>`__ \*
+`train_model.py <./premade_scripts/train.md>`__
+
+Changelog
+=========
+
+Here you can find the changelog of the official versions of the package
+wich will be rolled out when functions have been completed or when bugs
+are fixed.
+
+`Go to changelog -> <./changelog>`__
+
+Version list
+~~~~~~~~~~~~
+
+These are usable versions within the package \* Stable version: \*
+`0.2.2 <./changelog#version-022>`__ \*
+`0.2.1 <./changelog#version-021>`__ \* Dev versions: \*
+`0.2.2.dev14 <./changelog#version-021dev3>`__ \*
+`0.2.1.dev3 <./changelog#version-021dev3>`__ \*
+`0.0.1.dev22 <./changelog#version-001dev22>`__
+
+.. |Testing| image:: https://img.shields.io/github/workflow/status/bharkema/realstatsmodelrollout/Python%20package%20testing?label=Testing&style=for-the-badge
+.. |issues| image:: https://img.shields.io/github/issues/bharkema/realstatsmodelrollout?style=for-the-badge
+.. |License| image:: https://img.shields.io/github/license/bharkema/RealstatsModelRollout?style=for-the-badge
+.. |Release| image:: https://img.shields.io/github/v/release/bharkema/RealstatsModelRollout?style=for-the-badge
