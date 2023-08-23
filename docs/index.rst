@@ -8,27 +8,27 @@ Functions within package
 ========================
 
 Here you wil find a link to all functions and classes in the package
-where you will a more in depth description \*
-`Vmachine() <./vmachine/vmachine>`__ \*
-`Generate_structure() <./vmachine/functions/generate_structure_rework>`__
-\* `Start_venv() <./vmachine/functions/start_venv>`__ \*
-`Validate() <./validate/validate>`__ \*
-`Start_validation() <./validate/functions/start_validation>`__ \*
-`Save_validation_results() <./validate/functions/save_validation>`__ \*
-`Versioning() <./versioning/versioning>`__ \*
-`Upload_enviroment() <./versioning/functions/upload_enviro>`__ \*
-`Download_enviroment() <./versioning/functions/download_enviro>`__ \*
-`Get_file_content() <./versioning/functions/download_file>`__ \*
-`Globalfunctions() <./global_functions/globalfunctions>`__ \*
-`Find() <./global_functions/functions/find>`__ \*
-`Path_is_dir() <./global_functions/functions/pathisdir>`__ \*
-`Check_instance() <./global_functions/functions/check_instance.md>`__ \*
-`Model() <./model/model>`__ \*
-`Info_request() <./model/functions/model_info_request>`__ \*
-`Predict_request() <./model/functions/model_predict_request>`__ \*
-`Validate_request() <./model/functions/model_validate_request.md>`__ \*
-`Load_model() <./model/functions/model_load_request.md>`__ \*
-`Custom_request() <./model/functions/model_custom_request>`__
+where you will a more in depth description 
+* `Vmachine() <./vmachine/vmachine>`__ 
+* `Generate_structure() <./vmachine/functions/generate_structure_rework>`__
+* `Start_venv() <./vmachine/functions/start_venv>`__ 
+* `Validate() <./validate/validate>`__ 
+* `Start_validation() <./validate/functions/start_validation>`__ 
+* `Save_validation_results() <./validate/functions/save_validation>`__ 
+* `Versioning() <./versioning/versioning>`__ 
+* `Upload_enviroment() <./versioning/functions/upload_enviro>`__ 
+* `Download_enviroment() <./versioning/functions/download_enviro>`__ 
+* `Get_file_content() <./versioning/functions/download_file>`__ 
+* `Globalfunctions() <./global_functions/globalfunctions>`__ 
+* `Find() <./global_functions/functions/find>`__ 
+* `Path_is_dir() <./global_functions/functions/pathisdir>`__ 
+* `Check_instance() <./global_functions/functions/check_instance.md>`__ 
+* `Model() <./model/model>`__ 
+* `Info_request() <./model/functions/model_info_request>`__ 
+* `Predict_request() <./model/functions/model_predict_request>`__ 
+* `Validate_request() <./model/functions/model_validate_request.md>`__ 
+* `Load_model() <./model/functions/model_load_request.md>`__ 
+* `Custom_request() <./model/functions/model_custom_request>`__
 
 How to use the package
 ======================
@@ -41,10 +41,10 @@ Premade scripts
 
 The package uses premade scripts for generating the folder structure of
 the virtual machine for the model you can find them here \*
-`Main.py <./premade_scripts/main.md>`__ \*
-`functions.py <./premade_scripts/functions.md>`__ \* `\_\_ init
-\__.py <./premade_scripts/init.md>`__ \*
-`train_model.py <./premade_scripts/train.md>`__
+* `Main.py <./premade_scripts/main.md>`__ \*
+* `functions.py <./premade_scripts/functions.md>`__ \* `\_\_ init
+* __.py <./premade_scripts/init.md>`__ \*
+* `train_model.py <./premade_scripts/train.md>`__
 
 Changelog
 =========
